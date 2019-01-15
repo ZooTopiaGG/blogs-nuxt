@@ -3,7 +3,7 @@
     <!-- 左边内容区域 -->
     <div class="left-content flex-1" style="position: relative;">
       <!-- 滚动区域 -->
-      <div class="sy-box2" style="height: 360px; width:100%;overflow:hidden;margin-bottom:25px;">
+      <!-- <div class="sy-box2" style="height: 360px; width:100%;overflow:hidden;margin-bottom:25px;">
         <ul id="slider" style="list-style: none; width: 100%; height: 100%; padding: 0; margin: 0;" class="hde sy-list">  
           <li class="sy-slide kenburns useCSS sy-ken sy-active" style="transition-duration: 5000ms; opacity: 1; animation-duration: 19000ms;">
             <i class="img1"></i>
@@ -15,7 +15,14 @@
             <i class="img3"></i>
           </li>
         </ul>
-      </div>
+      </div> -->
+      <el-carousel :interval="4000" indicator-position="outside">
+        <el-carousel-item v-for="(item, index) in options" :key="index">
+          <a class="img-box" :href="item.link" target="_blank">
+            <img v-lazy="item.src" alt="banner">
+          </a>
+        </el-carousel-item>
+      </el-carousel>
       <!-- 最新文章区域 -->
       <div>
         <LastestArticle></LastestArticle>
@@ -35,7 +42,7 @@ export default {
   name: "home",
   async fetch({ app, error, store }) {
     await store.dispatch("getLatestArticles", { page: 1, pagesize: 10 });
-    await store.dispatch("getStatistics");
+    // await store.dispatch("getStatistics");
     await store.dispatch("getLatestNews");
   },
   head() {
@@ -48,7 +55,28 @@ export default {
   },
   data() {
     return {
-      msg: ""
+      msg: "",
+      options: [
+        { 
+          src: 'http://image.55lover.com/image/banner/1_HSisLuifMO6KbLfPOKtLow.jpg',
+          link: 'https://reactjs.org/'
+        },
+        { src: 'http://image.55lover.com/image/banner/maxresdefault.jpg', 
+          link: 'https://cn.vuejs.org'
+        },
+        { src: 'http://image.55lover.com/image/banner/mysql-logo-wallpaper.jpg', 
+          link: 'https://www.mysql.com/'
+        },
+        { src: 'http://image.55lover.com/image/banner/1_gVT-DZjP_JsaoLhFolGadA.png', 
+          link: 'https://nginx.org/'
+        },
+        { src: 'http://image.55lover.com/image/banner/1_aeWo6e6FC8InJwBl3TmpDw.jpg', 
+          link: 'https://nodejs.org/'
+        },
+        { src: 'http://image.55lover.com/image/banner/1_ueWmI48uuShON-hX7LwI0w.png', 
+          link: 'https://www.python.org/'
+        },
+      ]
     };
   },
   components: {
@@ -135,6 +163,17 @@ body {
   transition: 6s;
   -webkit-transition: 6s;
   -moz-transition: 6s;
+}
+.el-carousel {
+   margin-bottom: 25px;
+}
+.img-box {
+  width: 1024px;
+  height: 300px;
+  overflow: hidden;
+}
+.img-box img {
+  width: 100%;
 }
 .s-right img {
   transition: 6s;

@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
 export default {
   name: "signin",
   head() {
@@ -67,6 +68,10 @@ export default {
       if (res.isSuc) {
         let r = JSON.stringify(res.result);
         window.localStorage.setItem("55lover_reader", r);
+        Cookies.set('_55lover_avatar', res.result.avatar, { expires: 7, path: '' })
+        Cookies.set('_55lover_email', res.result.email, { expires: 7, path: '' })
+        Cookies.set('_55lover_id', res.result.id, { expires: 7, path: '' })
+        Cookies.set('_55lover_name', res.result.name, { expires: 7, path: '' })
         self.$store.commit("NO_LOGIN", res.result);
         if (self.fromSignUp) {
           self.$router.push({ path: "/" });

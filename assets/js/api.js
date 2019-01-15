@@ -1,6 +1,7 @@
 let api = {
   // 接口地址
   base: 'http://api.55lover.com/api/',
+  // base: 'http://localhost:8088/api/',
   article: {
     // wenzhang详情
     'getLatestArticles': 'getLatestArticles',

@@ -238,7 +238,7 @@ export default {
         avatar: self.$store.state.GET_LOGIN_STATUS.avatar,
         content: self.ruleForm.message
       };
-      let res = await self.$axios.$post(api.reply.addMessage, para);
+      let res = await self.$axios.$post(api.message.addMessage, para);
       if (res.isSuc) {
         self.$message.success(res.message);
         res.result.createAt = Coms.createTime(res.result.createAt);

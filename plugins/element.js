@@ -22,9 +22,12 @@ import {
   MenuItemGroup,
   RadioButton,
   Loading,
-  Message
+  Message,
+  Carousel,
+  CarouselItem
 }
 from 'element-ui'
+import lazyload from 'vue-lazyload';
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
@@ -43,9 +46,19 @@ Vue.use(MenuItem)
 Vue.use(Menu)
 Vue.use(MenuItemGroup)
 Vue.use(RadioButton)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 Vue.component(CollapseTransition.name, CollapseTransition)
 Vue.use(DatePicker)
 Vue.use(Loading.directive);
+Vue.use(lazyload, {
+  lazyComponent: true,
+  preLoad: 1.3,
+  error: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAAGmAQMAAAAZMJMVAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefn5ySG6Q8AAAA+SURBVHja7cExAQAAAMKg9U9tCj+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAvwGcmgABBZ8R+wAAAABJRU5ErkJggg==",
+  loading: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAAGmAQMAAAAZMJMVAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefn5ySG6Q8AAAA+SURBVHja7cExAQAAAMKg9U9tCj+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAvwGcmgABBZ8R+wAAAABJRU5ErkJggg==",
+  attempt: 3,
+  // listenEvents: ['scroll']
+})
 
 Vue.prototype.$message = Message;
 Vue.prototype.$loading = Loading.service;

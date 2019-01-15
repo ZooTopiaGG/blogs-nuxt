@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 export const state = () => ({
   counter: 0,
   locales: ['en', 'cn'],
@@ -96,9 +97,6 @@ export const actions = {
         id,
         name
       })
-      // commit('SET_TOKEN', token)
-      // commit('SET_H5COOKIES', h5Cookies)
-      // commit('SET_ADID', h5Adid)
     }
   },
   // 获取最新文章
@@ -188,6 +186,10 @@ export const actions = {
     let res = await this.$axios.$get(`${api.sign.signout}`)
     if (res.isSuc) {
       commit('NO_LOGIN', '');
+      Cookies.remove('_55lover_avatar', { path: '' }); // removed!
+      Cookies.remove('_55lover_email', { path: '' }); // removed!
+      Cookies.remove('_55lover_id', { path: '' }); // removed!
+      Cookies.remove('_55lover_name', { path: '' }); // removed!
       $message(res.message)
     }
   }
