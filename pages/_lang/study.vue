@@ -54,7 +54,7 @@
       <div class="list-box flex flex-1">
         <div class="list flex flex-align-center" v-for="(item, index) in studyList" :key="index">
           <div class="list-img-box flex flex-align-center">
-            <img class="list-img" :src="item.image">
+            <img class="list-img" v-lazy="item.image">
           </div>
           <div class="list-aside flex flex-v">
             <a :href="item.url" target="_blank" style="color:#13acff">{{ item.title }}</a>

@@ -15,7 +15,7 @@
             :disabled="true"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
-            <img v-if="ruleForm.imageUrl" :src="ruleForm.imageUrl" class="avatars">
+            <img v-if="ruleForm.imageUrl" v-lazy="ruleForm.imageUrl" class="avatars">
             <i v-else class="el-icon-plus avatars-uploader-icon"></i>
           </el-upload>
         </el-form-item>

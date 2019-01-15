@@ -10,7 +10,7 @@
       </div>
       <article class="album-list flex flex-v flex-1" ref="imgs">
         <!-- <div class="album-list-cell" v-for="(item, index) in list" :key="index">
-          <img :src="item.personsrc" width="200px">
+          <img v-lazy="item.personsrc" width="200px">
         </div> -->
         <ul ref='ul' class="flex flex-pack-justify" style="width: 100%; position: relative"></ul>
       </article>

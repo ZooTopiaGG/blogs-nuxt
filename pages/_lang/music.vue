@@ -30,7 +30,7 @@
             <ul class="list">
               <li class="list-cell flex flex-align-center flex-pack-justify" v-for="(item, index) in list" :key="index">
                 <span style="width:25px">{{ index + 1 }}. </span>
-                <audio class="audio" :src="item.url"> {{ $t('message.SupportWeb') }} </audio>
+                <audio class="audio" v-lazy="item.url"> {{ $t('message.SupportWeb') }} </audio>
                 <i style="margin:0 10px; cursor: pointer" @click.self="playorpause(index, item.singername, item.songname)" :class="{active: index===i ? true: false }"></i> 
                 <a href="javascript:;" class="music-title" style="color:#000;margin-left: 10px;">{{ item.songname }}</a> 
                 <!-- <span style="margin: 0 5px">-</span> 

@@ -71,7 +71,7 @@
         </div>
         <el-dropdown v-else trigger="click" class="flex flex-align-center" @command="handleCommand">
           <span class="el-dropdown-link flex flex-align-center">
-            <img v-if="$store.state.GET_LOGIN_STATUS.avatar" :src="$store.state.GET_LOGIN_STATUS.avatar" style="width: 48px;height: 48px;border-radius: 100%;">
+            <img v-if="$store.state.GET_LOGIN_STATUS.avatar" v-lazy="$store.state.GET_LOGIN_STATUS.avatar" style="width: 48px;height: 48px;border-radius: 100%;">
             <img v-else src="../assets/images/signin.png" >
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>

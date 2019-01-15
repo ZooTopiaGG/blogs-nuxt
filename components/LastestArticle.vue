@@ -31,11 +31,11 @@
           </div>
           <router-link v-if="item.columntype==0" class="imgbox" :to="{ path: `/adetails/a/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
-            <img v-else :src="item.smallimg" :onerror="logo" alt="article">
+            <img v-else v-lazy="item.smallimg"  alt="article">
           </router-link>
           <router-link v-else class="imgbox" :to="{ path: `/adetails/p/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
-            <img v-else :src="item.smallimg" :onerror="logo" alt="article">
+            <img v-else v-lazy="item.smallimg"  alt="article">
           </router-link>
         </div>
         <!-- <div class="look">

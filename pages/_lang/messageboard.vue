@@ -26,7 +26,7 @@
         </div>
         <ul class="boards-list">
           <li class="flex bg bgbox boards-list-cell" v-for="(item, index) in lists" :key="index">
-            <img v-if="item.avatar != ''" class="user-avatar" :src="item.avatar">
+            <img v-if="item.avatar != ''" class="user-avatar" v-lazy="item.avatar">
             <img v-else class="user-avatar" src="http://scenery.55lover.com/image/scenery/20180319113625.jpg">
             <div class="boards-cell-content flex flex-1 flex-v">
               <div class="flex flex-align-center">
@@ -41,7 +41,7 @@
               <!-- 回复列表 -->
               <ul class="reply-list">
                 <li class="reply-list-cell flex flex-align-top" v-for="(replyitem, replyindex) in item.replyList" :key="replyindex">
-                  <img v-if="replyitem.fromavatar != '' " class="reply-avatar" :src="replyitem.fromavatar">
+                  <img v-if="replyitem.fromavatar != '' " class="reply-avatar" v-lazy="replyitem.fromavatar">
                   <img v-else class="reply-avatar" src="http://scenery.55lover.com/image/scenery/20180319113625.jpg">
                   <div class="flex flex-v reply-box">
                     <span class="reply-content"><span style="color: #18acff;margin-right:4px;">{{replyitem.fromusername}}</span>{{replyitem.tovalue}}</span>
