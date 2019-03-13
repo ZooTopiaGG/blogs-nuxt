@@ -24,10 +24,12 @@ import {
   Loading,
   Message,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  Badge
 }
 from 'element-ui'
 import lazyload from 'vue-lazyload';
+Vue.use(Badge)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)

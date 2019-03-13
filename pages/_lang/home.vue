@@ -42,7 +42,7 @@ export default {
   name: "home",
   async fetch({ app, error, store }) {
     await store.dispatch("getLatestArticles", { page: 1, pagesize: 10 });
-    // await store.dispatch("getStatistics");
+    await store.dispatch("getStatistics");
     await store.dispatch("getLatestNews");
   },
   head() {

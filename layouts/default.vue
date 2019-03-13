@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{ backgroundImage: bmg }">
     <top-nav></top-nav>
     <div class="main">
       <nuxt/>
@@ -89,6 +89,8 @@ export default {
 }
 #app {
   min-width: 1115px;
+  background-attachment: fixed;
+  background-size: cover;
 }
 body {
   color: #444;
@@ -97,7 +99,7 @@ body {
   background-attachment: fixed;
   background-repeat: repeat;
   background-size: 100% 100%;
-  background-image: url("http://wallpaper.55lover.com/image/wallpaper/bg1.jpg");
+  background-image: url("http://wallpaper.55lover.com/image/wallpaper/bg3.jpg");
 }
 .main {
   padding-top: 120px;

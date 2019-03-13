@@ -52,17 +52,19 @@
         </div>
         <div class="statistics flex flex-align-center flex-pack-justify">
           <div class="flex flex-v flex-align-center">
-            <span class="all-num">{{$store.state.statistics.article_num}}</span>
+            <span class="all-num">{{$store.state.statistics.article_num | overNum}}</span>              
             <p>{{ $t('message.TotalArticles') }}</p>
           </div>
           <div class="line"></div>
           <div class="flex flex-v flex-align-center">
-            <span class="all-num">{{$store.state.statistics.user_num}}</span>
+            <span class="all-num">{{$store.state.statistics.user_num | overNum}}</span>
             <p>{{ $t('message.TotalUsers') }}</p>
           </div>
           <div class="line"></div>
           <div class="flex flex-v flex-align-center">
-            <span class="all-num">{{$store.state.statistics.visitor_num}}</span>
+            <el-badge class="mark" :value="$store.state.statistics.today_pv | badgeNum" >
+              <span class="all-num">{{$store.state.statistics.visitor_num | overNum}}</span>              
+            </el-badge>
             <p>{{ $t('message.TotalViews') }}</p>
           </div>
         </div>
@@ -149,6 +151,16 @@
 <script>
 export default {
   name: "asides",
+  filters: {
+    overNum(val) {
+      if (!val) return 0
+      return val && parseInt(val) > 9999 ? (val / 10000).toFixed(2) + 'w' : val
+    },
+    badgeNum(val) {
+      if (!val) return 0
+      return val && parseInt(val) > 99 ? '99+' : val
+    }
+  },
   data() {
     return {
       activeIndex: "1",
@@ -222,7 +234,7 @@ export default {
     signout() {
       window.localStorage.clear();
       this.show = false;
-      this.$store.dispatch("NO_LOGIN", null);
+      this.$store.dispatch("NO_LOGIN", '');
     },
     toinfo() {
       this.show = false;
