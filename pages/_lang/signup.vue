@@ -4,74 +4,77 @@
       <div class="logo">
         <img src="../../assets/images/logo2.png">
       </div>
-        <el-form class="in-form signup-form" :label-position="labelPosition" :label-width="$t('message.LabelWidth')" :model="formLabelAlign">
-          <el-form-item>
-          </el-form-item>
-          <el-form-item :label="$t('message.NameAccount')">
-            <el-input v-model="formLabelAlign.name"></el-input>
-          </el-form-item>
-          <el-form-item :label="$t('message.Email')">
-            <el-input v-model="formLabelAlign.email"></el-input>
-          </el-form-item>
-          <el-form-item :label="$t('message.Gender')">
-            <el-radio-group v-model="formLabelAlign.gender">
-              <el-radio :label="$t('message.Male')"></el-radio>
-              <el-radio :label="$t('message.Female')"></el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item :label="$t('message.Password')">
-            <el-input type='password' v-model="formLabelAlign.password"></el-input>
-          </el-form-item>
-          <el-form-item :label="$t('message.SurePassword')">
-            <el-input type='password' v-model="formLabelAlign.password1"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <div class="flex flex-pack-justify">
-              <p>{{$t('message.HaveAccount')}}<router-link :to="{ name: 'signin' }">{{$t('message.GoLogin')}}</router-link></p>
-              <p><router-link :to="{ name: 'home' }">{{$t('message.BackHome')}}</router-link></p>
-            </div>
-          </el-form-item>
-          <el-form-item>
+      <el-form class="in-form signup-form" :label-position="labelPosition" :label-width="$t('message.LabelWidth')" :model="formLabelAlign">
+        <el-form-item>
+        </el-form-item>
+        <el-form-item :label="$t('message.NameAccount')">
+          <el-input v-model="formLabelAlign.name"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('message.Email')">
+          <el-input v-model="formLabelAlign.email"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('message.Gender')">
+          <el-radio-group v-model="formLabelAlign.gender">
+            <el-radio :label="$t('message.Male')"></el-radio>
+            <el-radio :label="$t('message.Female')"></el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item :label="$t('message.Password')">
+          <el-input type='password' v-model="formLabelAlign.password"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('message.SurePassword')">
+          <el-input type='password' v-model="formLabelAlign.password1"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <div class="flex flex-pack-justify">
+            <p>{{$t('message.HaveAccount')}}<router-link :to="{ name: 'signin' }">{{$t('message.GoLogin')}}</router-link>
+            </p>
+            <p>
+              <router-link :to="{ name: 'home' }">{{$t('message.BackHome')}}</router-link>
+            </p>
+          </div>
+        </el-form-item>
+        <el-form-item>
           <el-button type="primary" @click="submitForm()">{{$t('message.Register')}}</el-button>
         </el-form-item>
-        </el-form>
+      </el-form>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "signin",
+  name: 'signin',
   head() {
     return {
-      title: "注册_邓鹏博客"
-    };
+      title: '注册_邓鹏博客'
+    }
   },
   data() {
     return {
-      name: "",
-      password: "",
-      labelPosition: "top",
+      name: '',
+      password: '',
+      labelPosition: 'top',
       formLabelAlign: {
-        name: "",
-        password1: "",
-        password: "",
-        gender: "",
-        email: "",
+        name: '',
+        password1: '',
+        password: '',
+        gender: '',
+        email: '',
         avatar: [
-          "http://scenery.55lover.com/image/scenery/20180319113550.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113533.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113616.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113602.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113556.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113609.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113630.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113621.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113625.jpg",
-          "http://scenery.55lover.com/image/scenery/20180319113635.jpg"
+          'http://scenery.55lover.com/image/scenery/20180319113550.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113533.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113616.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113602.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113556.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113609.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113630.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113621.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113625.jpg',
+          'http://scenery.55lover.com/image/scenery/20180319113635.jpg'
         ]
       }
-    };
+    }
   },
   methods: {
     async submitForm() {
@@ -87,31 +90,31 @@ export default {
           gender: that.formLabelAlign.gender,
           email: that.formLabelAlign.email,
           avatar: avatar
-        };
-      let res = await this.$axios.$post(api.sign.signup, para);
+        }
+      let res = await this.$axios.$post(api.sign.signup, para)
       if (res.isSuc) {
         this.$message({
           message: res.message,
-          type: "success"
-        });
+          type: 'success'
+        })
       } else {
         this.$message({
           message: res.message,
-          type: "error"
-        });
+          type: 'error'
+        })
       }
     }
   },
   mounted() {
     let wHeight = $(window).height() - 120,
-      bHeight = $(".box").height() + 60;
+      bHeight = $('.box').height() + 60
     if (wHeight < bHeight) {
-      $(".signin").height(bHeight);
+      $('.signin').height(bHeight)
     } else {
-      $(".signin").height(wHeight);
+      $('.signin').height(wHeight)
     }
   }
-};
+}
 </script>
 <style type="text/css">
 .signup-form .el-form-item {
@@ -125,6 +128,7 @@ export default {
 <style scoped>
 .signin {
   box-sizing: border-box;
+  margin: 0 auto;
 }
 .box {
   width: 400px;

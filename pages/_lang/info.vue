@@ -1,6 +1,6 @@
 <template>
-  <section class="flex">
-    <div class="info flex-1 left-content">
+  <section class="flex left-content">
+    <div class="info flex-1">
       <div class="title flex flex-align-center">
         <span class="iconfont dp-icon-jianjie dp-icon-00AACD"></span>
         <span class="title-text">关于我</span>
@@ -8,13 +8,7 @@
       </div>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" :label-width="$t('message.LabelWidth')" class="demo-ruleForm bgbox box">
         <el-form-item :label="$t('message.StationHead')" prop="imageUrl" v-loading.body="loadingAvatarUpload" required>
-          <el-upload
-            class="avatars-uploader"
-            action="http://api.55lover.com/api/upload"
-            :show-file-list="false"
-            :disabled="true"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload">
+          <el-upload class="avatars-uploader" action="http://api.55lover.com/api/upload" :show-file-list="false" :disabled="true" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
             <img v-if="ruleForm.imageUrl" v-lazy="ruleForm.imageUrl" class="avatars">
             <i v-else class="el-icon-plus avatars-uploader-icon"></i>
           </el-upload>
@@ -47,41 +41,41 @@
         </el-form-item> -->
       </el-form>
     </div>
-    <div class="right-content">
+    <!-- <div class="right-content">
       <asides></asides>
-    </div>
+    </div> -->
   </section>
 </template>
 <script>
-import Asides from "@/components/Aside";
+import Asides from '@/components/Aside'
 export default {
   async asyncData({ app }) {
-    let ruleForm = {};
+    let ruleForm = {}
     let res = await app.$axios.$get(
       `${api.info.getInfo}/d17692be-eca7-41ef-87df-aef4313e2b02`
-    );
+    )
     if (res.isSuc) {
-      let r = res.result;
-      ruleForm.imageUrl = r.avatar;
-      ruleForm.avatar = r.avatar;
-      ruleForm.desc = r.desc;
-      ruleForm.borndate = new Date(r.borndate);
-      ruleForm.site = r.site || "";
-      ruleForm.company = r.company;
+      let r = res.result
+      ruleForm.imageUrl = r.avatar
+      ruleForm.avatar = r.avatar
+      ruleForm.desc = r.desc
+      ruleForm.borndate = new Date(r.borndate)
+      ruleForm.site = r.site || ''
+      ruleForm.company = r.company
       if (r.gender == 1) {
-        ruleForm.gender = "男";
+        ruleForm.gender = '男'
       } else {
-        ruleForm.gender = "女";
+        ruleForm.gender = '女'
       }
     }
     return {
       ruleForm
-    };
+    }
   },
   head() {
     return {
-      title: "站长信息_关于我_邓鹏博客"
-    };
+      title: '站长信息_关于我_邓鹏博客'
+    }
   },
   components: {
     Asides
@@ -90,111 +84,111 @@ export default {
     return {
       loadingAvatarUpload: false,
       ruleForm: {
-        company: "",
-        borndate: "",
+        company: '',
+        borndate: '',
         type: [],
-        desc: "",
+        desc: '',
         // 本地
-        imageUrl: "",
+        imageUrl: '',
         // 服务器avatar地址
-        avatar: "",
-        site: "",
-        gender: ""
+        avatar: '',
+        site: '',
+        gender: ''
       },
       rules: {
-        imageUrl: [{ required: true, message: "请上传头像" }],
+        imageUrl: [{ required: true, message: '请上传头像' }],
         company: [
-          { required: true, message: "请输入公司名称", trigger: "blur" },
-          { min: 2, max: 50, message: "长度在 2 到 50 个字符", trigger: "blur" }
+          { required: true, message: '请输入公司名称', trigger: 'blur' },
+          { min: 2, max: 50, message: '长度在 2 到 50 个字符', trigger: 'blur' }
         ],
         borndate: [
           {
-            type: "date",
+            type: 'date',
             required: true,
-            message: "请选择出生日期",
-            trigger: "change"
+            message: '请选择出生日期',
+            trigger: 'change'
           }
         ],
-        desc: [{ required: true, message: "请填写个人介绍", trigger: "blur" }],
-        gender: [{ required: true, message: "请选择性别" }]
+        desc: [{ required: true, message: '请填写个人介绍', trigger: 'blur' }],
+        gender: [{ required: true, message: '请选择性别' }]
       }
-    };
+    }
   },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.updateInfo();
+          this.updateInfo()
         } else {
-          return false;
+          return false
         }
-      });
+      })
     },
     resetForm(formName) {
       // this.ruleForm.avatar = ''
-      this.$refs[formName].resetFields();
+      this.$refs[formName].resetFields()
     },
     handleAvatarSuccess(res, file) {
-      this.loadingAvatarUpload = false;
-      this.ruleForm.imageUrl = URL.createObjectURL(file.raw);
-      this.ruleForm.avatar = res.imgUrl;
+      this.loadingAvatarUpload = false
+      this.ruleForm.imageUrl = URL.createObjectURL(file.raw)
+      this.ruleForm.avatar = res.imgUrl
     },
     beforeAvatarUpload(file) {
-      this.loadingAvatarUpload = true;
-      const isJPG = file.type === "image/jpeg";
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      this.loadingAvatarUpload = true
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.$message.error("上传头像图片只能是 JPG 格式!");
-        this.loadingAvatarUpload = false;
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+        this.loadingAvatarUpload = false
       }
       if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
-        this.loadingAvatarUpload = false;
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+        this.loadingAvatarUpload = false
       }
-      return isJPG && isLt2M;
+      return isJPG && isLt2M
     },
     async updateInfo() {
-      if (this.ruleForm.gender === "男") {
-        var gender = 1;
+      if (this.ruleForm.gender === '男') {
+        var gender = 1
       } else {
-        var gender = 0;
+        var gender = 0
       }
       var para = {
-        id: "d17692be-eca7-41ef-87df-aef4313e2b02",
+        id: 'd17692be-eca7-41ef-87df-aef4313e2b02',
         avatar: this.ruleForm.avatar,
         desc: this.ruleForm.desc,
         gender: gender,
         company: this.ruleForm.company,
         site: this.ruleForm.site,
         borndate: Coms.getCommonTime(this.ruleForm.borndate)
-      };
-      let res = await this.$axios.$post(api.info.updateInfo, para);
+      }
+      let res = await this.$axios.$post(api.info.updateInfo, para)
       if (res.isSuc) {
-        this.$message.success(res.message);
-        let r = JSON.stringify(res.result);
-        window.localStorage.setItem("55lover_reader", r);
-        this.$router.go(-1);
+        this.$message.success(res.message)
+        let r = JSON.stringify(res.result)
+        window.localStorage.setItem('55lover_reader', r)
+        this.$router.go(-1)
       } else {
-        this.$message.error(res.message);
+        this.$message.error(res.message)
       }
     },
     async getInfo() {
       let res = await this.$axios.$get(
         `${api.info.getInfo}/d17692be-eca7-41ef-87df-aef4313e2b02`
-      );
+      )
       if (res.isSuc) {
-        let r = res.result;
-        this.ruleForm.imageUrl = r.avatar;
-        this.ruleForm.avatar = r.avatar;
-        this.ruleForm.desc = r.desc;
-        this.ruleForm.borndate = new Date(r.borndate);
-        this.ruleForm.site = r.site || "";
-        this.ruleForm.company = r.company;
+        let r = res.result
+        this.ruleForm.imageUrl = r.avatar
+        this.ruleForm.avatar = r.avatar
+        this.ruleForm.desc = r.desc
+        this.ruleForm.borndate = new Date(r.borndate)
+        this.ruleForm.site = r.site || ''
+        this.ruleForm.company = r.company
         if (r.gender == 1) {
-          this.ruleForm.gender = "男";
+          this.ruleForm.gender = '男'
         } else {
-          this.ruleForm.gender = "女";
+          this.ruleForm.gender = '女'
         }
       }
     }
@@ -202,7 +196,7 @@ export default {
   beforeMount() {
     // this.getInfo();
   }
-};
+}
 </script>
 
 <style>

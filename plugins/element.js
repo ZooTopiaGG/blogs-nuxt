@@ -27,7 +27,7 @@ import {
   CarouselItem,
   Badge
 }
-from 'element-ui'
+  from 'element-ui'
 import lazyload from 'vue-lazyload';
 Vue.use(Badge)
 Vue.use(Form)
@@ -56,8 +56,8 @@ Vue.use(Loading.directive);
 Vue.use(lazyload, {
   lazyComponent: true,
   preLoad: 1.3,
-  error: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAAGmAQMAAAAZMJMVAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefn5ySG6Q8AAAA+SURBVHja7cExAQAAAMKg9U9tCj+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAvwGcmgABBZ8R+wAAAABJRU5ErkJggg==",
-  loading: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAAGmAQMAAAAZMJMVAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefn5ySG6Q8AAAA+SURBVHja7cExAQAAAMKg9U9tCj+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAvwGcmgABBZ8R+wAAAABJRU5ErkJggg==",
+  error: require('~/assets/images/download.gif'),
+  loading: require('~/assets/images/download.gif'),
   attempt: 3,
   // listenEvents: ['scroll']
 })

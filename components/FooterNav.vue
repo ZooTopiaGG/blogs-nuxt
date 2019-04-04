@@ -9,9 +9,9 @@
             <span class="title-text">友情链接</span>
             <span class="title-label">Friends links</span>
           </div>
-          <span class="link-addr"><a href="http://www.lawyer-center.com" class="flex flex-align-center" target="_blank"><span class="link-label bgred">1</span><span class="link-title">律师说官方网站</span></a></span>
-          <span class="link-addr"><a href="http://www.liaoxuefeng.com" target="_blank" class="flex flex-align-center"><span class="link-label bggreen">2</span><span class="link-title">廖雪峰官方网站</span></a></span>
-         <!--  <span class="link-addr"><a href="http://www.100txy.com" class="flex flex-align-center" target="_blank"><span class="link-label bgorange">3</span><span class="link-title">雷小天博客</span></a></span> -->
+          <!-- <span class="link-addr"><a href="http://www.lawyer-center.com" class="flex flex-align-center" target="_blank"><span class="link-label bgred">1</span><span class="link-title">律师说官方网站</span></a></span>
+          <span class="link-addr"><a href="http://www.liaoxuefeng.com" target="_blank" class="flex flex-align-center"><span class="link-label bggreen">2</span><span class="link-title">廖雪峰官方网站</span></a></span> -->
+          <!--  <span class="link-addr"><a href="http://www.100txy.com" class="flex flex-align-center" target="_blank"><span class="link-label bgorange">3</span><span class="link-title">雷小天博客</span></a></span> -->
         </div>
         <!-- 底部二 申请友情链接 -->
         <div class="apply-friends second-box">
@@ -93,41 +93,41 @@
 
 <script>
 export default {
-  name: "footers",
+  name: 'footers',
   data() {
     return {
-      activeIndex: "1",
+      activeIndex: '1',
       ruleForm: {
-        name: "",
-        website: "",
-        email: ""
+        name: '',
+        website: '',
+        email: ''
       },
       rules: {
         name: [
-          { required: true, message: "请输入网站名称", trigger: "blur" },
-          { min: 1, max: 25, message: "长度在 1 到 25 个字符", trigger: "blur" }
+          { required: true, message: '请输入网站名称', trigger: 'blur' },
+          { min: 1, max: 25, message: '长度在 1 到 25 个字符', trigger: 'blur' }
         ],
-        email: [{ required: true, message: "请输入您的邮箱", trigger: "blur" }],
+        email: [{ required: true, message: '请输入您的邮箱', trigger: 'blur' }],
         website: [
-          { required: true, message: "请输入网站地址", trigger: "blur" }
+          { required: true, message: '请输入网站地址', trigger: 'blur' }
         ]
       }
-    };
+    }
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     // 提交表单
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.applyFriends();
+          this.applyFriends()
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
+      })
     },
     // 申请友链
     applyFriends() {
@@ -135,15 +135,15 @@ export default {
         webname: this.ruleForm.name,
         website: this.ruleForm.website,
         email: this.ruleForm.email
-      };
-      this.$store.dispatch("applyFriends", para);
+      }
+      this.$store.dispatch('applyFriends', para)
     }
   },
   mounted() {
     // console.log(this.GET_STAT)
-    sr.reveal(document.querySelectorAll(".second-box"));
+    sr.reveal(document.querySelectorAll('.second-box'))
   }
-};
+}
 </script>
 <style type="text/css">
 .apply-friends .el-input__inner {
@@ -151,7 +151,7 @@ export default {
   height: 36px;
   color: #fff;
 }
-.apply-friends .el-form-item__label {
+.footer-top .apply-friends .el-form-item__label {
   color: #fff;
 }
 </style>
@@ -197,7 +197,7 @@ export default {
 }
 .footer-design {
   font-size: 12px;
-  background-color: rgba(85, 85, 85, 0.7);
+  background-color: rgba(85, 85, 85, 0.5);
   box-shadow: 0px -40px 50px rgba(85, 85, 85, 0.5);
   color: #fff;
   box-sizing: border-box;

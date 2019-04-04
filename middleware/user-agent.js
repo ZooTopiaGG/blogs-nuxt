@@ -17,4 +17,9 @@ export default async function ({
     store.commit('SHOW_NAV', true)
     store.commit('SHOW_FOOTER', true)
   }
+  if (route.path == '/signin' || route.path == '/signup' || route.path == '/study') {
+    store.commit('SHOW_ASIDE', false)
+  } else {
+    store.commit('SHOW_ASIDE', true)
+  }
 }

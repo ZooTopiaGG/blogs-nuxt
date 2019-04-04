@@ -1,6 +1,6 @@
 <template>
   <aside class="aside">
-     <!-- 右一 技术标签 -->
+    <!-- 右一 技术标签 -->
     <div class="box bgbox">
       <div class="title flex flex-align-center">
         <span class="iconfont dp-icon-focusactive dp-icon-00AACD"></span>
@@ -26,7 +26,7 @@
 
           </a>
           <span class="focus-label">{{ $t('message.LinkIn') }}</span>
-         </div>
+        </div>
         <div class="flex flex-v flex-align-center">
           <a href="https://weibo.com/u/5111513792?refer_flag=1001030201_" title="微博" target="_blank" class="weibo flex flex-align-center flex-pack-center" style="background-color:#FF8245;">
             <span class="iconfont dp-icon-xinlang dp-icon-fff" style="font-size:22px;margin-top:5px;"></span>
@@ -52,7 +52,7 @@
         </div>
         <div class="statistics flex flex-align-center flex-pack-justify">
           <div class="flex flex-v flex-align-center">
-            <span class="all-num">{{$store.state.statistics.article_num | overNum}}</span>              
+            <span class="all-num">{{$store.state.statistics.article_num | overNum}}</span>
             <p>{{ $t('message.TotalArticles') }}</p>
           </div>
           <div class="line"></div>
@@ -62,14 +62,14 @@
           </div>
           <div class="line"></div>
           <div class="flex flex-v flex-align-center">
-            <el-badge class="mark" :value="$store.state.statistics.today_pv | badgeNum" >
-              <span class="all-num">{{$store.state.statistics.visitor_num | overNum}}</span>              
+            <el-badge class="mark" :value="$store.state.statistics.today_pv | badgeNum">
+              <span class="all-num">{{$store.state.statistics.visitor_num | overNum}}</span>
             </el-badge>
             <p>{{ $t('message.TotalViews') }}</p>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
     <!-- 右一 技术标签 -->
     <div class="box bgbox">
       <div class="title flex flex-align-center">
@@ -97,24 +97,35 @@
           <span v-else-if="item.icontype == 4" class="iconfont dp-icon-jishuwendang" style="color:rgb(243, 105, 67);font-size:18px;"></span>
           <span v-else class="iconfont dp-icon-focusactive" style="color:rgb(243, 105, 67);font-size:18px;"></span>
           <span class="news-author">{{item.author}}</span>
-          <span class="news-time">{{item.time}}</span> 
-          <span class="news-text">{{item.operation}}了</span> 
+          <span class="news-time">{{item.time}}</span>
+          <span class="news-text">{{item.operation}}了</span>
           <router-link v-if="item.types == '文章'" :to="{ path: `/adetails/a/${item.latestid}` }" class="types" style="background-color: rgb(0, 168, 250)">{{item.types}}</router-link>
           <router-link v-else-if="item.types == '技术'" :to="{ path: `/adetails/p/${item.latestid}` }" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</router-link>
           <router-link v-else-if="item.types == '动态'" :to="{ path: '/dynamic' }" class="types" style="background-color: rgb(60, 179, 113)">{{item.types}}</router-link>
           <router-link v-else-if="item.types == '音乐'" :to="{ path: '/music' }" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</router-link>
           <router-link v-else-if="item.types == '相册'" :to="{ path: '/albums' }" class="types" style="background-color: rgb(218, 112, 214)">{{item.types}}</router-link>
-          <a v-else href="javascript:;"  class="types" style="background-color: rgb(200, 200, 171)">{{item.types}}</a>
+          <a v-else href="javascript:;" class="types" style="background-color: rgb(200, 200, 171)">{{item.types}}</a>
         </div>
+      </div>
+    </div>
+    <!-- 右三 最近的音乐 -->
+    <div class="box bgbox music">
+      <div class="title flex flex-align-center">
+        <span class="iconfont dp-icon-focusactive dp-icon-00AACD"></span>
+        <span class="title-text">喜欢的音乐</span>
+        <span class="title-label">Favorite Music</span>
+      </div>
+      <div>
+        <dp-music></dp-music>
       </div>
     </div>
     <!-- 右四 工作经历 -->
     <div class="box bgbox job">
-       <div class="title flex flex-align-center">
-          <span class="iconfont dp-icon-gongzuojingli dp-icon-00AACD"></span>
-          <span class="title-text">工作经历</span>
-          <span class="title-label">Work experience</span>
-        </div>
+      <div class="title flex flex-align-center">
+        <span class="iconfont dp-icon-gongzuojingli dp-icon-00AACD"></span>
+        <span class="title-text">工作经历</span>
+        <span class="title-label">Work experience</span>
+      </div>
       <div class="con">
         {{ $t('message.WorkExperience') }}
       </div>
@@ -125,10 +136,10 @@
     <!-- 右五 关于我 -->
     <div class="box bgbox about">
       <div class="title flex flex-align-center">
-          <span class="iconfont dp-icon-jianjie dp-icon-00AACD"></span>
-          <span class="title-text">站长简介</span>
-          <span class="title-label">Webmaster profile</span>
-        </div>
+        <span class="iconfont dp-icon-jianjie dp-icon-00AACD"></span>
+        <span class="title-text">站长简介</span>
+        <span class="title-label">Webmaster profile</span>
+      </div>
       <div class="flex flex-v flex-align-center">
         <div>
           <img class="avatar" src="http://scenery.55lover.com/image/scenery/23115938.7a36240.jpg" alt="avatar">
@@ -149,8 +160,9 @@
 </template>
 
 <script>
+import dpMusic from '~/components/Music'
 export default {
-  name: "asides",
+  name: 'asides',
   filters: {
     overNum(val) {
       if (!val) return 0
@@ -161,93 +173,96 @@ export default {
       return val && parseInt(val) > 99 ? '99+' : val
     }
   },
+  components: {
+    dpMusic
+  },
   data() {
     return {
-      activeIndex: "1",
+      activeIndex: '1',
       show: false,
       res: {},
       labelres: [
         {
-          name: "css3",
+          name: 'css3',
           num: 3,
-          backgroundColor: "#da70d6"
+          backgroundColor: '#da70d6'
         },
         {
-          name: "html5",
+          name: 'html5',
           num: 1,
-          backgroundColor: "#efc95e"
+          backgroundColor: '#efc95e'
         },
         {
-          name: "javascript",
+          name: 'javascript',
           num: 1,
-          backgroundColor: "#7b68ee"
+          backgroundColor: '#7b68ee'
         },
         {
-          name: "vuejs",
+          name: 'vuejs',
           num: 3,
-          backgroundColor: "#3cb371"
+          backgroundColor: '#3cb371'
         },
         {
-          name: "es6",
+          name: 'es6',
           num: 1,
-          backgroundColor: "#7b68ee"
+          backgroundColor: '#7b68ee'
         },
         {
-          name: "reactjs",
+          name: 'reactjs',
           num: 0,
-          backgroundColor: "#00A8FA"
+          backgroundColor: '#00A8FA'
         },
         {
-          name: "nodejs",
+          name: 'nodejs',
           num: 2,
-          backgroundColor: "#f36943"
+          backgroundColor: '#f36943'
         },
         {
-          name: "python",
+          name: 'python',
           num: 10,
-          backgroundColor: "#ff4762"
+          backgroundColor: '#ff4762'
         },
         {
-          name: "mysql",
+          name: 'mysql',
           num: 1,
-          backgroundColor: "#c8c8ab"
+          backgroundColor: '#c8c8ab'
         },
         {
-          name: "nginx",
+          name: 'nginx',
           num: 5,
-          backgroundColor: "#3cb371"
+          backgroundColor: '#3cb371'
         },
         {
-          name: "法律知识",
+          name: '法律知识',
           num: 15,
-          backgroundColor: "#ff4762"
+          backgroundColor: '#ff4762'
         }
       ],
       newsres: [],
       getStat: {}
-    };
+    }
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     signout() {
-      window.localStorage.clear();
-      this.show = false;
-      this.$store.dispatch("NO_LOGIN", '');
+      window.localStorage.clear()
+      this.show = false
+      this.$store.dispatch('NO_LOGIN', '')
     },
     toinfo() {
-      this.show = false;
+      this.show = false
       this.$router.push({
-        name: "info",
-        params: { userid: "d17692be-eca7-41ef-87df-aef4313e2b02" }
-      });
+        name: 'info',
+        params: { userid: 'd17692be-eca7-41ef-87df-aef4313e2b02' }
+      })
     }
   },
   created() {
     // sr.reveal(document.querySelectorAll('.box'))
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

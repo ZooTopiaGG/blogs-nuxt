@@ -1,6 +1,6 @@
-<template> 
-  <section class="flex">
-    <div class="articles left-content flex-1" id="articles">
+<template>
+  <section class="flex left-content">
+    <div class="articles flex-1" id="articles">
       <div class="title flex flex-align-center">
         <span class="iconfont dp-icon-wenzhang dp-icon-00AACD"></span>
         <span class="title-text">文章专栏</span>
@@ -25,7 +25,7 @@
           </div>
           <router-link class="imgbox" :to="{ path: `/adetails/a/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
-            <img v-else v-lazy="item.smallimg"  alt="article">
+            <img v-else v-lazy="item.smallimg" alt="article">
           </router-link>
         </div>
         <!-- <div class="look">
@@ -34,40 +34,32 @@
       </article>
       <div class="block">
         <!-- <span class="demonstration">完整功能</span> -->
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="$store.state.articleListCount"
-          class="page">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.articleListCount" class="page">
         </el-pagination>
       </div>
     </div>
     <!-- 右边内容区域 -->
-    <div class="right-content">
+    <!-- <div class="right-content">
       <asides></asides>
-    </div>
+    </div> -->
   </section>
 </template>
 
 <script>
-import Asides from "~/components/Aside";
+import Asides from '~/components/Aside'
 export default {
-  name: "articles",
+  name: 'articles',
   async fetch({ store }) {
-    await store.dispatch("postArticle", {
+    await store.dispatch('postArticle', {
       page: 1,
       size: 10,
       columntype: 0 //  文章类
-    });
+    })
   },
   head() {
     return {
-      title: "法律知识很重要_文章专栏_邓鹏博客"
-    };
+      title: '法律知识很重要_文章专栏_邓鹏博客'
+    }
   },
   data() {
     return {
@@ -81,7 +73,7 @@ export default {
       // 页值
       page: 1,
       logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
-    };
+    }
   },
   components: {
     Asides
@@ -90,27 +82,27 @@ export default {
     lookMore(id) {
       this.$router.push({
         path: `/adetails/a/${id}`
-      });
+      })
     },
     async handleSizeChange(val) {
       // 每页多少条
-      this.pagesize = val;
-      await this.handlePost();
+      this.pagesize = val
+      await this.handlePost()
     },
     async handleCurrentChange(val) {
       // 当前页数
-      this.page = val;
-      await this.handlePost();
+      this.page = val
+      await this.handlePost()
     },
     async handlePost() {
-      await this.$store.dispatch("postArticle", {
+      await this.$store.dispatch('postArticle', {
         page: this.page,
         size: this.pagesize,
         columntype: 0 // 文章
-      });
+      })
     }
   }
-};
+}
 </script>
 <style type="text/css">
 </style>

@@ -2,7 +2,7 @@
   "name": "blogs-nuxt",
   "version": "1.0.0",
   "description": "Nuxt.js project",
-  "author": "dengpeng <dp@tiejin.cn>",
+  "author": "dengpeng <zootopiagg@gmail.com>",
   "private": true,
   "config": {
     "nuxt": {
@@ -20,10 +20,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.3",
+    "@nuxtjs/axios": "^5.4.1",
     "element-ui": "^2.3.4",
     "js-cookie": "^2.2.0",
-    "nuxt": "^2.2.0",
+    "nuxt": "^2.5.1",
     "vue-i18n": "^7.6.0",
     "vue-lazyload": "^1.2.6",
     "vue-scroll": "^2.1.7"

@@ -1,77 +1,108 @@
 <template>
   <div id="app" :style="{ backgroundImage: bmg }">
     <top-nav></top-nav>
-    <div class="main">
-      <nuxt/>
+    <div class="main flex">
+      <nuxt />
+      <asides class="right-content" v-if="$store.state.showAside"></asides>
     </div>
     <footer-nav></footer-nav>
   </div>
 </template>
 <script>
-import TopNav from "~/components/TopNav";
-import FooterNav from "~/components/FooterNav";
+import TopNav from '~/components/TopNav'
+import FooterNav from '~/components/FooterNav'
+import Asides from '~/components/Aside'
 export default {
-  name: "app",
+  name: 'app',
   data() {
     return {
       scrolled: false,
       totop: false,
       background: [
-        "http://wallpaper.55lover.com/image/wallpaper/bg1.jpg",
+        'http://wallpaper.55lover.com/image/wallpaper/bg1.jpg',
         // 'http://wallpaper.55lover.com/image/wallpaper/bg2.jpg',
-        "http://wallpaper.55lover.com/image/wallpaper/bg6.jpg",
+        'http://wallpaper.55lover.com/image/wallpaper/bg6.jpg',
         // 'http://wallpaper.55lover.com/image/wallpaper/picture.jpeg',
-        "http://wallpaper.55lover.com/image/wallpaper/bg7.jpg",
-        "http://wallpaper.55lover.com/image/wallpaper/bg3.jpg",
-        "http://wallpaper.55lover.com/image/wallpaper/bg8.jpeg"
-      ]
-    };
+        // 'http://wallpaper.55lover.com/image/wallpaper/bg7.jpg',
+        'http://wallpaper.55lover.com/image/wallpaper/bg3.jpg'
+        // 'http://wallpaper.55lover.com/image/wallpaper/bg8.jpeg'
+      ],
+      res: {}
+    }
   },
   components: {
     TopNav,
-    FooterNav
+    FooterNav,
+    Asides
   },
   computed: {
     bmg() {
-      let round = Math.floor(Math.random() * this.background.length);
-      return `url(${this.background[round]})`;
+      let round = Math.floor(Math.random() * this.background.length)
+      return `url(${this.background[round]})`
     }
   },
   methods: {
     handleScroll(e) {
-      let s = document.querySelector(".s-left");
-      if (this.$route.name == "home" || this.$route.name == "index") {
+      let s = document.querySelector('.s-left')
+      if (this.$route.name == 'home' || this.$route.name == 'index') {
         if (window.scrollY >= 100) {
-          this.$store.commit("IS_HOME", true);
+          this.$store.commit('IS_HOME', true)
         } else {
-          this.$store.commit("IS_HOME", false);
+          this.$store.commit('IS_HOME', false)
         }
       } else {
-        this.$store.commit("IS_HOME", true);
+        this.$store.commit('IS_HOME', true)
       }
       if (window.scrollY >= 1000) {
-        this.totop = true;
+        this.totop = true
       } else {
-        this.totop = false;
+        this.totop = false
       }
     },
     backtotop() {
-      Coms.backtotop(0);
+      Coms.backtotop(0)
+    },
+    async getPersonAlbum() {
+      let self = this
+      let para = {
+        page: 1,
+        size: 300,
+        albumtype: -1 // 照片分类
+      }
+      let res = await this.$axios.$post(api.personAlbum.getPersonAlbum, para)
+      if (res.isSuc) {
+        this.$store.commit('AlbumsList', res)
+      }
+    },
+    async getQQMusic() {
+      var para = {
+        size: 300,
+        page: 1
+      }
+      let res = await this.$axios.$post(api.audio.getAudioList, para)
+      if (res.isSuc) {
+        this.res = res
+        console.log(res)
+        this.$store.commit('MusicList', res)
+      }
     }
+  },
+  created() {
+    this.$store.dispatch('getStatistics')
+    this.$store.dispatch('getLatestNews')
+    this.$store.dispatch('getQQMusic')
   },
   mounted() {
-    if (localStorage.getItem("command")) {
-      this.$i18n.locale = localStorage.getItem("command");
-    }
-    sr.reveal(".second-box");
+    this.getPersonAlbum()
+    sr.reveal('.second-box')
     this.$nextTick(() => {
-      window.addEventListener("scroll", this.handleScroll);
-    });
+      window.addEventListener('scroll', this.handleScroll)
+    })
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll)
   }
-};
+}
 </script>
 <style>
 .sy-box2 .sy-pager {
@@ -99,7 +130,7 @@ body {
   background-attachment: fixed;
   background-repeat: repeat;
   background-size: 100% 100%;
-  background-image: url("http://wallpaper.55lover.com/image/wallpaper/bg3.jpg");
+  background-image: url('http://wallpaper.55lover.com/image/wallpaper/bg3.jpg');
 }
 .main {
   padding-top: 120px;
@@ -115,7 +146,7 @@ body {
   padding: 6px 20px;
   font-size: 16px;
   color: #444;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
 }
 .center-title {
@@ -167,17 +198,21 @@ body {
   width: 100%;
 }
 /*调整*/
+
+.left-content {
+  width: calc(100% - 27.5% - 25px);
+}
 .right-content {
   width: 27.5%;
   min-width: 320px;
-  margin-left: 20px;
+  margin-left: 25px;
 }
 .box {
   padding: 20px;
   box-sizing: border-box;
 }
 .bgbox {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.7);
   box-sizing: border-box;
   margin-bottom: 25px;
 }
@@ -201,12 +236,13 @@ body {
   font-size: 0;
   min-width: 200px;
   height: 128px;
+  position: relative;
 }
 .imgbox img {
   width: 200px;
   height: 128px;
   /*margin-right: 25px;*/
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
 }
 .art-title {
   font-size: 16px;
@@ -265,5 +301,14 @@ body {
 .dp-icon-fff {
   color: #fff;
   font-size: 18px;
+}
+#__nuxt img[lazy='error'],
+#__nuxt img[lazy='loading'] {
+  width: 32px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

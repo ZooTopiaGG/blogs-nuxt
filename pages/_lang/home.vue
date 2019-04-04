@@ -1,7 +1,7 @@
 <template>
-  <section class="home flex">
+  <section class="home flex left-content">
     <!-- 左边内容区域 -->
-    <div class="left-content flex-1" style="position: relative;">
+    <div class="flex-1" style="position: relative;">
       <!-- 滚动区域 -->
       <!-- <div class="sy-box2" style="height: 360px; width:100%;overflow:hidden;margin-bottom:25px;">
         <ul id="slider" style="list-style: none; width: 100%; height: 100%; padding: 0; margin: 0;" class="hde sy-list">  
@@ -29,55 +29,64 @@
       </div>
     </div>
     <!-- 右边内容区域 -->
-    <div class="right-content">
+    <!-- <div class="right-content">
       <asides></asides>
-    </div>
+    </div> -->
   </section>
 </template>
 
 <script>
-import LastestArticle from "~/components/LastestArticle";
-import Asides from "~/components/Aside";
+import LastestArticle from '~/components/LastestArticle'
+import Asides from '~/components/Aside'
 export default {
-  name: "home",
+  name: 'home',
   async fetch({ app, error, store }) {
-    await store.dispatch("getLatestArticles", { page: 1, pagesize: 10 });
-    await store.dispatch("getStatistics");
-    await store.dispatch("getLatestNews");
+    await store.dispatch('getLatestArticles', { page: 1, pagesize: 10 })
+    // await store.dispatch('getStatistics')
+    // await store.dispatch('getLatestNews')
   },
   head() {
     var _title = () => {
-      return "首页_邓鹏博客";
-    };
+      return '首页_邓鹏博客'
+    }
     return {
       title: _title()
-    };
+    }
   },
   data() {
     return {
-      msg: "",
+      msg: '',
       options: [
-        { 
-          src: 'http://image.55lover.com/image/banner/1_HSisLuifMO6KbLfPOKtLow.jpg',
+        {
+          src:
+            'http://image.55lover.com/image/banner/1_HSisLuifMO6KbLfPOKtLow.jpg',
           link: 'https://reactjs.org/'
         },
-        { src: 'http://image.55lover.com/image/banner/maxresdefault.jpg', 
+        {
+          src: 'http://image.55lover.com/image/banner/maxresdefault.jpg',
           link: 'https://cn.vuejs.org'
         },
-        { src: 'http://image.55lover.com/image/banner/mysql-logo-wallpaper.jpg', 
+        {
+          src: 'http://image.55lover.com/image/banner/mysql-logo-wallpaper.jpg',
           link: 'https://www.mysql.com/'
         },
-        { src: 'http://image.55lover.com/image/banner/1_gVT-DZjP_JsaoLhFolGadA.png', 
+        {
+          src:
+            'http://image.55lover.com/image/banner/1_gVT-DZjP_JsaoLhFolGadA.png',
           link: 'https://nginx.org/'
         },
-        { src: 'http://image.55lover.com/image/banner/1_aeWo6e6FC8InJwBl3TmpDw.jpg', 
+        {
+          src:
+            'http://image.55lover.com/image/banner/1_aeWo6e6FC8InJwBl3TmpDw.jpg',
           link: 'https://nodejs.org/'
         },
-        { src: 'http://image.55lover.com/image/banner/1_ueWmI48uuShON-hX7LwI0w.png', 
+        {
+          src:
+            'http://image.55lover.com/image/banner/1_ueWmI48uuShON-hX7LwI0w.png',
           link: 'https://www.python.org/'
-        },
+        }
       ]
-    };
+    }
   },
   components: {
     LastestArticle,
@@ -88,34 +97,34 @@ export default {
   },
   methods: {
     goSkill() {
-      this.$router.push({ path: "/program" });
+      this.$router.push({ path: '/program' })
     },
     goDynamic() {
-      this.$router.push({ path: "/dynamic" });
+      this.$router.push({ path: '/dynamic' })
     },
     goMusic() {
-      this.$router.push({ path: "/music" });
+      this.$router.push({ path: '/music' })
     },
     goArticle() {
-      this.$router.push({ path: "/articles" });
+      this.$router.push({ path: '/articles' })
     }
   },
   mounted() {
     // console.log(this.$store)
     // console.log(sr)
-    var demo1 = $("#slider").slippry({
-      transition: "kenburns",
+    var demo1 = $('#slider').slippry({
+      transition: 'kenburns',
       useCSS: true,
       speed: 5000,
       pause: 9000,
       auto: true,
       controls: false,
-      preload: "visible",
+      preload: 'visible',
       autoHover: false
-    });
+    })
     // sr.reveal(document.querySelectorAll('.sy-box2'))
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -165,7 +174,7 @@ body {
   -moz-transition: 6s;
 }
 .el-carousel {
-   margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 .img-box {
   width: 1024px;
@@ -218,7 +227,7 @@ small::after {
   -o-transition: all 0.4s;
   transition: all 0.4s;
   margin-top: 20px;
-  content: " ";
+  content: ' ';
   display: block;
   height: 4px;
   width: 40px;
@@ -319,14 +328,14 @@ small::after {
   display: block;
   width: 1204px;
   height: 804px;
-  background: url("http://image.55lover.com/image/banner/vue@3x.jpg") no-repeat;
+  background: url('http://image.55lover.com/image/banner/vue@3x.jpg') no-repeat;
   background-size: cover;
 }
 .img2 {
   display: block;
   width: 1204px;
   height: 677px;
-  background: url("http://image.55lover.com/image/banner/react@3x.png")
+  background: url('http://image.55lover.com/image/banner/react@3x.png')
     no-repeat;
   background-size: cover;
 }
@@ -334,7 +343,7 @@ small::after {
   display: block;
   width: 1204px;
   height: 677px;
-  background: url("http://image.55lover.com/image/banner/python@3x.jpg")
+  background: url('http://image.55lover.com/image/banner/python@3x.jpg')
     no-repeat;
   background-size: cover;
 }

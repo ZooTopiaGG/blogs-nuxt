@@ -21,7 +21,10 @@ export const state = () => ({
   articleListCount: 0,
   SHOW_FOOTER: false,
   SHOW_NAV: false,
-  node_env: 'production'
+  node_env: 'production',
+  albumsList: {},
+  musicList: {},
+  showAside: true
 })
 
 export const mutations = {
@@ -75,6 +78,15 @@ export const mutations = {
   },
   NODE_ENV(state, para) {
     state.node_env = para
+  },
+  AlbumsList(state, para) {
+    state.albumsList = para
+  },
+  MusicList(state, para) {
+    state.musicList = para
+  },
+  SHOW_ASIDE(state, para) {
+    state.showAside = para
   }
 }
 
@@ -144,6 +156,20 @@ export const actions = {
       commit('ArticleListCount', res.total)
     } else {
       $message.error(res.message)
+    }
+  },
+  // 获取音乐
+  async getQQMusic({
+    commit,
+    state
+  }) {
+    var para = {
+      size: 10,
+      page: 1
+    }
+    let res = await this.$axios.$post(api.audio.getAudioList, para)
+    if (res.isSuc) {
+      commit('MusicList', res)
     }
   },
   // 获取最新统计

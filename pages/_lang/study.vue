@@ -37,7 +37,7 @@
           <i class="el-icon-document"></i>
           <span slot="title">NodeJs生态</span>
         </el-menu-item>
-        
+
         <el-menu-item index="6">
           <i class="el-icon-document"></i>
           <span slot="title">CSS生态</span>
@@ -61,7 +61,7 @@
             <span>{{ item.desc }}</span>
             <span>
               <a :href="item.url" target="_blank">
-                 <span class="iconfont dp-icon-home dp-icon-00AACD" style="color:#13afff;font-size:18px"></span>
+                <span class="iconfont dp-icon-home dp-icon-00AACD" style="color:#13afff;font-size:18px"></span>
               </a>
               <a v-if="item.github != '' " :href="item.github" target="_blank">
                 <span class="iconfont dp-icon-GitHub dp-icon-00AACD" style="color:#13afff;font-size:18px"></span>
@@ -74,17 +74,17 @@
   </div>
 </template>
 <script>
-import study from "@/assets/js/studies";
+import study from '@/assets/js/studies'
 export default {
   data() {
     return {
       isCollapse: false,
       studyList: []
-    };
+    }
   },
   computed: {
     all() {
-      var newall = [];
+      var newall = []
       var na = newall.concat(
         study.vue,
         study.react,
@@ -93,52 +93,52 @@ export default {
         study.css,
         study.lint,
         study.build
-      );
-      return na;
+      )
+      return na
     }
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     handleSelect(key, keyPath) {
       switch (key) {
-        case "1":
-          this.studyList = this.all;
-          break;
-        case "2":
-          this.studyList = study.vue;
-          break;
-        case "3":
-          this.studyList = study.react;
-          break;
-        case "4":
-          this.studyList = study.angular;
-          break;
-        case "5":
-          this.studyList = study.nodejs;
-          break;
-        case "6":
-          this.studyList = study.css;
-          break;
-        case "7":
-          this.studyList = study.lint;
-          break;
-        case "8":
-          this.studyList = study.build;
-          break;
+        case '1':
+          this.studyList = this.all
+          break
+        case '2':
+          this.studyList = study.vue
+          break
+        case '3':
+          this.studyList = study.react
+          break
+        case '4':
+          this.studyList = study.angular
+          break
+        case '5':
+          this.studyList = study.nodejs
+          break
+        case '6':
+          this.studyList = study.css
+          break
+        case '7':
+          this.studyList = study.lint
+          break
+        case '8':
+          this.studyList = study.build
+          break
         default:
-          this.studyList = this.all;
+          this.studyList = this.all
       }
     }
   },
   mounted() {
-    this.studyList = this.all;
+    this.studyList = this.all
   }
-};
+}
 </script>
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {

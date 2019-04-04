@@ -1,6 +1,6 @@
-<template> 
-  <section class="flex">
-    <div class="articles left-content flex flex-v flex-1" id="articles">
+<template>
+  <div class="albums flex left-content">
+    <div class="articles" id="articles">
       <div class="title flex flex-align-center">
         <span class="el-icon-picture dp-icon-00AACD"></span>
         <div>
@@ -8,41 +8,25 @@
           <span class="title-label">Album column</span>
         </div>
       </div>
-      <article class="album-list flex flex-v flex-1" ref="imgs">
-        <!-- <div class="album-list-cell" v-for="(item, index) in list" :key="index">
-          <img v-lazy="item.personsrc" width="200px">
-        </div> -->
-        <ul ref='ul' class="flex flex-pack-justify" style="width: 100%; position: relative"></ul>
-      </article>
-      <div class="block">
-        <!-- <span class="demonstration">完整功能</span> -->
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[30, 40, 50, 60]"
-          :page-size="30"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="totalcount"
-          class="page">
-        </el-pagination>
+      <div class="album-list" ref="imgs">
+        <ul id="ul" ref="ul"></ul>
       </div>
     </div>
     <!-- 右边内容区域 -->
-    <div class="right-content">
+    <!-- <div class="right-content">
       <asides></asides>
-    </div>
-  </section>
+    </div> -->
+  </div>
 </template>
 
 <script>
-import Asides from "@/components/Aside";
+import Asides from '@/components/Aside'
 export default {
-  name: "articles",
+  name: 'vue-waterfall-easy',
   head() {
     return {
-      title: "美丽无须多言_相册专栏_邓鹏博客"
-    };
+      title: '美丽无须多言_相册专栏_邓鹏博客'
+    }
   },
   data() {
     return {
@@ -52,112 +36,136 @@ export default {
       // 总条数
       totalcount: 200,
       // 每页多少条
-      pagesize: 30,
+      pagesize: 300,
       // 页值
       page: 1,
       //
       li_num: 0,
       //
-      _ul: ""
-    };
+      pul: '',
+      res: []
+    }
   },
   components: {
     Asides
   },
   beforeMount() {
-    this.getPersonAlbum();
+    this.getPersonAlbum()
   },
   methods: {
     lookMore(id) {
       this.$router.push({
-        name: "adetails",
-        params: { articleid: id, type: "a" }
-      });
+        name: 'adetails',
+        params: { articleid: id, type: 'a' }
+      })
     },
     handleSizeChange(val) {
       // 每页多少条
       // console.log(val)
-      this.pagesize = val;
-      let _ul = this.$refs.ul;
-      _ul.innerHTML = "";
-      this.getPersonAlbum();
+      this.pagesize = val
+      let pul = this.$refs.ul
+      pul.innerHTML = ''
+      this.getPersonAlbum()
     },
     handleCurrentChange(val) {
       // 当前页数
-      this.page = val;
+      this.page = val
       // 清空ul
-      let _ul = this.$refs.ul;
-      _ul.innerHTML = "";
-      this.getPersonAlbum();
+      let pul = this.$refs.ul
+      pul.innerHTML = ''
+      this.getPersonAlbum()
     },
     async getAlbum(res) {
-      let self = this;
-      self.list = res.result;
-      self.totalcount = res.total;
+      let self = this
+      self.list = res.result
+      self.totalcount = this.$store.state.albumsList.total
       // console.log(this.list)
-      let _ul = self.$refs.ul;
-      let _imgs = self.$refs.imgs;
+      let pul = self.$refs.ul
+      let _imgs = self.$refs.imgs
       // 计算一排可以放多少个li 每个li 200px
-      let li_num = 5;
-      let li_width = _ul.clientWidth / li_num;
+      let li_num = 5
+      let li_width = pul.clientWidth / li_num
       // 初始化li个数和img图片
       for (let i = 0; i < li_num; i++) {
-        let left = li_width * i;
-        _ul.innerHTML += `<li class="album-list-cell" style="width: ${li_width}px; position: absolute; left:${left}px; font-size:0;">
+        let left = li_width * i
+        if (self.list[i].personsrc) {
+          pul.innerHTML += `<li class="album-list-cell" style="width: ${li_width}px; position: absolute; left:${left}px; font-size:0;">
         <img src="${
           self.list[i].personsrc
         }" width="${li_width}px" style="box-sizing:border-box; border:2px solid #fff;">
-      </li>`;
-      }
-      return "ok";
-    },
-    async getAlbum2() {
-      let self = this;
-      let _ul = self.$refs.ul;
-      let li_num = 5;
-      let li_width = _ul.clientWidth / li_num;
-
-      for (let j = 4; j < self.list.length; j++) {
-        let smallest = await self.findSmallIndex(_ul, li_num, li_width);
-        _ul.children[smallest].innerHTML += `<img src="${
-          self.list[j].personsrc
-        }" width="${li_width}px" style="box-sizing:border-box; border:2px solid #fff;">`;
-      }
-    },
-    async findSmallIndex(_ul, li_num, li_width) {
-      // body...
-      var minLiHeight = _ul.children[0].clientHeight;
-      let min = 0;
-      for (let i = 0; i < li_num; i++) {
-        if (_ul.children[i].clientHeight < minLiHeight) {
-          minLiHeight = _ul.children[i].clientHeight;
-          min = i;
+      </li>`
         }
       }
-      return min;
+      return 'ok'
+    },
+    async getAlbum2() {
+      let self = this
+      let pul = self.$refs.ul
+      let li_num = 5
+      let li_width = pul.clientWidth / li_num
+      let largestHeight
+      for (let j = 4; j < self.list.length; j++) {
+        let smallest = await self.findSmallIndex(pul, li_num, li_width)
+        if (self.list[j].personsrc) {
+          pul.children[smallest].innerHTML += `<img src="${
+            self.list[j].personsrc
+          }" width="${li_width}px" style="box-sizing:border-box; border:2px solid #fff;">`
+        }
+        largestHeight = await self.findLargeIndex(pul, li_num, li_width)
+      }
+      document.getElementById('ul').style.height = largestHeight + 'px'
+    },
+    async findSmallIndex(pul, li_num, li_width) {
+      // body...
+      var minLiHeight = pul.children[0].clientHeight
+      let min = 0
+      for (let i = 0; i < li_num; i++) {
+        if (pul.children[i].clientHeight < minLiHeight) {
+          minLiHeight = pul.children[i].clientHeight
+          min = i
+        }
+      }
+      return min
+    },
+    findLargeIndex(pul, li_num, li_width) {
+      var maxLiHeight = pul.children[0].clientHeight
+      for (let i = 0; i < li_num; i++) {
+        if (pul.children[i].clientHeight > maxLiHeight) {
+          maxLiHeight = pul.children[i].clientHeight
+        }
+      }
+      return maxLiHeight
     },
     async getPersonAlbum() {
-      let self = this;
+      let self = this
       let para = {
         page: self.page,
         size: self.pagesize,
         albumtype: -1 // 照片分类
-      };
-      let res = await this.$axios.$post(api.personAlbum.getPersonAlbum, para);
+      }
+      let res = await this.$axios.$post(api.personAlbum.getPersonAlbum, para)
       if (res.isSuc) {
-        await self.getAlbum(res);
-        await self.getAlbum2();
+        // this.res = await res.result.map(x => {
+        //   return x.personsrc
+        // })
+        await self.getAlbum(res)
+        await self.getAlbum2()
       }
     }
   }
-};
+}
 </script>
 <style type="text/css">
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#ul {
+  position: relative;
+  min-height: 270vh;
+}
 .articles {
   padding-bottom: 60px;
+  width: 100%;
 }
 .album-list {
   flex-wrap: wrap;

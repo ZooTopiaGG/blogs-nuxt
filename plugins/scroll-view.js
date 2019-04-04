@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import vuescroll from 'vue-scroll'
+import Vue from 'vue';
+import vuescroll from 'vue-scroll';
 Vue.use(vuescroll)
 if (typeof window !== 'undefined') {
-    window.sr = ScrollReveal()
+  window.sr = ScrollReveal()
 } else {
-    global.sr = ScrollReveal()
+  global.sr = ScrollReveal()
 }
