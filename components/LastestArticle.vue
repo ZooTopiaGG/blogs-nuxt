@@ -1,4 +1,4 @@
-<template> 
+<template>
   <section class="flex">
     <div class="articles left-content flex-1" id="articles">
       <div class="title flex flex-align-center">
@@ -20,8 +20,12 @@
             </div>
             <div class="author-info flex flex-align-center flex-pack-justify">
               <!-- <span class="author"><router-link :to="{ name : 'home' }">邓鹏</router-link></span> /  -->
-              <span class="column-name" v-if="item.columntype==0"><router-link :to="{ name : 'articles' }">文章类</router-link></span>
-              <span class="column-name" v-else><router-link :to="{ name : 'program' }">技术类</router-link></span>
+              <span class="column-name" v-if="item.columntype==0">
+                <router-link :to="{ name : 'articles' }">文章类</router-link>
+              </span>
+              <span class="column-name" v-else>
+                <router-link :to="{ name : 'program' }">技术类</router-link>
+              </span>
               <!-- <span class="article-type">{{ item.type }}</span> /  -->
               <div class="flex flex-align-center">
                 <span class="create-time flex flex-align-center"><span class="el-icon-time el-icon-00AACD"> </span>{{ item.createAt }}</span>
@@ -31,11 +35,11 @@
           </div>
           <router-link v-if="item.columntype==0" class="imgbox" :to="{ path: `/adetails/a/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
-            <img v-else v-lazy="item.smallimg"  alt="article">
+            <img v-else v-lazy="item.smallimg" alt="article">
           </router-link>
           <router-link v-else class="imgbox" :to="{ path: `/adetails/p/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
-            <img v-else v-lazy="item.smallimg"  alt="article">
+            <img v-else v-lazy="item.smallimg" alt="article">
           </router-link>
         </div>
         <!-- <div class="look">
@@ -43,120 +47,28 @@
         </div> -->
       </article>
       <div class="block">
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="$store.state.totalCount"
-          class="page">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-sizes="[15, 30, 45]" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.totalCount" class="page">
         </el-pagination>
-      </div>
-    </div>
-    <!-- 右边内容区域 待设计 保留区域-->
-    <div class="right-contents lastest">
-      <!-- 相册 -->
-      <div class="box bgbox">
-        <div class="center-title flex flex-align-center">
-          <span class="el-icon-picture dp-icon-00AACD"></span>
-          <span class="title-text">我的相册</span>
-          <span class="title-label">My albums</span>
-        </div>
-        <!-- 照片流 -->
-        <div class="flex flex-v flex-align-center">
-          <!-- 人物类 -->
-          <router-link :to="{ name: 'album', params: { type: 'person' } }" title="人物图册" class="album-face flex flex-align-center flex-pack-center">
-            <div class="hide-over">
-              <div class="hide-text flex flex-v flex-align-center flex-pack-center">
-                <span>梦里花落知多少</span>
-                <span>my lover</span>
-              </div>
-            </div>
-            <div class="photo-num">50</div>
-            <img class="album-face-img" src="http://scenery.55lover.com/image/scenery/26152352.jpg">
-          </router-link>
-          <!-- 地点类 -->
-          <router-link :to="{ name: 'album', params: { type: 'wallpaper' } }" title="壁纸图册" class="album-face flex flex-align-center flex-pack-center">
-            <div class="hide-over">
-              <div class="hide-text flex flex-v flex-align-center flex-pack-center">
-                <span>春风十里不如你</span>
-                <span>wallpaper</span>
-              </div>
-            </div>
-            <div class="photo-num">50</div>
-            <img class="album-face-img" src="http://scenery.55lover.com/image/scenery/20180226161627.jpg" >
-          </router-link>
-          <!-- 风景类 -->
-          <router-link :to="{ name: 'album', params: { type: 'scenery' } }" title="风景图册" class="album-face flex flex-align-center flex-pack-center">
-            <div class="hide-over">
-              <div class="hide-text flex flex-v flex-align-center flex-pack-center">
-                <span>再美也不过如此</span>
-                <span>scenery</span>
-              </div>
-            </div>
-            <div class="photo-num">50</div>
-            <img class="album-face-img" src="http://scenery.55lover.com/image/scenery/bg4.jpg" >
-          </router-link>
-        </div>
-      </div>
-      <!-- 视频 -->
-      <div class="box bgbox">
-        <div class="center-title flex flex-align-center">
-          <span class="iconfont dp-icon-shipin dp-icon-00AACD"></span>
-          <span class="title-text">我的视频</span>
-          <span class="title-label">My videos</span>
-        </div>
-        <!-- 视频流 -->
-        <div class="flex flex-v flex-align-center">
-          <!-- 人物类 -->
-          <a href="javascript:;" title="秒拍视频" class="album-face flex flex-align-center flex-pack-center">
-            <div class="photo-num">50</div>
-            <img class="videos-face-img" src="http://scenery.55lover.com/image/scenery/26152353.jpg">
-          </a>
-        </div>
-      </div>
-      <!-- 书籍 -->
-      <div class="box bgbox">
-        <div class="center-title flex flex-align-center">
-          <span class="icon iconfont dp-icon-shuji dp-icon-00AACD"></span>
-          <span class="title-text">推荐书籍</span>
-          <span class="title-label">Books</span>
-        </div>
-        <div class="flex flex-v flex-align-center">
-          <a href="https://book.douban.com/subject/10546125/" target="_blank" title="JavaScript高级程序设计（第3版）" class="album-face flex flex-align-center flex-pack-center">
-            <img class="album-face-img" src="http://scenery.55lover.com/image/scenery/s8958650.jpg">
-          </a>
-          <a href="https://book.douban.com/subject/25786074/" target="_blank" title="HTML5权威指南" class="album-face flex flex-align-center flex-pack-center">
-            <img class="album-face-img" src="http://scenery.55lover.com/image/scenery/s27169241.jpg">
-          </a>
-          <a href="https://book.douban.com/subject/4866934/" target="_blank" title="Python基础教程" class="album-face flex flex-align-center flex-pack-center">
-            <img class="album-face-img" src="http://scenery.55lover.com/image/scenery/s4387251.jpg">
-          </a>
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import Asides from "~/components/Aside";
+import Asides from '~/components/Aside'
 export default {
-  name: "lastArticles",
+  name: 'lastArticles',
   data() {
     return {
       list: [],
-      // 当前页
-      currentPage4: 1,
       // 总条数
       totalcount: 200,
       // 每页多少条
-      pagesize: 10,
+      pagesize: 15,
       // 页值
       page: 1,
       logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
-    };
+    }
   },
   components: {
     Asides
@@ -168,23 +80,23 @@ export default {
     handleSizeChange(val) {
       // 每页多少条
       // console.log(val)
-      this.pagesize = val;
-      this.$store.dispatch("getLatestArticles", {
+      this.pagesize = val
+      this.$store.dispatch('getLatestArticles', {
         page: this.page,
         pagesize: this.pagesize
-      });
+      })
     },
     handleCurrentChange(val) {
       // 当前页数
       // console.log(val)
-      this.page = val;
-      this.$store.dispatch("getLatestArticles", {
+      this.page = val
+      this.$store.dispatch('getLatestArticles', {
         page: this.page,
         pagesize: this.pagesize
-      });
+      })
     }
   }
-};
+}
 </script>
 <style type="text/css">
 .page.el-pagination .el-select .el-input .el-input__inner {

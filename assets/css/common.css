@@ -1,8 +1,8 @@
 /*浏览器滚动条样式*/
 /*滚动条宽高*/
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 10px;
+    height: 10px;
     overflow: auto;
 }
 /*::-webkit-scrollbar-track {
@@ -12,20 +12,27 @@
 }*/
 /*滚动轨道样式*/
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px #EFEFEF;
-    border-radius: 6px;
+    -webkit-box-shadow: inset 0 0 10px #EFEFEF;
+    border-radius: 10px;
     background-color: #EFEFEF;
 }
 /*滚动条 样式*/
 ::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    -webkit-box-shadow: inset 0 0 6px #d9d9d9;
-    background-color: #d9d9d9;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 168, 250, 0.5);
+    background-color: rgba(0, 168, 250, 0.5);
+}
+::-webkit-scrollbar-thumb:hover {
+  -webkit-box-shadow: inset 0 0 10px #00a8fa;
+    background-color: #00a8fa;
 }
 
-*{
+* {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+}
+:focus {
+  outline: none;
 }
 
 html,body,title,meta,div,ul,ol,header,footer,section,aside,article,a,span,em,i,

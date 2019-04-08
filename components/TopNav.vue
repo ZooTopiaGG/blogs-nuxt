@@ -3,11 +3,11 @@
     <div class="menus flex flex-pack-around">
       <div class="logo flex">
         <router-link :to="{ path: '/home' }">
-          <img src="../assets/images/logo2.png">
+          <img id="noClicks" src="../assets/images/logo2.png">
         </router-link>
       </div>
       <div class="flex flex-1 flex-pack-end">
-        <ul class="menu flex flex-1 flex-pack-around">
+        <ul class="menu flex">
           <li :class="{ active: $route.name === 'home'}">
             <router-link :to="{ path: '/home' }">{{ $t('message.Home') }}</router-link>
           </li>
@@ -34,12 +34,6 @@
           <li :class="{ active: $route.path === '/dynamic'}">
             <router-link :to="{ path: '/dynamic' }">{{ $t('message.Dynamic') }}</router-link>
           </li>
-          <!-- <li :class="{ active: $route.path === '/music'}">
-            <router-link :to="{ path: '/music' }">{{ $t('message.Music') }}</router-link>
-          </li> -->
-          <li :class="{ active: $route.path === '/album/all'}">
-            <router-link :to="{ path: '/albums' }">{{ $t('message.Albums') }}</router-link>
-          </li>
           <li :class="{ active: $route.path === '/messageboard'}">
             <router-link :to="{ path: '/messageboard' }">{{ $t('message.MessageBoard') }}</router-link>
           </li>
@@ -59,19 +53,19 @@
           </li>
         </ul>
         <div class="sign" v-if="!$store.state.GET_LOGIN_STATUS">
-          <router-link :to="{ path: '/signin' }">{{ $t('message.SignIn') }}</router-link>
+          <router-link id="noClicks" :to="{ path: '/signin' }">{{ $t('message.SignIn') }}</router-link>
           /
-          <router-link :to="{ path: '/signup' }">{{ $t('message.SignUp') }}</router-link>
+          <router-link id="noClicks" :to="{ path: '/signup' }">{{ $t('message.SignUp') }}</router-link>
         </div>
-        <el-dropdown v-else trigger="click" class="flex flex-align-center" @command="handleCommand">
+        <el-dropdown v-else trigger="click" class="signing flex flex-align-center" @command="handleCommand">
           <span class="el-dropdown-link flex flex-align-center">
-            <img v-if="$store.state.GET_LOGIN_STATUS.avatar" v-lazy="$store.state.GET_LOGIN_STATUS.avatar" style="width: 48px;height: 48px;border-radius: 100%;">
-            <img v-else src="../assets/images/signin.png">
+            <img id="noClicks" v-if="$store.state.GET_LOGIN_STATUS.avatar" v-lazy="$store.state.GET_LOGIN_STATUS.avatar" style="width: 48px;height: 48px;border-radius: 100%;">
+            <img id="noClicks" v-else src="../assets/images/signin.png">
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="el-icon-setting" command="info"> {{ $t('message.WebMasterInfomation') }}</el-dropdown-item>
-            <el-dropdown-item class="el-icon-sort" command="signout"> {{ $t('message.SignOut') }}</el-dropdown-item>
+            <el-dropdown-item class="el-icon-setting" command="info" id="noClicks"> {{ $t('message.WebMasterInfomation') }}</el-dropdown-item>
+            <el-dropdown-item class="el-icon-sort" command="signout" id="noClicks"> {{ $t('message.SignOut') }}</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -166,6 +160,7 @@ export default {
   box-sizing: border-box;
   font-size: 0;
   cursor: pointer;
+  padding: 0 25px;
 }
 .menu li a {
   height: 69px;
@@ -205,6 +200,10 @@ export default {
   cursor: pointer;
   position: relative;
   padding-left: 30px;
+}
+.signing {
+  padding-left: 30px;
+  cursor: pointer;
 }
 .showit {
   margin-top: 10px;

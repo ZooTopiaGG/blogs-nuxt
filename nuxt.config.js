@@ -41,15 +41,19 @@ module.exports = {
     }
     ],
     // 可使用外链形式 引入第三方库
-    script: [{
-      src: 'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'
-    },
-    {
-      src: 'https://cdn.bootcss.com/slippry/1.4.0/slippry.min.js'
-    },
-    {
-      src: 'https://cdn.bootcss.com/scrollReveal.js/3.3.6/scrollreveal.min.js'
-    }
+    script: [
+      {
+        src: 'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'
+      },
+      {
+        src: 'https://cdn.bootcss.com/slippry/1.4.0/slippry.min.js'
+      },
+      {
+        src: 'https://cdn.bootcss.com/scrollReveal.js/3.3.6/scrollreveal.min.js'
+      },
+      {
+        src: '/anime.js'
+      }
     ]
   },
   // 全局CSS配置
@@ -128,7 +132,21 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    loaders: [
+      {
+        test: /\.(jpe?g|png|gif|svg|webp)$/,
+        use: [
+          {
+            loader: "url-loader",
+            query: {
+              limit: 1000 * 1024 * 2.5,
+              name: 'img/[name].[hash].[ext]'
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     '~/plugins/api.js',
@@ -143,6 +161,10 @@ module.exports = {
     },
     {
       src: '~/plugins/mouseClick.js',
+      ssr: false
+    },
+    {
+      src: '~/plugins/zoom.js',
       ssr: false
     }
   ]

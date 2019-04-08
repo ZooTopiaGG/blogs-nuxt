@@ -43,9 +43,9 @@
     "TotalArticles": "Total articles",
     "TotalUsers": "Total users",
     "TotalViews": "Total views",
-    "WorkExperience": "I was an undergraduate graduated in 2016. I started working at the beginning of March 2016. The first company was an intern at Sikai Technology Co., Ltd. in Chengdu, Sichuan Province. She worked for 2 months and was responsible for the development of simple pages. Then at the end of April of the same year, he went to the second company, Jiuyi Hengtai Technology Co., Ltd., and has been responsible for web front-end development since then. He has completed the tasks of the company; he has been responsible for the front-end work arrangement, management, and distribution of team members' specific tasks. Division of labor, solve problems, optimize performance and start time evaluation, later responsible for maintaining version iterations, improve the user experience of the interface, and finally self-study new front-end technology in spare time.",
-    "WebmasterProfile": "Hello everyone! I am Deng Peng and I am engaged in front-end development and NodeJs development. This is my personal blog. I have been working for two years now. I am very happy to be able to work in this industry because I find a sense of fulfillment and a sense of accomplishment every day. ! So I made my own personal blog. I'm constantly designing continuous updates and trying my best. I love this profession very much. I believe that I will insist on doing my blog well. The blog contains rich information, legal news, technical articles, webmaster dynamics, message boards, webmaster music, and webmaster information.",
-    "TechnologyStack": "The technology stack involved: Html5+Css3+Vue2+NodeJS+Koa2+MySQL+Nginx, thanks to the seven cattle cloud storage that helped me solve a lot of picture problems.",
+    "WorkExperience": "I graduated from Chengdu University of Sichuan Normal University in 2016 with a degree in computer science and technology software. I am currently working as a front-end development engineer in the China-Africa e-commerce company. I am responsible for the development of the front-end mall. The technology stack involved is vue, react.",
+    "WebmasterProfile": "Hello everyone! I am Deng Peng, I am engaged in front-end development, NodeJs development, this is my personal blog. I have been working for more than three years now. I am very happy to be in this industry because I have found a sense of fulfillment and achievement every day. sense! So I made my own personal blog, and I am constantly designing constant updates to try my best. I love this profession very much. I believe that I will stick to the blog. The blog contains rich information, technical articles, webmaster dynamics, message boards, webmaster music, webmaster information and so on.",
+    "TechnologyStack": "The technology stack involved: the front end uses Vue family bucket + Nuxt, the back end uses NodeJS+Koa2+MySQL+Nginx, thanks to Qi Niuyun storage to help me solve a lot of pictures.",
     "Study": "Welcome to communicate and learn! If you have better information, you can email it to me",
     "ByMail": "By Mail",
     "WebsiteName": "Website name",
@@ -86,6 +86,10 @@
     "Create": "Create",
     "Cancel": "Cancel",
     "Prompt": "Prompt",
-    "Sure": "Sure"
+    "Sure": "Sure",
+    "age": [
+      "Deng Peng blog is ",
+      " years old."
+    ]
   }
 }

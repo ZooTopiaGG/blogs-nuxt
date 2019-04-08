@@ -41,7 +41,7 @@ import Asides from '~/components/Aside'
 export default {
   name: 'home',
   async fetch({ app, error, store }) {
-    await store.dispatch('getLatestArticles', { page: 1, pagesize: 10 })
+    await store.dispatch('getLatestArticles', { page: 1, pagesize: 15 })
     // await store.dispatch('getStatistics')
     // await store.dispatch('getLatestNews')
   },

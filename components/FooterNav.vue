@@ -85,6 +85,7 @@
       </div>
       <div class="f-box">
         <p>{{$t('message.FootTitle1')}}</p>
+        <p>{{$t('message.age[0]')}} <b>{{ age }}</b> {{$t('message.age[1]')}}</p>
         <p>{{$t('message.FootTitle2')}}</p>
       </div>
     </div>
@@ -111,7 +112,8 @@ export default {
         website: [
           { required: true, message: '请输入网站地址', trigger: 'blur' }
         ]
-      }
+      },
+      age: Coms.ages('2017-11-27')
     }
   },
   methods: {

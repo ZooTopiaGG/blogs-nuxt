@@ -1,5 +1,7 @@
 <template>
   <div id="app" :style="{ backgroundImage: bmg }">
+    <canvas class="mouseClick" style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 838px; height: 600px;" width="1676" height="1200">
+    </canvas>
     <top-nav></top-nav>
     <div class="main flex">
       <nuxt />
@@ -19,13 +21,11 @@ export default {
       scrolled: false,
       totop: false,
       background: [
-        'http://wallpaper.55lover.com/image/wallpaper/bg1.jpg',
-        // 'http://wallpaper.55lover.com/image/wallpaper/bg2.jpg',
-        'http://wallpaper.55lover.com/image/wallpaper/bg6.jpg',
-        // 'http://wallpaper.55lover.com/image/wallpaper/picture.jpeg',
-        // 'http://wallpaper.55lover.com/image/wallpaper/bg7.jpg',
-        'http://wallpaper.55lover.com/image/wallpaper/bg3.jpg'
-        // 'http://wallpaper.55lover.com/image/wallpaper/bg8.jpeg'
+        'http://wallpaper.55lover.com/image/wallpaper/bg10.jpg',
+        'http://wallpaper.55lover.com/image/wallpaper/bg9.jpg',
+        'http://wallpaper.55lover.com/image/wallpaper/bg3.jpg',
+        'http://wallpaper.55lover.com/image/wallpaper/bg15.jpg',
+        'http://wallpaper.55lover.com/image/wallpaper/bg14.jpg'
       ],
       res: {}
     }
@@ -93,7 +93,7 @@ export default {
     this.$store.dispatch('getQQMusic')
   },
   mounted() {
-    this.getPersonAlbum()
+    // this.getPersonAlbum()
     sr.reveal('.second-box')
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll)
@@ -191,8 +191,9 @@ body {
   white-space: pre;
   overflow: auto;
   border-radius: 0;
-  background: #f6f6f6;
-  color: #657b83;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 1px 30px;
 }
 #doc-content img {
   width: 100%;

@@ -102,8 +102,8 @@
           <router-link v-if="item.types == '文章'" :to="{ path: `/adetails/a/${item.latestid}` }" class="types" style="background-color: rgb(0, 168, 250)">{{item.types}}</router-link>
           <router-link v-else-if="item.types == '技术'" :to="{ path: `/adetails/p/${item.latestid}` }" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</router-link>
           <router-link v-else-if="item.types == '动态'" :to="{ path: '/dynamic' }" class="types" style="background-color: rgb(60, 179, 113)">{{item.types}}</router-link>
-          <router-link v-else-if="item.types == '音乐'" :to="{ path: '/music' }" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</router-link>
-          <router-link v-else-if="item.types == '相册'" :to="{ path: '/albums' }" class="types" style="background-color: rgb(218, 112, 214)">{{item.types}}</router-link>
+          <a v-else-if="item.types == '音乐'" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</a>
+          <a v-else-if="item.types == '相册'" class="types" style="background-color: rgb(218, 112, 214)">{{item.types}}</a>
           <a v-else href="javascript:;" class="types" style="background-color: rgb(200, 200, 171)">{{item.types}}</a>
         </div>
       </div>
@@ -169,7 +169,7 @@ export default {
       return val && parseInt(val) > 9999 ? (val / 10000).toFixed(2) + 'w' : val
     },
     badgeNum(val) {
-      if (!val) return 0
+      if (!val) return null
       return val && parseInt(val) > 99 ? '99+' : val
     }
   },
