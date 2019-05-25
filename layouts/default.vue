@@ -198,6 +198,10 @@ body {
 #doc-content img {
   width: 100%;
 }
+#doc-content iframe {
+  border: 0;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
+}
 /*调整*/
 
 .left-content {

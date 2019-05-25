@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
-    "element-ui": "^2.3.4",
+    "element-ui": "2.7.1",
     "js-cookie": "^2.2.0",
     "nuxt": "^2.5.1",
     "vue-i18n": "^7.6.0",

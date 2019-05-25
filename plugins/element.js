@@ -26,9 +26,8 @@ import {
   Carousel,
   CarouselItem,
   Badge
-}
-  from 'element-ui'
-import lazyload from 'vue-lazyload';
+} from 'element-ui'
+import lazyload from 'vue-lazyload'
 Vue.use(Badge)
 Vue.use(Form)
 Vue.use(FormItem)
@@ -52,18 +51,18 @@ Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.component(CollapseTransition.name, CollapseTransition)
 Vue.use(DatePicker)
-Vue.use(Loading.directive);
+Vue.use(Loading.directive)
 Vue.use(lazyload, {
   lazyComponent: true,
   preLoad: 1.3,
-  error: require('~/assets/images/download.gif'),
+  error: require('~/assets/images/404.png'),
   loading: require('~/assets/images/download.gif'),
-  attempt: 3,
+  attempt: 3
   // listenEvents: ['scroll']
 })
 
-Vue.prototype.$message = Message;
-Vue.prototype.$loading = Loading.service;
+Vue.prototype.$message = Message
+Vue.prototype.$loading = Loading.service
 if (typeof window !== 'undefined') {
   window.$message = Message
 }
