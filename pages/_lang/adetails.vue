@@ -16,31 +16,41 @@
         </div>
       </div>
     </div>
-    <article class="content" id='doc-content' v-html="$store.state.articleDetail.content">
+    <article class="content" id='doc-content' v-html="content">
     </article>
   </div>
 </template>
 
 <script>
+import marked from 'marked'
+// marked.setOptions({
+//   highlight: function(code) {
+//     return require('highlightjs').highlightAuto(code).value
+//   }
+// })
 export default {
-  name: "adetails",
+  name: 'adetails',
   async fetch({ store, params }) {
-    await store.dispatch("getArticle", { id: params.articleid });
+    await store.dispatch('getArticle', { id: params.articleid })
+  },
+  computed: {
+    content() {
+      return marked(this.$store.state.articleDetail.content)
+    }
   },
   data() {
     return {
-      title: "",
-      content: "",
-      type: "原创",
+      title: '',
+      type: '原创',
       viewcount: 0,
-      createtime: ""
-    };
+      createtime: ''
+    }
   },
   methods: {},
   mounted() {
-    // sr.reveal(document.querySelectorAll(".box"));
+    sr.reveal(document.querySelectorAll('.box'))
   }
-};
+}
 </script>
 <style type="text/css">
 </style>
