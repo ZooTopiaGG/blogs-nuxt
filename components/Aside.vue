@@ -57,8 +57,8 @@
           </div>
           <div class="line"></div>
           <div class="flex flex-v flex-align-center">
-            <span class="all-num">{{$store.state.statistics.user_num | overNum}}</span>
-            <p>{{ $t('message.TotalUsers') }}</p>
+            <span class="all-num">{{$store.state.statistics.today_pv | overNum}}</span>
+            <p>{{ $t('message.PageViewToday') }}</p>
           </div>
           <div class="line"></div>
           <div class="flex flex-v flex-align-center">
