@@ -4,12 +4,13 @@ let api = {
   // base: 'http://localhost:8088/api/',
   article: {
     // wenzhang详情
-    'getLatestArticles': 'getLatestArticles',
-    'getLatestNews': 'getLatestNews',
-    'getArticle': 'getArticle'
+    getLatestArticles: 'getLatestArticles',
+    getLatestNews: 'getLatestNews',
+    getArticle: 'getArticle'
   },
   stat: {
-    'getStatistics': 'getStatistics'
+    getStatistics: 'getStatistics',
+    statistics: 'statistics'
   },
   dynamic: {
     getDynamicList: 'getDynamicList',

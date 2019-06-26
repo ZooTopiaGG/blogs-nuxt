@@ -1,4 +1,8 @@
+const env = require('./env')
 module.exports = {
+  env: {
+    baseUrl: env[process.env.MODE].ENV_API
+  },
   /*
    ** Headers of the page
    */

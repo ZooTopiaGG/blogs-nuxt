@@ -1,6 +1,6 @@
 {
   "name": "blogs-nuxt",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Nuxt.js project",
   "author": "dengpeng <zootopiagg@gmail.com>",
   "private": true,
@@ -11,10 +11,10 @@
     }
   },
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "prod-start": "nuxt build && nuxt start",
+    "dev": "cross-env MODE=dev nuxt",
+    "start": "cross-env MODE=pro nuxt",
+    "build": "cross-env MODE=pro nuxt build",
+    "prod-start": "cross-env MODE=pro nuxt build && cross-env MODE=pro nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "cross-env": "^5.2.0",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",

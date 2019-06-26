@@ -62,18 +62,6 @@ export default {
     backtotop() {
       Coms.backtotop(0)
     },
-    async getPersonAlbum() {
-      let self = this
-      let para = {
-        page: 1,
-        size: 300,
-        albumtype: -1 // 照片分类
-      }
-      let res = await this.$axios.$post(api.personAlbum.getPersonAlbum, para)
-      if (res.isSuc) {
-        this.$store.commit('AlbumsList', res)
-      }
-    },
     async getQQMusic() {
       var para = {
         size: 300,
@@ -85,15 +73,18 @@ export default {
         console.log(res)
         this.$store.commit('MusicList', res)
       }
+    },
+    async setStatistics() {
+      await this.$axios.$post(api.stat.statistics)
     }
   },
   created() {
+    this.setStatistics()
     this.$store.dispatch('getStatistics')
     this.$store.dispatch('getLatestNews')
     this.$store.dispatch('getQQMusic')
   },
   mounted() {
-    // this.getPersonAlbum()
     sr.reveal('.second-box')
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll)
