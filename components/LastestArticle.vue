@@ -47,7 +47,7 @@
         </div> -->
       </article>
       <div class="block">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-sizes="[15, 30, 45]" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.totalCount" class="page">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-sizes="[10, 15, 30, 45]" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.totalCount" class="page">
         </el-pagination>
       </div>
     </div>
@@ -64,7 +64,7 @@ export default {
       // 总条数
       totalcount: 200,
       // 每页多少条
-      pagesize: 15,
+      pagesize: 10,
       // 页值
       page: 1,
       logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'

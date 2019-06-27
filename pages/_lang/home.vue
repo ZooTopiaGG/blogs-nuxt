@@ -2,24 +2,19 @@
   <section class="home flex left-content">
     <!-- 左边内容区域 -->
     <div class="flex-1" style="position: relative;">
-      <!-- 滚动区域 -->
-      <!-- <div class="sy-box2" style="height: 360px; width:100%;overflow:hidden;margin-bottom:25px;">
-        <ul id="slider" style="list-style: none; width: 100%; height: 100%; padding: 0; margin: 0;" class="hde sy-list">  
-          <li class="sy-slide kenburns useCSS sy-ken sy-active" style="transition-duration: 5000ms; opacity: 1; animation-duration: 19000ms;">
-            <i class="img1"></i>
-          </li>
-          <li class="sy-slide kenburns useCSS" style="transition-duration: 5000ms; opacity: 0; animation-duration: 19000ms;">
-            <i class="img2"></i>
-          </li>
-          <li class="sy-slide kenburns useCSS" style="transition-duration: 5000ms; opacity: 0; animation-duration: 19000ms;">
-            <i class="img3"></i>
-          </li>
-        </ul>
-      </div> -->
       <el-carousel :interval="4000" indicator-position="outside">
         <el-carousel-item v-for="(item, index) in options" :key="index">
-          <a class="img-box" :href="item.link" target="_blank">
-            <img v-lazy="item.src" alt="banner">
+          <a href="javascript:;" class="img-box" v-if="item.link === 'video'" @click="open">
+            <svg class="svg" xmlns="http://www.w3.org/2000/svg" version="1.1">
+              <g>
+                <circle cx="25" cy="25" r="24" stroke="white" stroke-width="2" fill-opacity="0" />
+                <polygon points="20,16 34,24 20, 32" stroke-width="2" stroke="white" fill="white" />
+              </g>
+            </svg>
+            <i class="bimg" v-lazy:background-image="item.src"></i>
+          </a>
+          <a class="img-box" :href="item.link" target="_blank" v-else>
+            <i class="bimg" v-lazy:background-image="item.src"></i>
           </a>
         </el-carousel-item>
       </el-carousel>
@@ -32,6 +27,15 @@
     <!-- <div class="right-content">
       <asides></asides>
     </div> -->
+    <div class="dialog" v-show="show">
+      <div class="video-content">
+        <div class="icon_list">
+          <span class="el-icon-minus" @click="minus"></span>
+          <span class="el-icon-close" @click="close"></span>
+        </div>
+        <video class="video" ref="video" src="http://scenery.55lover.com/image/scenery/%E8%8A%B1%E7%B5%AE.mp4" autoplay muted controls="controls">您的浏览器不支持 video 标签。</video>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -41,7 +45,7 @@ import Asides from '~/components/Aside'
 export default {
   name: 'home',
   async fetch({ app, error, store }) {
-    await store.dispatch('getLatestArticles', { page: 1, pagesize: 15 })
+    await store.dispatch('getLatestArticles', { page: 1, pagesize: 10 })
     // await store.dispatch('getStatistics')
     // await store.dispatch('getLatestNews')
   },
@@ -53,39 +57,46 @@ export default {
       title: _title()
     }
   },
+  computed: {
+    video() {
+      return this.$refs['video']
+    }
+  },
   data() {
     return {
       msg: '',
       options: [
         {
-          src:
-            'http://image.55lover.com/image/banner/1_HSisLuifMO6KbLfPOKtLow.jpg',
+          src: 'http://scenery.55lover.com/lover5.png',
+          link: 'video'
+        },
+        {
+          src: 'http://scenery.55lover.com/react.jpg',
           link: 'https://reactjs.org/'
         },
         {
-          src: 'http://image.55lover.com/image/banner/maxresdefault.jpg',
+          src: 'http://scenery.55lover.com/vue.jpeg',
           link: 'https://cn.vuejs.org'
         },
         {
-          src: 'http://image.55lover.com/image/banner/mysql-logo-wallpaper.jpg',
+          src: 'http://scenery.55lover.com/msyql.jpg',
           link: 'https://www.mysql.com/'
         },
         {
-          src:
-            'http://image.55lover.com/image/banner/1_gVT-DZjP_JsaoLhFolGadA.png',
+          src: 'http://scenery.55lover.com/nginx.jpg',
           link: 'https://nginx.org/'
         },
         {
-          src:
-            'http://image.55lover.com/image/banner/1_aeWo6e6FC8InJwBl3TmpDw.jpg',
+          src: 'http://scenery.55lover.com/nodejs.jpg',
           link: 'https://nodejs.org/'
         },
         {
-          src:
-            'http://image.55lover.com/image/banner/1_ueWmI48uuShON-hX7LwI0w.png',
+          src: 'http://scenery.55lover.com/python.jpg',
           link: 'https://www.python.org/'
         }
-      ]
+      ],
+      show: true,
+      minusShow: false
     }
   },
   components: {
@@ -96,6 +107,19 @@ export default {
     // console.log(sr)
   },
   methods: {
+    open() {
+      this.show = true
+      this.video.play()
+    },
+    close() {
+      this.show = false
+      this.video.pause()
+    },
+    minus() {
+      this.show = true
+      this.minusShow = true
+      this.video.requestPictureInPicture()
+    },
     goSkill() {
       this.$router.push({ path: '/program' })
     },
@@ -123,10 +147,37 @@ export default {
       autoHover: false
     })
     // sr.reveal(document.querySelectorAll('.sy-box2'))
+    let that = this
+    this.video.addEventListener('enterpictureinpicture', function() {
+      // 已进入画中画模式
+      that.show = false
+    })
+    // 退出画中画模式时候执行
+    this.video.addEventListener('leavepictureinpicture', function() {
+      // 已退出画中画模式
+      that.show = true
+    })
+    window.addEventListener(
+      'resize',
+      function() {
+        console.log(this.innerWidth)
+        if (this.innerWidth <= 918) {
+          document.querySelector('.video-content').style.width = '100%'
+        }
+      },
+      false
+    )
   }
 }
 </script>
 
+<style>
+.el-carousel__container {
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+</style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 body {
@@ -177,9 +228,29 @@ body {
   margin-bottom: 25px;
 }
 .img-box {
-  width: 1024px;
-  height: 300px;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+.svg {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+.img-box i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .img-box img {
   width: 100%;
@@ -293,21 +364,6 @@ small::after {
 .job img {
   margin: 20px auto 0;
 }
-.skillsBox {
-  width: 100%;
-  height: 160px;
-  font-size: 24px;
-  background: url(http://api.55lover.com/static/web/uploads/9fdd4722137ce.jpg)
-    no-repeat;
-  background-size: auto;
-  color: #fff;
-}
-.skillsBox img {
-  margin: 0 auto 20px;
-}
-.skillsBox aside {
-  font-size: 48px;
-}
 .about {
   text-align: center;
   padding: 40px 20px;
@@ -324,27 +380,55 @@ small::after {
   width: 100%;
   height: 100%;
 }
-.img1 {
-  display: block;
-  width: 1204px;
-  height: 804px;
-  background: url('http://image.55lover.com/image/banner/vue@3x.jpg') no-repeat;
-  background-size: cover;
+.dialog {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
 }
-.img2 {
-  display: block;
-  width: 1204px;
-  height: 677px;
-  background: url('http://image.55lover.com/image/banner/react@3x.png')
-    no-repeat;
-  background-size: cover;
+.video-content {
+  width: 918px;
+  max-width: 918px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 0.25s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  padding-top: 30px;
+  background: #fff;
+  border-radius: 6px;
+  font-size: 0;
 }
-.img3 {
-  display: block;
-  width: 1204px;
-  height: 677px;
-  background: url('http://image.55lover.com/image/banner/python@3x.jpg')
-    no-repeat;
-  background-size: cover;
+.video-content .video {
+  width: 100%;
+  height: auto;
+}
+.icon_list {
+  position: absolute;
+  right: 18px;
+  top: 0;
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+.icon_list span {
+  position: relative;
+  transition: all 0.3s;
+}
+.icon_list .el-icon-close {
+  margin-left: 18px;
+}
+.icon_list .el-icon-close:hover {
+  transform: rotate(180deg) scale(1.5);
+}
+.icon_list .el-icon-minus:hover {
+  transform: scale(1.5);
 }
 </style>

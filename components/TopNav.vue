@@ -152,6 +152,7 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
   max-width: 1500px;
+  min-width: 1115px;
   box-sizing: border-box;
   margin: 0 auto;
   /*overflow: hidden;*/
