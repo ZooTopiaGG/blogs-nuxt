@@ -1,14 +1,9 @@
 // 路由中间件
-export default async function ({
-  store,
-  app,
-  route,
-  req
-}) {
+export default async function({ store, app, route, req }) {
   if (route.path != '/home' && route.path != '/') {
-    store.commit("IS_HOME", true);
+    store.commit('IS_HOME', true)
   } else {
-    store.commit("IS_HOME", false);
+    store.commit('IS_HOME', false)
   }
   if (route.path == '/signin' || route.path == '/signup') {
     store.commit('SHOW_NAV', false)
@@ -17,7 +12,12 @@ export default async function ({
     store.commit('SHOW_NAV', true)
     store.commit('SHOW_FOOTER', true)
   }
-  if (route.path == '/signin' || route.path == '/signup' || route.path == '/study') {
+  if (
+    route.path == '/signin' ||
+    route.path == '/signup' ||
+    route.path == '/study' ||
+    route.path == '/democase'
+  ) {
     store.commit('SHOW_ASIDE', false)
   } else {
     store.commit('SHOW_ASIDE', true)

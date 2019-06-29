@@ -3,7 +3,26 @@
     <div class="menus flex flex-pack-around">
       <div class="logo flex">
         <router-link :to="{ path: '/home' }">
-          <img id="noClicks" src="../assets/images/logo2.png">
+          <svg width="130" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+              <filter id="blend2">
+                <!-- IE浏览器不支持overly混合模式，可使用multiply替代 -->
+                <feBlend mode="overlay" in="SourceGraphic" in2="patternSource" />
+              </filter>
+              <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="33%" stop-color="red" />
+                <stop offset="55%" stop-color="yellow" />
+                <stop offset="77%" stop-color="green" />
+              </linearGradient>
+              <pattern id="pattern2" width="130" height="70" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient2)" filter="url(#pattern2)"></rect>
+              </pattern>
+            </defs>
+            <text font-family="Microsoft Yahei" font-weight="900" fill="url(#pattern2)">
+              <tspan x="29" y="33" font-size="17">yyn博客</tspan>
+              <tspan x="0" y="51" font-size="14">www.55lover.com</tspan>
+            </text>
+          </svg>
         </router-link>
       </div>
       <div class="flex flex-1 flex-pack-end">
@@ -30,7 +49,28 @@
               </el-dropdown-menu>
             </el-dropdown>
           </li>
-
+          <li :class="{ active: $route.path === '/demo'}" class="demo">
+            <router-link :to="{ path: '/demo' }">
+              <svg width="52" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                  <filter id="blend">
+                    <!-- IE浏览器不支持overly混合模式，可使用multiply替代 -->
+                    <feBlend mode="overlay" in="SourceGraphic" in2="patternSource" />
+                  </filter>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="55%" stop-color="red" />
+                    <stop offset="77%" stop-color="green" />
+                  </linearGradient>
+                  <pattern id="pattern" width="40" height="17" patternUnits="userSpaceOnUse">
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" filter="url(#blend)"></rect>
+                  </pattern>
+                </defs>
+                <text x="0" y="17" font-family="Microsoft Yahei" font-size="17" font-weight="900" fill="url(#pattern)">
+                  Demo
+                </text>
+              </svg>
+            </router-link>
+          </li>
           <li :class="{ active: $route.path === '/dynamic'}">
             <router-link :to="{ path: '/dynamic' }">{{ $t('message.Dynamic') }}</router-link>
           </li>
@@ -173,6 +213,27 @@ export default {
 .menu > li:hover > a,
 .menu > li.active .el-dropdown-link {
   color: #13afff;
+}
+
+.menu > li.demo > a {
+  color: #f30;
+  text-decoration: underline;
+}
+.menu > li.demo:hover > a {
+  text-decoration: none;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'><path fill='none' stroke='%23ff3300' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/></svg>");
+  background-size: 10px 46px;
+  background-position: -10px calc(100% + 42px), 0 calc(100% - -19px);
+  -webkit-animation: waveMove-data-v-46f24cae 1s infinite linear;
+  animation: waveMove-data-v-46f24cae 1s infinite linear;
+}
+@keyframes waveMove {
+  from {
+    background-position-x: -10px, 0;
+  }
+  to {
+    background-position-x: -30px, -20px;
+  }
 }
 .menu a {
   display: block;
