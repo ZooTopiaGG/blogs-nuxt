@@ -30,6 +30,11 @@ import marked from 'marked'
 // })
 export default {
   name: 'adetails',
+  head() {
+    return {
+      title: `${this.$store.state.articleDetail.title}_yyn博客`
+    }
+  },
   async fetch({ store, params }) {
     await store.dispatch('getArticle', { id: params.articleid })
   },
@@ -46,7 +51,6 @@ export default {
       createtime: ''
     }
   },
-  methods: {},
   mounted() {
     sr.reveal(document.querySelectorAll('.box'))
   }

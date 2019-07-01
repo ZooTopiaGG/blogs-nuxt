@@ -66,7 +66,7 @@ export default {
   name: 'dynamic',
   head() {
     return {
-      title: '他又在说什么_动态专栏_邓鹏博客'
+      title: '他又在说什么_动态专栏_yyn博客'
     }
   },
   data() {

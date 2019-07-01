@@ -49,6 +49,11 @@
 <script>
 import Asides from '@/components/Aside'
 export default {
+  head() {
+    return {
+      title: '站长信息_关于我_yyn博客'
+    }
+  },
   async asyncData({ app }) {
     let ruleForm = {}
     let res = await app.$axios.$get(
@@ -72,11 +77,7 @@ export default {
       ruleForm
     }
   },
-  head() {
-    return {
-      title: '站长信息_关于我_邓鹏博客'
-    }
-  },
+
   components: {
     Asides
   },

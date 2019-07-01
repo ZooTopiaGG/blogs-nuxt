@@ -7,7 +7,7 @@
       <nuxt />
       <asides class="right-content" v-if="$store.state.showAside"></asides>
     </div>
-    <footer-nav></footer-nav>
+    <footer-nav v-if="$route.path != '/democase'"></footer-nav>
   </div>
 </template>
 <script>

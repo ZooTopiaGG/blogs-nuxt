@@ -47,7 +47,7 @@ export default {
   name: 'signin',
   head() {
     return {
-      title: '注册_邓鹏博客'
+      title: '注册_yyn博客'
     }
   },
   data() {

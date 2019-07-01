@@ -105,6 +105,11 @@ Vue.filter('time', function(val) {
 })
 export default {
   name: 'program',
+  head() {
+    return {
+      title: '留下你的足迹吧_留言板_yyn博客'
+    }
+  },
   data() {
     return {
       show: false,
@@ -257,7 +262,6 @@ export default {
   },
   mounted() {
     // console.log(this.$store.state.GET_LOGIN_STATUS)
-    $('title').html('留下你的足迹吧_留言板_邓鹏博客')
     this.getMessages()
   }
 }

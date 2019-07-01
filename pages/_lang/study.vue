@@ -76,6 +76,11 @@
 <script>
 import study from '@/assets/js/studies'
 export default {
+  head() {
+    return {
+      title: '学习使人进步_学习资料_yyn博客'
+    }
+  },
   data() {
     return {
       isCollapse: false,

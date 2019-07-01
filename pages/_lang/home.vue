@@ -50,11 +50,8 @@ export default {
     // await store.dispatch('getLatestNews')
   },
   head() {
-    var _title = () => {
-      return '首页_邓鹏博客'
-    }
     return {
-      title: _title()
+      title: '首页_Home_yyn博客'
     }
   },
   computed: {

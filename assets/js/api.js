@@ -6,7 +6,9 @@ let api = {
     // wenzhang详情
     getLatestArticles: 'getLatestArticles',
     getLatestNews: 'getLatestNews',
-    getArticle: 'getArticle'
+    getArticle: 'getArticle',
+    getDemoList: 'getDemoList',
+    getDemoById: 'getDemoById'
   },
   stat: {
     getStatistics: 'getStatistics',

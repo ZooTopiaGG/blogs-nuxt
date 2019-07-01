@@ -73,11 +73,6 @@ export default {
   props: {
     musicList: {}
   },
-  head() {
-    return {
-      title: '聆听他的声音_音乐专栏_邓鹏博客'
-    }
-  },
   components: {
     Asides
   },

@@ -28,20 +28,12 @@
             <img v-else v-lazy="item.smallimg" alt="article">
           </router-link>
         </div>
-        <!-- <div class="look">
-          <el-button type="primary" @click="lookMore(item.id)">前往阅读</el-button>
-        </div> -->
       </article>
       <div class="block">
-        <!-- <span class="demonstration">完整功能</span> -->
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.articleListCount" class="page">
         </el-pagination>
       </div>
     </div>
-    <!-- 右边内容区域 -->
-    <!-- <div class="right-content">
-      <asides></asides>
-    </div> -->
   </section>
 </template>
 
@@ -58,7 +50,7 @@ export default {
   },
   head() {
     return {
-      title: '法律知识很重要_文章专栏_邓鹏博客'
+      title: '法律知识很重要_文章专栏_yyn博客'
     }
   },
   data() {

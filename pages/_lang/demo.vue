@@ -6,35 +6,27 @@
         <span class="title-text">Demo专栏</span>
         <span class="title-label">Demo column</span>
       </div>
-      <article class="article-list bgbox" v-for="(item, index) in $store.state.articleList" :key="index">
+      <article class="article-list bgbox" v-for="(item, index) in $store.state.demoList" :key="index">
         <div class="article-info flex flex-align-center flex-pack-justify">
           <div class="art-right flex flex-v flex-pack-justify flex-1">
             <div class="art-title">
-              <router-link :to="{ path: `/adetails/a/${item.id}` }">{{ item.title }}</router-link>
+              <router-link :to="{ path: '/democase', query: { demoid: item.id } }">{{ item.title }}</router-link>
             </div>
             <div class="desc">
               {{ item.desc }}
             </div>
             <div class="author-info flex flex-align-center flex-pack-justify">
-              <span class="column-name"><a href="javascript:;">文章集</a></span>
+              <span class="column-name"><a href="javascript:;">查看演示</a></span>
               <div class="flex flex-align-center">
                 <span class="create-time flex flex-align-center"><span class="el-icon-time el-icon-00AACD"> </span>{{ item.createAt }}</span>
                 <span class="flex flex-align-center"><span class="el-icon-view el-icon-00AACD"> </span><span class="review-count">{{ item.viewcount }}</span></span>
               </div>
             </div>
           </div>
-          <router-link class="imgbox" :to="{ path: `/adetails/a/${item.id}` }">
-            <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
-            <img v-else v-lazy="item.smallimg" alt="article">
-          </router-link>
         </div>
-        <!-- <div class="look">
-          <el-button type="primary" @click="lookMore(item.id)">前往阅读</el-button>
-        </div> -->
       </article>
       <div class="block">
-        <!-- <span class="demonstration">完整功能</span> -->
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.articleListCount" class="page">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.demoListCount" class="page">
         </el-pagination>
       </div>
     </div>
@@ -50,15 +42,14 @@ import Asides from '~/components/Aside'
 export default {
   name: 'articles',
   async fetch({ store }) {
-    await store.dispatch('postArticle', {
+    await store.dispatch('postDemo', {
       page: 1,
-      size: 10,
-      columntype: 0 //  文章类
+      size: 10
     })
   },
   head() {
     return {
-      title: '法律知识很重要_文章专栏_邓鹏博客'
+      title: '学习积累很重要_Demo_yyn博客'
     }
   },
   data() {

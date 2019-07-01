@@ -58,7 +58,7 @@ export default {
   },
   head() {
     return {
-      title: '优雅的学习态度_技术专栏_邓鹏博客'
+      title: '优雅的学习态度_技术专栏_yyn博客'
     }
   },
   data() {
