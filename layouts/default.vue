@@ -3,11 +3,11 @@
     <canvas class="mouseClick" style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 838px; height: 600px;" width="1676" height="1200">
     </canvas>
     <top-nav></top-nav>
-    <div class="main flex">
+    <div class="main flex" :class="{ pullScreen: $route.path === '/democase' }">
       <nuxt />
       <asides class="right-content" v-if="$store.state.showAside"></asides>
     </div>
-    <footer-nav v-if="$route.path != '/democase'"></footer-nav>
+    <footer-nav></footer-nav>
   </div>
 </template>
 <script>
@@ -131,6 +131,16 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
   overflow: hidden;
+}
+.main.pullScreen {
+  padding-top: 70px;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 100vh;
 }
 .title,
 .center-title {

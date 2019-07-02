@@ -157,7 +157,6 @@ export default {
     window.addEventListener(
       'resize',
       function() {
-        console.log(this.innerWidth)
         if (this.innerWidth <= 918) {
           document.querySelector('.video-content').style.width = '100%'
         }

@@ -1,5 +1,5 @@
 <template>
-  <footer :class="[{footers: true}, {music: $store.state.GET_PLAY_STATUS}]" v-show="$store.state.SHOW_FOOTER">
+  <footer :class="[{footers: true}, {music: $store.state.GET_PLAY_STATUS}, { footerScreen: $route.path === '/democase' }]" v-show="$store.state.SHOW_FOOTER">
     <div class="footer-top">
       <div class="flex footer-info flex-pack-justify">
         <!-- 底部一 友情链接 -->
@@ -164,6 +164,9 @@ export default {
 }
 .footers {
   padding-top: 35px;
+}
+.footers.footerScreen {
+  padding-top: 0;
 }
 .mail {
   text-align: center;
