@@ -8,7 +8,7 @@
               <span style="width: 25px; min-width: 25px;">{{ index + 1 }}. </span>
               <audio class="audio" :src="item.url"> {{ $t('message.SupportWeb') }} </audio>
               <i style="cursor: pointer" @click.self="playorpause(index, item.singername, item.songname)" :class="{active: index===i ? true: false }"></i>
-              <a href="javascript:;" class="music-title" style="color:#000;margin-left: 10px;">{{ item.songname }}</a>
+              <a href="javascript:;" class="music-title" :title="item.singername + '-' +item.songname" style="color:#000;margin-left: 10px;">{{ item.singername + '-' +item.songname }}</a>
               <!-- <span style="margin: 0 5px">-</span>
               <a href="javascript:;">{{ item.singername }}</a> -->
               <span class="flex-1"></span>
@@ -383,7 +383,18 @@ export default {
   font-size: 14px;
   color: #999;
 }
+.music-title {
+  width: calc(100% - 100px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+}
 .list .list-cell {
+  width: 100%;
+  box-sizing: border-box;
   height: 50px;
   transition: all 0.4s;
   font-size: 14px;

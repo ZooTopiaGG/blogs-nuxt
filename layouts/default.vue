@@ -173,17 +173,16 @@ body {
 #doc-content pre {
   display: block;
   margin: 0 0 10px;
-  border: 1px solid #ccc;
   padding: 15px;
-  font-size: 13px;
+  font-size: 14px;
   word-wrap: normal;
   word-break: break-word !important;
   word-break: break-all;
   white-space: pre;
-  overflow: auto;
-  border-radius: 0;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  overflow-x: auto;
+  border-radius: 3px;
+  background: #282c34;
+  color: #abb2bf !important;
   box-shadow: rgba(0, 0, 0, 0.5) 0 1px 30px;
 }
 #doc-content img {

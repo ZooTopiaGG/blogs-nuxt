@@ -224,8 +224,8 @@ export default {
   background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'><path fill='none' stroke='%23ff3300' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/></svg>");
   background-size: 10px 46px;
   background-position: -10px calc(100% + 42px), 0 calc(100% - -19px);
-  -webkit-animation: waveMove-data-v-46f24cae 1s infinite linear;
-  animation: waveMove-data-v-46f24cae 1s infinite linear;
+  -webkit-animation: waveMove 1s infinite linear;
+  animation: waveMove 1s infinite linear;
 }
 @keyframes waveMove {
   from {
@@ -243,7 +243,7 @@ export default {
   text-align: center;
 }
 .logo {
-  width: 30%;
+  width: 20%;
 }
 .logo,
 .logo img {

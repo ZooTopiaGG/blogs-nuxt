@@ -23,11 +23,22 @@
 
 <script>
 import marked from 'marked'
-// marked.setOptions({
-//   highlight: function(code) {
-//     return require('highlightjs').highlightAuto(code).value
-//   }
-// })
+import hljs from 'highlight.js'
+import javascript from 'highlight.js/lib/languages/javascript'
+import 'highlight.js/styles/monokai-sublime.css'
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  highlight: function(code) {
+    return hljs.highlightAuto(code).value
+  },
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false
+})
 export default {
   name: 'adetails',
   head() {
@@ -51,9 +62,7 @@ export default {
       createtime: ''
     }
   },
-  mounted() {
-    sr.reveal(document.querySelectorAll('.box'))
-  }
+  mounted() {}
 }
 </script>
 <style type="text/css">
