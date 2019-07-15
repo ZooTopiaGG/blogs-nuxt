@@ -309,11 +309,20 @@ body {
 }
 #__nuxt img[lazy='error'],
 #__nuxt img[lazy='loading'] {
-  width: 32px;
-  height: auto;
+  width: 48px;
+  height: 48px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.bimg[lazy='loading'] {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
 }
 </style>
