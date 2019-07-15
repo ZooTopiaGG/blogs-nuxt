@@ -19,18 +19,19 @@
               <div class="time"><span>{{ $t('message.PostTime') }}：</span><span>{{ item.createAt | time }}</span></div>
             </div>
             <div v-if="item.commentsList.length > 0" :class="{'foldheight': foldheight,'comments-area': commentsArea}">
-              <div v-for="(item1, index1) in item.commentsList" :key="index1" style="margin-bottom: 5px;">
-                <div class="comment-item">
-
-                  <span v-if="item1.isreply === 1">
-                    <span style="color:#409EFF">{{ item1.username }}</span>{{ $t('message.Reply') }}<span style="color:#409EFF">{{ item1.tousername }}</span>
-                  </span>
-                  <span v-else>
-                    <span style="color:#409EFF">{{ item1.username }}</span>
-                  </span>:
-                  <span>{{ item1.comment }}</span>
-                  <span class="replys" style="color:#409EFF;cursor: pointer;margin-left: 10px;" @click="reply(index, item1.userid, item1.touserid, item1.username, item1.tousername)">{{ $t('message.Reply') }}</span>
-                  <span style="margin-left: 10px;font-size:12px;">{{ item1.createAt | time }}</span>
+              <div class="comment-area">
+                <div v-for="(item1, index1) in item.commentsList" :key="index1">
+                  <div class="comment-item">
+                    <span v-if="item1.isreply === 1">
+                      <span style="color:#409EFF">{{ item1.username }}</span>{{ $t('message.Reply') }}<span style="color:#409EFF">{{ item1.tousername }}</span>
+                    </span>
+                    <span v-else>
+                      <span style="color:#409EFF">{{ item1.username }}</span>
+                    </span>:
+                    <span>{{ item1.comment }}</span>
+                    <span class="replys" style="color:#409EFF;cursor: pointer;margin-left: 10px;" @click="reply(index, item1.userid, item1.touserid, item1.username, item1.tousername)">{{ $t('message.Reply') }}</span>
+                    <span style="margin-left: 10px;font-size:12px;">{{ item1.createAt | time }}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -57,16 +58,18 @@
 
 <script>
 import Asides from '@/components/Aside'
-import Vue from 'vue'
-Vue.filter('time', function(val) {
-  return Coms.getCommonTime1(val)
-})
+import Cookies from 'js-cookie'
 
 export default {
   name: 'dynamic',
   head() {
     return {
       title: '他又在说什么_动态专栏_yyn博客'
+    }
+  },
+  filters: {
+    time(val) {
+      return Coms.getCommonTime1(val)
     }
   },
   data() {
@@ -122,10 +125,9 @@ export default {
       // alert(this.tousername +'--'+ this.touserid)
     },
     async addComments(dynamicid, comment) {
-      // alert(this.isreply)
-      let user = window.localStorage.getItem('55lover_reader')
-      let _user = JSON.parse(user)
-      if (_user && _user.id) {
+      let id = Cookies.get('_55lover_id')
+      let name = Cookies.get('_55lover_name')
+      if (id) {
       } else {
         this.$message({
           showClose: true,
@@ -136,8 +138,8 @@ export default {
       // alert( this.tousername +'--'+ this.touserid )
       var para = {
         dynamicid: dynamicid,
-        userid: _user.id, // 登录用户
-        username: _user.name, // 登录用户
+        userid: id, // 登录用户
+        username: name, // 登录用户
         touserid: this.touserid, // 默认管理员 'd17692be-eca7-41ef-87df-aef4313e2b02',
         tousername: this.tousername, // 默认管理员 '邓鹏',
         isreply: this.isreply,
@@ -205,12 +207,16 @@ a:hover {
   border: 1px solid #87ceeb;
   border-top: 0;
   border-bottom: 0;
-  padding: 20px;
-  max-height: 60px;
+  padding: 0 20px;
+  max-height: 64px;
   overflow: hidden;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
+  margin-bottom: 5px;
+}
+.comment-area {
+  margin-top: 20px;
 }
 .foldheight {
   max-height: 1000px;

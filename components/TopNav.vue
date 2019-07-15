@@ -124,6 +124,7 @@ export default {
       res: {}
     }
   },
+  computed: {},
   // created() {
   //   this.$store.commit('SET_LANG', 'en')
   //   this.$i18n.locale = 'en'
@@ -159,6 +160,12 @@ export default {
           this.$router.push({ path: '/program' })
       }
     }
+  },
+  mounted() {
+    console.log(
+      '$store.state.GET_LOGIN_STATUS:',
+      this.$store.state.GET_LOGIN_STATUS
+    )
   }
 }
 </script>

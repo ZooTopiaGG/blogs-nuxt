@@ -7,7 +7,7 @@ export const state = () => ({
   GET_FOOTER_SHOW: true,
   GET_IS_HOME: false,
   GET_FOOTER_SHOW: true,
-  GET_LOGIN_STATUS: '',
+  GET_LOGIN_STATUS: false,
   GET_PLAY_STATUS: false,
   GET_STAT: {},
   GET_TO_ALBUM: false,
@@ -113,6 +113,7 @@ export const actions = {
         email = duc(Coms.getCookiebyName(req.headers.cookie, '_55lover_email')),
         id = duc(Coms.getCookiebyName(req.headers.cookie, '_55lover_id')),
         name = duc(Coms.getCookiebyName(req.headers.cookie, '_55lover_name'))
+      console.log(avatar, email, id, name)
       commit('NO_LOGIN', {
         avatar,
         email,
@@ -220,7 +221,7 @@ export const actions = {
   async sign_out({ commit, state }) {
     let res = await this.$axios.$get(`${api.sign.signout}`)
     if (res.isSuc) {
-      commit('NO_LOGIN', '')
+      commit('NO_LOGIN', false)
       Cookies.remove('_55lover_avatar', { path: '' }) // removed!
       Cookies.remove('_55lover_email', { path: '' }) // removed!
       Cookies.remove('_55lover_id', { path: '' }) // removed!

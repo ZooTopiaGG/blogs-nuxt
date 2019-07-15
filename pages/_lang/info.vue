@@ -48,6 +48,7 @@
 </template>
 <script>
 import Asides from '@/components/Aside'
+import Cookies from 'js-cookie'
 export default {
   head() {
     return {
@@ -167,8 +168,24 @@ export default {
       let res = await this.$axios.$post(api.info.updateInfo, para)
       if (res.isSuc) {
         this.$message.success(res.message)
-        let r = JSON.stringify(res.result)
-        window.localStorage.setItem('55lover_reader', r)
+        // let r = JSON.stringify(res.result)
+        // window.localStorage.setItem('_55lover_reader', r)
+        Cookies.set('_55lover_avatar', res.result.avatar, {
+          expires: 7,
+          path: ''
+        })
+        Cookies.set('_55lover_email', res.result.email, {
+          expires: 7,
+          path: ''
+        })
+        Cookies.set('_55lover_id', res.result.id, { expires: 7, path: '' })
+        Cookies.set('_55lover_name', res.result.name, { expires: 7, path: '' })
+        this.$store.commit('NO_LOGIN', {
+          avatar: res.result.avatar,
+          email: res.result.email,
+          id: res.result.id,
+          name: res.result.name
+        })
         this.$router.go(-1)
       } else {
         this.$message.error(res.message)

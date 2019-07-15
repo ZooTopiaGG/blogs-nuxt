@@ -70,7 +70,7 @@ export default {
       let res = await self.$axios.$post(api.sign.signin, para)
       if (res.isSuc) {
         let r = JSON.stringify(res.result)
-        window.localStorage.setItem('55lover_reader', r)
+        // window.localStorage.setItem('_55lover_reader', r)
         Cookies.set('_55lover_avatar', res.result.avatar, {
           expires: 7,
           path: ''
@@ -81,7 +81,12 @@ export default {
         })
         Cookies.set('_55lover_id', res.result.id, { expires: 7, path: '' })
         Cookies.set('_55lover_name', res.result.name, { expires: 7, path: '' })
-        self.$store.commit('NO_LOGIN', res.result)
+        self.$store.commit('NO_LOGIN', {
+          avatar: res.result.avatar,
+          email: res.result.email,
+          id: res.result.id,
+          name: res.result.name
+        })
         if (self.fromSignUp) {
           self.$router.push({ path: '/' })
         } else {
