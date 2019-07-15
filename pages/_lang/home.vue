@@ -33,7 +33,7 @@
           <span class="el-icon-minus" @click="minus"></span>
           <span class="el-icon-close" @click="close"></span>
         </div>
-        <video class="video" ref="video" src="http://scenery.55lover.com/image/scenery/%E8%8A%B1%E7%B5%AE.mp4" autoplay muted controls="controls">您的浏览器不支持 video 标签。</video>
+        <video class="video" ref="video" src="http://scenery.55lover.com/image/scenery/%E8%8A%B1%E7%B5%AE.mp4" autoplay muted controls preload="metadata">您的浏览器不支持 video 标签。</video>
       </div>
     </div>
   </section>

@@ -6,7 +6,7 @@
           <ul class="list">
             <li class="list-cell flex flex-align-center flex-pack-justify" v-for="(item, index) in $store.state.musicList.result" :key="index">
               <span style="width: 25px; min-width: 25px;">{{ index + 1 }}. </span>
-              <audio class="audio" :src="item.url"> {{ $t('message.SupportWeb') }} </audio>
+              <audio class="audio" :src="item.url" preload="none"> {{ $t('message.SupportWeb') }} </audio>
               <i style="cursor: pointer" @click.self="playorpause(index, item.singername, item.songname)" :class="{active: index===i ? true: false }"></i>
               <div class="music-title ells_1">
                 <a href="javascript:;" class="link" :title="item.singername + '-' +item.songname" style="color:#000;margin-left: 10px;">{{ item.singername + '-' +item.songname }}</a>
