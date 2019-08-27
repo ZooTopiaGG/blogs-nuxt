@@ -9,9 +9,7 @@
             <span class="title-text">友情链接</span>
             <span class="title-label">Friends links</span>
           </div>
-          <!-- <span class="link-addr"><a href="http://www.lawyer-center.com" class="flex flex-align-center" target="_blank"><span class="link-label bgred">1</span><span class="link-title">律师说官方网站</span></a></span>
-          <span class="link-addr"><a href="http://www.liaoxuefeng.com" target="_blank" class="flex flex-align-center"><span class="link-label bggreen">2</span><span class="link-title">廖雪峰官方网站</span></a></span> -->
-          <!--  <span class="link-addr"><a href="http://www.100txy.com" class="flex flex-align-center" target="_blank"><span class="link-label bgorange">3</span><span class="link-title">雷小天博客</span></a></span> -->
+          <span class="link-addr" v-for="(item, index) in friendsLink" :key="index"><a :href="item.url" class="flex flex-align-center" target="_blank"><span class="link-label" :class='`bgcolor${index + 1}`'>{{ index + 1 }}</span><span class="link-title">{{ item.title }}</span></a></span>
         </div>
         <!-- 底部二 申请友情链接 -->
         <div class="apply-friends second-box">
@@ -113,7 +111,14 @@ export default {
           { required: true, message: '请输入网站地址', trigger: 'blur' }
         ]
       },
-      age: Coms.ages('2017-11-27')
+      age: Coms.ages('2017-11-27'),
+      friendsLink: [
+        {
+          url: 'http://www.55lover.com/',
+          title: '邓鹏的博客',
+          id: 0
+        }
+      ]
     }
   },
   methods: {
@@ -268,13 +273,13 @@ export default {
   border-radius: 6px;
   margin-right: 10px;
 }
-.bgred {
+.bgcolor1 {
   background-color: rgb(222, 0, 68);
 }
-.bggreen {
+.bgcolor2 {
   background-color: rgb(37, 202, 111);
 }
-.bgorange {
+.bgcolor3 {
   background-color: rgb(250, 79, 8);
 }
 </style>

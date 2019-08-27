@@ -113,7 +113,6 @@ export const actions = {
         email = duc(Coms.getCookiebyName(req.headers.cookie, '_55lover_email')),
         id = duc(Coms.getCookiebyName(req.headers.cookie, '_55lover_id')),
         name = duc(Coms.getCookiebyName(req.headers.cookie, '_55lover_name'))
-      console.log(avatar, email, id, name)
       commit('NO_LOGIN', {
         avatar,
         email,
