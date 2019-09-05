@@ -16,7 +16,9 @@
               {{ item.desc }}
             </div>
             <div class="author-info flex flex-align-center flex-pack-justify">
-              <span class="column-name"><a href="javascript:;">查看演示</a></span>
+              <span class="column-name">
+                <router-link :to="{ path: '/democase', query: { demoid: item.id } }">查看演示</router-link>
+              </span>
               <div class="flex flex-align-center">
                 <span class="create-time flex flex-align-center"><span class="el-icon-time el-icon-00AACD"> </span>{{ item.createAt }}</span>
                 <span class="flex flex-align-center"><span class="el-icon-view el-icon-00AACD"> </span><span class="review-count">{{ item.viewcount }}</span></span>

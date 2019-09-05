@@ -12,7 +12,7 @@
               <stop offset="55%" stop-color="red" />
               <stop offset="77%" stop-color="green" />
             </linearGradient>
-            <pattern id="pattern" width="70" height="25" patternUnits="userSpaceOnUse">
+            <pattern id="pattern" width="76" height="25" patternUnits="userSpaceOnUse">
               <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" filter="url(#blend)"></rect>
             </pattern>
           </defs>
@@ -23,7 +23,7 @@
       </div>
       <ul class="list">
         <li class="list-cell" :class="{ point: index % 2 === 0 }" v-for="(item, index) in $store.state.demoList" :key="index">
-          <a href="javascript:;" class="link" @click="openSource(item)">{{ item.title + 'sad阿萨德刚GVvuu' }}</a>
+          <a href="javascript:;" class="link" @click="openSource(item)">{{ item.title }}</a>
         </li>
       </ul>
     </section>
@@ -36,7 +36,6 @@
 export default {
   name: 'demo-case',
   async fetch({ store, query }) {
-    console.log(query)
     await store.dispatch('getDemo', { id: query.demoid })
     await store.dispatch('postDemo', {
       page: 1,
@@ -50,7 +49,6 @@ export default {
   },
   methods: {
     openSource(item) {
-      console.log(item)
       this.src = item.url
     }
   }

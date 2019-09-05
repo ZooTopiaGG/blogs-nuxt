@@ -79,7 +79,6 @@ export default {
     }
   },
   created() {
-    this.setStatistics()
     this.$store.dispatch('getStatistics')
     this.$store.dispatch('getLatestNews')
     this.$store.dispatch('getQQMusic')
@@ -88,6 +87,7 @@ export default {
     sr.reveal('.second-box')
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll)
+      this.setStatistics()
     })
   },
   destroyed() {
@@ -196,7 +196,8 @@ body {
   box-shadow: rgba(0, 0, 0, 0.5) 0 1px 30px;
 }
 #doc-content img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 #doc-content iframe {
   border: 0;
@@ -229,9 +230,8 @@ body {
   padding: 20px;
 }
 .article-list:hover {
-  -webkit-box-shadow: 1px 1px 10px 2px #ccc;
-  -moz-box-shadow: 1px 1px 10px 2px #ccc;
-  -webkit-transition: all 0.4s;
+  box-shadow: 1px 1px 10px 2px #ccc;
+  transition: all 0.4s;
   border-color: red;
 }
 .article-list:last-child {
