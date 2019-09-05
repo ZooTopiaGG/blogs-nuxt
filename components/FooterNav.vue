@@ -9,7 +9,12 @@
             <span class="title-text">友情链接</span>
             <span class="title-label">Friends links</span>
           </div>
-          <span class="link-addr" v-for="(item, index) in friendsLink" :key="index"><a :href="item.url" class="flex flex-align-center" target="_blank"><span class="link-label" :class='`bgcolor${index + 1}`'>{{ index + 1 }}</span><span class="link-title">{{ item.title }}</span></a></span>
+          <div class="link-addr" v-for="(item, index) in friendsLink" :key="index">
+            <a :href="item.url" class="flex flex-align-center" target="_blank">
+              <span class="link-label" :class='`bgcolor${index + 1}`'>{{ index + 1 }}</span>
+              <span class="link-title">{{ item.title }}</span>
+            </a>
+          </div>
         </div>
         <!-- 底部二 申请友情链接 -->
         <div class="apply-friends second-box">
