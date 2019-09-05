@@ -79,7 +79,6 @@ export default {
     }
   },
   created() {
-    this.setStatistics()
     this.$store.dispatch('getStatistics')
     this.$store.dispatch('getLatestNews')
     this.$store.dispatch('getQQMusic')
@@ -88,6 +87,7 @@ export default {
     sr.reveal('.second-box')
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll)
+      this.setStatistics()
     })
   },
   destroyed() {
