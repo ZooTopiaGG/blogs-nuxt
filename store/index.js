@@ -27,7 +27,8 @@ export const state = () => ({
   node_env: 'production',
   albumsList: {},
   musicList: {},
-  showAside: true
+  showAside: true,
+  showVideo: true
 })
 
 export const mutations = {
@@ -99,6 +100,9 @@ export const mutations = {
   },
   SHOW_ASIDE(state, para) {
     state.showAside = para
+  },
+  SHOW_VIDEO(state, para) {
+    state.showVideo = para
   }
 }
 

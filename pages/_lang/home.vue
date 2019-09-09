@@ -27,15 +27,6 @@
     <!-- <div class="right-content">
       <asides></asides>
     </div> -->
-    <div class="dialog" v-show="show">
-      <div class="video-content">
-        <div class="icon_list">
-          <span class="el-icon-minus" @click="minus"></span>
-          <span class="el-icon-close" @click="close"></span>
-        </div>
-        <video class="video" ref="video" src="http://scenery.55lover.com/image/scenery/%E8%8A%B1%E7%B5%AE.mp4" autoplay muted controls preload="metadata">您的浏览器不支持 video 标签。</video>
-      </div>
-    </div>
   </section>
 </template>
 
@@ -61,11 +52,7 @@ export default {
       title: '首页_Home-邓鹏的博客'
     }
   },
-  computed: {
-    video() {
-      return this.$refs['video']
-    }
-  },
+
   data() {
     return {
       msg: '',
@@ -98,9 +85,7 @@ export default {
           src: 'http://scenery.55lover.com/python.jpg',
           link: 'https://www.python.org/'
         }
-      ],
-      show: true,
-      minusShow: false
+      ]
     }
   },
   components: {
@@ -112,34 +97,10 @@ export default {
   },
   methods: {
     open() {
-      this.show = true
-      this.video.play()
-    },
-    close() {
-      this.show = false
-      this.video.pause()
-    },
-    minus() {
-      this.show = true
-      this.minusShow = true
-      this.video.requestPictureInPicture()
-    },
-    goSkill() {
-      this.$router.push({ path: '/program' })
-    },
-    goDynamic() {
-      this.$router.push({ path: '/dynamic' })
-    },
-    goMusic() {
-      this.$router.push({ path: '/music' })
-    },
-    goArticle() {
-      this.$router.push({ path: '/articles' })
+      this.$store.commit('SHOW_VIDEO', true)
     }
   },
   mounted() {
-    // console.log(this.$store)
-    // console.log(sr)
     var demo1 = $('#slider').slippry({
       transition: 'kenburns',
       useCSS: true,
@@ -151,25 +112,6 @@ export default {
       autoHover: false
     })
     // sr.reveal(document.querySelectorAll('.sy-box2'))
-    let that = this
-    this.video.addEventListener('enterpictureinpicture', function() {
-      // 已进入画中画模式
-      that.show = false
-    })
-    // 退出画中画模式时候执行
-    this.video.addEventListener('leavepictureinpicture', function() {
-      // 已退出画中画模式
-      that.show = true
-    })
-    window.addEventListener(
-      'resize',
-      function() {
-        if (this.innerWidth <= 918) {
-          document.querySelector('.video-content').style.width = '100%'
-        }
-      },
-      false
-    )
   }
 }
 </script>
@@ -382,56 +324,5 @@ small::after {
 .maps {
   width: 100%;
   height: 100%;
-}
-.dialog {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 9999;
-}
-.video-content {
-  width: 918px;
-  max-width: 918px;
-  height: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation-duration: 0.25s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  padding-top: 30px;
-  background: #fff;
-  border-radius: 6px;
-  font-size: 0;
-}
-.video-content .video {
-  width: 100%;
-  height: auto;
-}
-.icon_list {
-  position: absolute;
-  right: 18px;
-  top: 0;
-  font-size: 18px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-.icon_list span {
-  position: relative;
-  transition: all 0.3s;
-}
-.icon_list .el-icon-close {
-  margin-left: 18px;
-}
-.icon_list .el-icon-close:hover {
-  transform: rotate(180deg) scale(1.5);
-}
-.icon_list .el-icon-minus:hover {
-  transform: scale(1.5);
 }
 </style>
