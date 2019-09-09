@@ -1,5 +1,5 @@
 <template>
-  <div class="adetails bgbox box">
+  <div class="adetails bgbox box flex-1">
     <div class="details-title">{{ $store.state.articleDetail.title }}</div>
     <div class="desc flex flex-align-center">
       <img class="avatar" src="http://scenery.55lover.com/image/scenery/23115938.7a36240.jpg" alt='avatar'>

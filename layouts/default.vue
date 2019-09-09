@@ -8,15 +8,17 @@
       <asides class="right-content" v-if="$store.state.showAside"></asides>
     </div>
     <footer-nav></footer-nav>
-    <div class="dialog" v-show="$store.state.showVideo">
-      <div class="video-content">
-        <div class="icon_list">
-          <span class="el-icon-minus" @click="minus"></span>
-          <span class="el-icon-close" @click="close"></span>
+    <no-ssr>
+      <div class="dialog" v-show="$store.state.showVideo && isHome">
+        <div class="video-content">
+          <div class="icon_list">
+            <span class="el-icon-minus" @click="minus"></span>
+            <span class="el-icon-close" @click="close"></span>
+          </div>
+          <video class="video" ref="video" src="http://scenery.55lover.com/image/scenery/%E8%8A%B1%E7%B5%AE.mp4" autoplay muted controls preload="metadata">您的浏览器不支持 video 标签。</video>
         </div>
-        <video class="video" ref="video" src="http://scenery.55lover.com/image/scenery/%E8%8A%B1%E7%B5%AE.mp4" autoplay muted controls preload="metadata">您的浏览器不支持 video 标签。</video>
       </div>
-    </div>
+    </no-ssr>
   </div>
 </template>
 <script>
@@ -52,6 +54,9 @@ export default {
     },
     video() {
       return this.$refs['video']
+    },
+    isHome() {
+      return this.$route.path === '/' || this.$route.path === '/home'
     }
   },
   methods: {
