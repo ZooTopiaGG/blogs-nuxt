@@ -10,7 +10,7 @@
         <div class="article-info flex flex-align-center flex-pack-justify">
           <div class="art-right flex flex-v flex-pack-justify flex-1">
             <div class="art-title">
-              <router-link :to="{ path: `/adetails/p/${item.id}` }">{{ item.title }}</router-link>
+              <nuxt-link :to="{ path: `/adetails/p/${item.id}` }">{{ item.title }}</nuxt-link>
             </div>
             <div class="desc">
               {{ item.desc }}
@@ -23,10 +23,10 @@
               </div>
             </div>
           </div>
-          <router-link class="imgbox" :to="{ path: `/adetails/p/${item.id}` }">
+          <nuxt-link class="imgbox" :to="{ path: `/adetails/p/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
             <img v-else v-lazy="item.smallimg" alt="article">
-          </router-link>
+          </nuxt-link>
         </div>
         <!-- <div class="look">
           <el-button type="primary" @click="lookMore(item.id)">前往阅读</el-button>

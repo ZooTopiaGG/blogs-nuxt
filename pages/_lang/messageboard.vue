@@ -81,7 +81,7 @@
               <el-input type="textarea" v-model="ruleForm.message" :autosize="{ minRows: 4, maxRows: 6}"></el-input>
             </el-form-item>
             <div class="nosign" v-if="!$store.state.GET_LOGIN_STATUS">
-              <router-link :to="{ name: 'signin' }">{{$t('message.MNoLogin')}}</router-link>
+              <nuxt-link :to="{ name: 'signin' }">{{$t('message.MNoLogin')}}</nuxt-link>
             </div>
             <el-form-item>
               <el-button type="primary" @click="submitForm('ruleForm')">{{$t('message.PostMessage')}}</el-button>

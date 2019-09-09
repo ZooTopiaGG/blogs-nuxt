@@ -10,14 +10,14 @@
         <div class="article-info flex flex-align-center flex-pack-justify">
           <div class="art-right flex flex-v flex-pack-justify flex-1">
             <div class="art-title">
-              <router-link :to="{ path: '/democase', query: { demoid: item.id } }">{{ item.title }}</router-link>
+              <nuxt-link :to="{ path: '/democase', query: { demoid: item.id } }">{{ item.title }}</nuxt-link>
             </div>
             <div class="desc">
               {{ item.desc }}
             </div>
             <div class="author-info flex flex-align-center flex-pack-justify">
               <span class="column-name">
-                <router-link :to="{ path: '/democase', query: { demoid: item.id } }">查看演示</router-link>
+                <nuxt-link :to="{ path: '/democase', query: { demoid: item.id } }">查看演示</nuxt-link>
               </span>
               <div class="flex flex-align-center">
                 <span class="create-time flex flex-align-center"><span class="el-icon-time el-icon-00AACD"> </span>{{ item.createAt }}</span>

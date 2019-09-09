@@ -2,7 +2,7 @@
   <div v-show='$store.state.SHOW_NAV' :class="[{navs: true}, { isHome: $store.state.GET_IS_HOME }]">
     <div class="menus flex flex-pack-around">
       <div class="logo flex">
-        <router-link :to="{ path: '/home' }">
+        <nuxt-link :to="{ path: '/home' }">
           <svg width="130" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
               <filter id="blend2">
@@ -23,12 +23,12 @@
               <tspan x="0" y="51" font-size="14">www.55lover.com</tspan>
             </text>
           </svg>
-        </router-link>
+        </nuxt-link>
       </div>
       <div class="flex flex-1 flex-pack-end">
         <ul class="menu flex">
           <li :class="{ active: $route.name === 'home'}">
-            <router-link :to="{ path: '/home' }">{{ $t('message.Home') }}</router-link>
+            <nuxt-link :to="{ path: '/home' }">{{ $t('message.Home') }}</nuxt-link>
           </li>
           <li :class="{ active: $route.name === 'program' || $route.path.indexOf('articles/p') > -1 || $route.name === 'articles' || $route.path.indexOf('articles/a') > -1 || $route.name==='studies'}">
             <el-dropdown trigger="click" @command="handleCommand2">
@@ -50,7 +50,7 @@
             </el-dropdown>
           </li>
           <li :class="{ active: $route.path === '/demo'}" class="demo">
-            <router-link :to="{ path: '/demo' }">
+            <nuxt-link :to="{ path: '/demo' }">
               <svg width="52" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                   <filter id="blend">
@@ -69,16 +69,16 @@
                   Demo
                 </text>
               </svg>
-            </router-link>
+            </nuxt-link>
           </li>
           <li :class="{ active: $route.path === '/dynamic'}">
-            <router-link :to="{ path: '/dynamic' }">{{ $t('message.Dynamic') }}</router-link>
+            <nuxt-link :to="{ path: '/dynamic' }">{{ $t('message.Dynamic') }}</nuxt-link>
           </li>
           <li :class="{ active: $route.path === '/messageboard'}">
-            <router-link :to="{ path: '/messageboard' }">{{ $t('message.MessageBoard') }}</router-link>
+            <nuxt-link :to="{ path: '/messageboard' }">{{ $t('message.MessageBoard') }}</nuxt-link>
           </li>
           <li :class="{ active: $route.path === '/info'}">
-            <router-link :to="{ path: '/info' }">{{ $t('message.AboutMe') }}</router-link>
+            <nuxt-link :to="{ path: '/info' }">{{ $t('message.AboutMe') }}</nuxt-link>
           </li>
           <li>
             <el-dropdown trigger="click" @command="handleCommand1">
@@ -93,9 +93,9 @@
           </li>
         </ul>
         <div class="sign" v-if="!$store.state.GET_LOGIN_STATUS">
-          <router-link id="noClicks" :to="{ path: '/signin' }">{{ $t('message.SignIn') }}</router-link>
+          <nuxt-link id="noClicks" :to="{ path: '/signin' }">{{ $t('message.SignIn') }}</nuxt-link>
           /
-          <router-link id="noClicks" :to="{ path: '/signup' }">{{ $t('message.SignUp') }}</router-link>
+          <nuxt-link id="noClicks" :to="{ path: '/signup' }">{{ $t('message.SignUp') }}</nuxt-link>
         </div>
         <el-dropdown v-else trigger="click" class="signing flex flex-align-center" @command="handleCommand">
           <span class="el-dropdown-link flex flex-align-center">

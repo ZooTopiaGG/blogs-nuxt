@@ -14,7 +14,7 @@
           <div class="con">
             <div class="con-first">
               <div class="content">
-                <router-link :to="{ name: 'home' }" style="color:#409EFF">邓鹏。</router-link> &nbsp;&nbsp;{{ item.content }}
+                <nuxt-link :to="{ name: 'home' }" style="color:#409EFF">邓鹏。</nuxt-link> &nbsp;&nbsp;{{ item.content }}
               </div>
               <div class="time"><span>{{ $t('message.PostTime') }}：</span><span>{{ item.createAt | time }}</span></div>
             </div>

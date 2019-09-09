@@ -19,12 +19,12 @@
               {{ item.desc }}
             </div>
             <div class="author-info flex flex-align-center flex-pack-justify">
-              <!-- <span class="author"><router-link :to="{ name : 'home' }">邓鹏</router-link></span> /  -->
+              <!-- <span class="author"><nuxt-link :to="{ name : 'home' }">邓鹏</nuxt-link></span> /  -->
               <span class="column-name" v-if="item.columntype==0">
-                <router-link :to="{ name : 'articles' }">文章类</router-link>
+                <nuxt-link :to="{ name : 'articles' }">文章类</nuxt-link>
               </span>
               <span class="column-name" v-else>
-                <router-link :to="{ name : 'program' }">技术类</router-link>
+                <nuxt-link :to="{ name : 'program' }">技术类</nuxt-link>
               </span>
               <!-- <span class="article-type">{{ item.type }}</span> /  -->
               <div class="flex flex-align-center">
@@ -33,14 +33,14 @@
               </div>
             </div>
           </div>
-          <router-link v-if="item.columntype==0" class="imgbox" :to="{ path: `/adetails/a/${item.id}` }">
+          <nuxt-link v-if="item.columntype==0" class="imgbox" :to="{ path: `/adetails/a/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
             <img v-else v-lazy="item.smallimg" alt="article">
-          </router-link>
-          <router-link v-else class="imgbox" :to="{ path: `/adetails/p/${item.id}` }">
+          </nuxt-link>
+          <nuxt-link v-else class="imgbox" :to="{ path: `/adetails/p/${item.id}` }">
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
             <img v-else v-lazy="item.smallimg" alt="article">
-          </router-link>
+          </nuxt-link>
         </div>
         <!-- <div class="look">
           <el-button type="primary" @click="lookMore(item.id)">前往阅读</el-button>

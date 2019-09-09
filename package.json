@@ -17,7 +17,8 @@
     "prod-start": "cross-env MODE=pro nuxt build && cross-env MODE=pro nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "pm2": "pm2 start pm2.config.json"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",

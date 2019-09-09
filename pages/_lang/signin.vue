@@ -15,10 +15,10 @@
         </el-form-item>
         <el-form-item>
           <div class="flex flex-pack-justify">
-            <p>{{$t('message.NoAccount')}}<router-link :to="{ path: '/signup' }">{{$t('message.GoRegister')}}</router-link>
+            <p>{{$t('message.NoAccount')}}<nuxt-link :to="{ path: '/signup' }">{{$t('message.GoRegister')}}</nuxt-link>
             </p>
             <p>
-              <router-link :to="{ path: '/home' }">{{$t('message.BackHome')}}</router-link>
+              <nuxt-link :to="{ path: '/home' }">{{$t('message.BackHome')}}</nuxt-link>
             </p>
           </div>
         </el-form-item>

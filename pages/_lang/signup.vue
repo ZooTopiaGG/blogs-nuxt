@@ -27,10 +27,10 @@
         </el-form-item>
         <el-form-item>
           <div class="flex flex-pack-justify">
-            <p>{{$t('message.HaveAccount')}}<router-link :to="{ name: 'signin' }">{{$t('message.GoLogin')}}</router-link>
+            <p>{{$t('message.HaveAccount')}}<nuxt-link :to="{ name: 'signin' }">{{$t('message.GoLogin')}}</nuxt-link>
             </p>
             <p>
-              <router-link :to="{ name: 'home' }">{{$t('message.BackHome')}}</router-link>
+              <nuxt-link :to="{ name: 'home' }">{{$t('message.BackHome')}}</nuxt-link>
             </p>
           </div>
         </el-form-item>

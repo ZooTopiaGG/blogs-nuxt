@@ -6,7 +6,7 @@
       <div class="desc-info">
         <div class="author">
           <span>作者：</span>
-          <router-link :to="{ name: 'home' }">邓鹏</router-link>
+          <nuxt-link :to="{ name: 'home' }">邓鹏</nuxt-link>
           <span class="type">类型：</span>
           <span>{{ $store.state.articleDetail.type === 0 ? '原创' : '转载' }}</span>
         </div>

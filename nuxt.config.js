@@ -135,8 +135,11 @@ module.exports = {
     /*
      ** Run ESLint on save
      */
-    vendor: ['axios'],
+    // vendor: ['axios'],
     extractCSS: true,
+    parallel: true,
+    hardSource: true,
+    optimizeCSS: true,
     filenames: {
       chunk: ({ isDev }) =>
         isDev ? '[name].js' : '55lover.com.[chunkhash].js',
@@ -162,9 +165,9 @@ module.exports = {
         }
       }
     },
-    analyze: {
-      analyzerMode: 'static'
-    },
+    // analyze: {
+    //   analyzerMode: 'static'
+    // },
     extend(config, { isDev }) {
       if (isDev && process.client) {
         config.module.rules.push({
