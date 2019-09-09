@@ -248,10 +248,14 @@ body {
 #doc-content img {
   max-width: 100%;
   max-height: 100%;
+  margin: auto;
+  display: block;
 }
 #doc-content iframe {
   border: 0;
   box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
+  margin: auto;
+  display: block;
 }
 /*调整*/
 
