@@ -1,13 +1,13 @@
 <template>
   <section class="flex left-content">
-    <div class="articles flex-1" id="articles">
+    <nuxt-link class="articles flex-1" id="articles">
       <div class="title flex flex-align-center">
         <span class="iconfont dp-icon-wenzhang dp-icon-00AACD"></span>
         <span class="title-text">文章专栏</span>
         <span class="title-label">Article column</span>
       </div>
       <article class="article-list bgbox" v-for="(item, index) in $store.state.articleList" :key="index">
-        <div class="article-info flex flex-align-center flex-pack-justify">
+        <nuxt-link class="article-info flex flex-align-center flex-pack-justify">
           <div class="art-right flex flex-v flex-pack-justify flex-1">
             <div class="art-title">
               <nuxt-link :to="{ path: `/adetails/a/${item.id}` }">{{ item.title }}</nuxt-link>
@@ -27,13 +27,13 @@
             <img v-if="!item.smallimg" src="http://scenery.55lover.com/image/scenery/photo-peggy.jpg" alt="article">
             <img v-else v-lazy="item.smallimg" alt="article">
           </nuxt-link>
-        </div>
+        </nuxt-link>
       </article>
       <div class="block">
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.articleListCount" class="page">
         </el-pagination>
       </div>
-    </div>
+    </nuxt-link>
   </section>
 </template>
 
