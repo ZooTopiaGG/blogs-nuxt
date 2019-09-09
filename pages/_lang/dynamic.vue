@@ -181,9 +181,8 @@ a:hover {
   border-radius: 3px;
 }
 .dy-con:hover {
-  -webkit-box-shadow: 1px 1px 10px 2px #ccc;
-  -moz-box-shadow: 1px 1px 10px 2px #ccc;
-  -webkit-transition: all 0.4s;
+  box-shadow: 1px 1px 10px 2px #ccc;
+  transition: all 0.4s;
   border-color: red;
 }
 .dy-con .con {
