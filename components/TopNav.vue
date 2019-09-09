@@ -92,7 +92,7 @@
             </el-dropdown>
           </li>
         </ul>
-        <div class="sign" v-if="!$store.state.GET_LOGIN_STATUS">
+        <div class="sign" v-if="!$store.state.GET_LOGIN_STATUS || ($store.state.GET_LOGIN_STATUS && $store.state.GET_LOGIN_STATUS.id == 'null')">
           <nuxt-link id="noClicks" :to="{ path: '/signin' }">{{ $t('message.SignIn') }}</nuxt-link>
           /
           <nuxt-link id="noClicks" :to="{ path: '/signup' }">{{ $t('message.SignUp') }}</nuxt-link>

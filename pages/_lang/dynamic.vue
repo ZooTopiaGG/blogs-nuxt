@@ -64,7 +64,7 @@ export default {
   name: 'dynamic',
   head() {
     return {
-      title: '他又在说什么_动态专栏_yyn博客'
+      title: '他又在说什么_动态专栏-邓鹏的博客'
     }
   },
   filters: {

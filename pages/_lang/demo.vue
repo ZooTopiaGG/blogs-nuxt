@@ -6,7 +6,7 @@
         <span class="title-text">Demo专栏</span>
         <span class="title-label">Demo column</span>
       </div>
-      <article class="article-list bgbox" v-for="(item, index) in $store.state.demoList" :key="index">
+      <article class="article-list bgbox" v-for="(item, index) in demoList" :key="index">
         <div class="article-info flex flex-align-center flex-pack-justify">
           <div class="art-right flex flex-v flex-pack-justify flex-1">
             <div class="art-title">
@@ -28,7 +28,7 @@
         </div>
       </article>
       <div class="block">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.demoListCount" class="page">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="currentSize" layout="total, sizes, prev, pager, next, jumper" :total="demoListCount" class="page">
         </el-pagination>
       </div>
     </div>
@@ -43,15 +43,39 @@
 import Asides from '~/components/Aside'
 export default {
   name: 'articles',
-  async fetch({ store }) {
-    await store.dispatch('postDemo', {
-      page: 1,
-      size: 10
-    })
+  scrollToTop: false,
+  key: ({ path }) => path,
+  watchQuery: ['page', 'size'],
+  async asyncData({ $axios, query, params, store, error }) {
+    let page = Number(query.page),
+      size = Number(query.size),
+      para = {
+        page: page || 1,
+        size: size || 10
+      }
+    let res = await $axios.$post(`${api.article.getDemoList}`, para)
+    if (res.isSuc) {
+      let arr = await res.result.map(x => {
+        x.createAt = Coms.getCommonTime(x.createAt)
+        return x
+      })
+      store.commit('DemoList', arr)
+      store.commit('DemoListCount', res.total_count)
+      return {
+        demoList: arr,
+        demoListCount: res.total_count,
+        currentPage4: page || 1,
+        currentSize: size || 10
+      }
+    } else {
+      error({
+        message: res.message
+      })
+    }
   },
   head() {
     return {
-      title: '学习积累很重要_Demo_yyn博客'
+      title: '案例展示-邓鹏的博客'
     }
   },
   data() {
@@ -59,6 +83,7 @@ export default {
       list: [],
       // 当前页
       currentPage4: 1,
+      currentSize: 10,
       // 总条数
       totalcount: 200,
       // 每页多少条
@@ -88,10 +113,12 @@ export default {
       await this.handlePost()
     },
     async handlePost() {
-      await this.$store.dispatch('postArticle', {
-        page: this.page,
-        size: this.pagesize,
-        columntype: 0 // 文章
+      this.$router.push({
+        path: `/demo`,
+        query: {
+          page: this.page,
+          size: this.pagesize
+        }
       })
     }
   }

@@ -64,9 +64,9 @@ export default {
       // 总条数
       totalcount: 200,
       // 每页多少条
-      pagesize: 10,
+      pagesize: Number(this.$route.query.size) || 10,
       // 页值
-      page: 1,
+      page: Number(this.$route.query.page) || 1,
       logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
     }
   },
@@ -77,23 +77,24 @@ export default {
     lookMore(id) {
       // this.$router.push({ name: 'adetails', params: { articleid: id, type: 'a' } })
     },
+    refreshLatest() {
+      this.$router.push({
+        path: '/home',
+        query: {
+          page: this.page,
+          size: this.pagesize
+        }
+      })
+    },
     handleSizeChange(val) {
       // 每页多少条
-      // console.log(val)
       this.pagesize = val
-      this.$store.dispatch('getLatestArticles', {
-        page: this.page,
-        pagesize: this.pagesize
-      })
+      this.refreshLatest()
     },
     handleCurrentChange(val) {
       // 当前页数
-      // console.log(val)
       this.page = val
-      this.$store.dispatch('getLatestArticles', {
-        page: this.page,
-        pagesize: this.pagesize
-      })
+      this.refreshLatest()
     }
   }
 }

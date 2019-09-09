@@ -43,7 +43,7 @@ export default {
   name: 'adetails',
   head() {
     return {
-      title: `${this.$store.state.articleDetail.title}_yyn博客`
+      title: `${this.$store.state.articleDetail.title}-邓鹏的博客`
     }
   },
   async fetch({ store, params }) {

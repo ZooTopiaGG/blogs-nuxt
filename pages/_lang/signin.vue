@@ -36,7 +36,7 @@ export default {
   name: 'signin',
   head() {
     return {
-      title: '登录_yyn博客'
+      title: '登录-邓鹏的博客'
     }
   },
   data() {

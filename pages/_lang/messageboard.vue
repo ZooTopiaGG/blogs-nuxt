@@ -107,7 +107,7 @@ export default {
   name: 'program',
   head() {
     return {
-      title: '留下你的足迹吧_留言板_yyn博客'
+      title: '留下你的足迹吧_留言板-邓鹏的博客'
     }
   },
   data() {

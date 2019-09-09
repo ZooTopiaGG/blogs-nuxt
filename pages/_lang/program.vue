@@ -6,7 +6,7 @@
         <span class="title-text">技术专栏</span>
         <span class="title-label">Technical column</span>
       </div>
-      <article class="article-list bgbox" v-for="(item, index) in $store.state.articleList" :key="index">
+      <article class="article-list bgbox" v-for="(item, index) in articleList" :key="index">
         <div class="article-info flex flex-align-center flex-pack-justify">
           <div class="art-right flex flex-v flex-pack-justify flex-1">
             <div class="art-title">
@@ -34,7 +34,7 @@
       </article>
       <div class="block">
         <!-- <span class="demonstration">完整功能</span> -->
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, sizes, prev, pager, next, jumper" :total="$store.state.articleListCount" class="page">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="[10, 20, 30, 40]" :page-size="currentSize" layout="total, sizes, prev, pager, next, jumper" :total="articleListCount" class="page">
         </el-pagination>
       </div>
     </div>
@@ -49,22 +49,49 @@
 import Asides from '@/components/Aside'
 export default {
   name: 'program',
-  async fetch({ store }) {
-    await store.dispatch('postArticle', {
-      page: 1,
-      size: 10,
-      columntype: 1 //  技术类
-    })
+  scrollToTop: false,
+  key: ({ path }) => path,
+  watchQuery: ['page', 'size'],
+  async asyncData({ $axios, query, params, store, error }) {
+    let page = Number(query.page),
+      size = Number(query.size),
+      para = {
+        page: page || 1,
+        size: size || 10,
+        columntype: 1
+      }
+    let res = await $axios.$post(`${api.article.getArticle}`, para)
+    if (res.isSuc) {
+      let arr = await res.result.map(x => {
+        x.type = x.type == 0 ? '原创' : '转载'
+        x.createAt = Coms.getCommonTime(x.createAt)
+      })
+      store.commit('ArticleList', res.result)
+      store.commit('ArticleListCount', res.total)
+      return {
+        articleList: res.result,
+        articleListCount: res.total,
+        currentPage4: page || 1,
+        currentSize: size || 10
+      }
+    } else {
+      error({
+        message: res.message
+      })
+    }
   },
   head() {
     return {
-      title: '优雅的学习态度_技术专栏_yyn博客'
+      title: '优雅的学习态度_技术专栏-邓鹏的博客'
     }
   },
   data() {
     return {
+      articleList: [],
+      articleListCount: 0,
       list: [],
       currentPage4: 1,
+      currentSize: 10,
       totalcount: 0,
       pagesize: 10,
       page: 1,
@@ -88,11 +115,13 @@ export default {
       this.page = val
       await this.handlePost()
     },
-    async handlePost() {
-      await this.$store.dispatch('postArticle', {
-        page: this.page,
-        size: this.pagesize,
-        columntype: 1 // 文章
+    handlePost() {
+      this.$router.push({
+        path: `/program`,
+        query: {
+          page: this.page,
+          size: this.pagesize
+        }
       })
     }
   }

@@ -1,5 +1,6 @@
 const env = require('./env')
 module.exports = {
+  mode: 'Universal',
   env: {
     baseUrl: env[process.env.MODE].ENV_API
   },
@@ -15,13 +16,13 @@ module.exports = {
       {
         name: 'keywords',
         content:
-          '博客，技术，文章，离婚，JavaScript，css，html5，vue，react，es6，node，python，mysql，nginx，法律知识'
+          '博客，技术，文章，JavaScript，css，html5，vue，react，es6，node，python，mysql，nginx'
       },
       {
         hid: 'description',
         name: 'description',
         content:
-          '“邓鹏博客”是一个基于博主兴趣而开发的网站，网站包括法律知识，技术交流，前端技术等许多内容。'
+          '“邓鹏博客”是一个基于博主兴趣而开发的网站，网站包括法律文章，兴趣文章，技术交流，前端技术等许多内容。'
       },
       {
         name: 'viewport',
@@ -88,6 +89,7 @@ module.exports = {
       src: '~/assets/fonts/iconfont.css'
     }
   ],
+  watchQuery: true,
   // 路由配置
   router: {
     base: '/',
@@ -136,9 +138,10 @@ module.exports = {
      ** Run ESLint on save
      */
     // vendor: ['axios'],
-    extractCSS: true,
+    // extractCSS 会导致ssr页面样式紊乱
+    // extractCSS: true,
     parallel: true,
-    hardSource: true,
+    // hardSource: true,
     optimizeCSS: true,
     filenames: {
       chunk: ({ isDev }) =>

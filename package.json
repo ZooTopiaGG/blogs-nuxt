@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "consola": "^2.10.1",
     "cross-env": "^5.2.0",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",

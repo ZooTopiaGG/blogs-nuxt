@@ -44,14 +44,21 @@ import LastestArticle from '~/components/LastestArticle'
 import Asides from '~/components/Aside'
 export default {
   name: 'home',
-  async fetch({ app, error, store }) {
-    await store.dispatch('getLatestArticles', { page: 1, pagesize: 10 })
+  scrollToTop: false,
+  key: ({ path }) => path,
+  watchQuery: ['page', 'size'],
+  async fetch({ app, error, store, query }) {
+    let para = {
+      page: query.page || 1,
+      pagesize: query.size || 10
+    }
+    await store.dispatch('getLatestArticles', para)
     // await store.dispatch('getStatistics')
     // await store.dispatch('getLatestNews')
   },
   head() {
     return {
-      title: '首页_Home_yyn博客'
+      title: '首页_Home-邓鹏的博客'
     }
   },
   computed: {
