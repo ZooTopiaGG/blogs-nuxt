@@ -1,6 +1,10 @@
 <template>
   <div class="adetails bgbox box flex-1">
     <div class="details-title">{{ $store.state.articleDetail.title }}</div>
+    <div class="details-url">
+      <span>本文地址：</span>
+      <nuxt-link :to="{ path: $route.params.fullPath }">({{ currentUrl }})</nuxt-link>
+    </div>
     <div class="desc flex flex-align-center">
       <img class="avatar" src="http://scenery.55lover.com/image/scenery/23115938.7a36240.jpg" alt='avatar'>
       <div class="desc-info">
@@ -52,17 +56,21 @@ export default {
   computed: {
     content() {
       return marked(this.$store.state.articleDetail.content)
-    }
+    },
+    
   },
   data() {
     return {
       title: '',
       type: '原创',
       viewcount: 0,
-      createtime: ''
+      createtime: '',
+      currentUrl: ''
     }
   },
-  mounted() {}
+  mounted() {
+    this.currentUrl = typeof window != undefined ? window.location.href : ''
+  }
 }
 </script>
 <style type="text/css">
@@ -72,6 +80,9 @@ export default {
 .adetails {
   max-width: 920px;
   margin: 0 auto;
+}
+.details-url {
+  padding: 0 40px 40px;
 }
 .desc {
   font-size: 14px;

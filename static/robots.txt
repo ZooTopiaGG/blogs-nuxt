@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /components/
+Disallow: /layouts/
+Disallow: /middleware/
+Disallow: /locales/
+Disallow: /plugins/
+Disallow: /store/
+Disallow: /signin
+Disallow: /signup
+Disallow: /info
+Disallow:http://www.55lover.com/sitemap.xml
+Disallow:http://www.55lover.com/ror.xml
+Disallow:http://www.55lover.com/sitemap.html
+Disallow:http://www.55lover.com/sitemap.txt
+Sitemap: http://www.55lover.com/sitemap.xml
+Sitemap: http://www.55lover.com/sitemap.html
+Sitemap: http://www.55lover.com/sitemap.txt
+Sitemap: http://www.55lover.com/ror.xml

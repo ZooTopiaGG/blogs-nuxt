@@ -212,7 +212,7 @@ body {
   margin: 0 5px;
 }
 .details-title {
-  padding: 40px;
+  padding: 40px 40px 20px;
   font-size: 28px;
   color: #333;
   line-height: 1.6;

@@ -1,6 +1,6 @@
 const env = require('./env')
 module.exports = {
-  mode: 'Universal',
+  mode: 'universal',
   env: {
     baseUrl: env[process.env.MODE].ENV_API
   },
