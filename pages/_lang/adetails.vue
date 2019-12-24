@@ -57,7 +57,6 @@ export default {
     content() {
       return marked(this.$store.state.articleDetail.content)
     },
-    
   },
   data() {
     return {

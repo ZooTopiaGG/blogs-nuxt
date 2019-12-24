@@ -57,10 +57,10 @@ export default {
     return {
       msg: '',
       options: [
-        {
-          src: 'http://scenery.55lover.com/lover5.png',
-          link: 'video'
-        },
+        // {
+        //   src: 'http://scenery.55lover.com/lover5.png',
+        //   link: 'video'
+        // },
         {
           src: 'http://scenery.55lover.com/react.jpg',
           link: 'https://reactjs.org/'
