@@ -163,7 +163,7 @@ module.exports = {
      */
     // vendor: ['axios'],
     // extractCSS 会导致ssr页面样式紊乱
-    // extractCSS: true,
+    extractCSS: true,
     parallel: true,
     // hardSource: true,
     optimizeCSS: true,
