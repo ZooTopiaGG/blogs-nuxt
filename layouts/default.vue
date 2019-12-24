@@ -52,9 +52,9 @@ export default {
       let round = Math.floor(Math.random() * this.background.length)
       return `url(${this.background[round]})`
     },
-    video() {
-      return this.$refs['video']
-    },
+    // video() {
+    //   return this.$refs['video']
+    // },
     isHome() {
       return this.$route.path === '/' || this.$route.path === '/home'
     }
@@ -95,19 +95,19 @@ export default {
     async setStatistics() {
       await this.$axios.$post(api.stat.statistics)
     },
-    open() {
-      this.$store.commit('SHOW_VIDEO', true)
-      this.video.play()
-    },
-    close() {
-      this.$store.commit('SHOW_VIDEO', false)
-      this.video.pause()
-    },
-    minus() {
-      this.$store.commit('SHOW_VIDEO', true)
-      this.minusShow = true
-      this.video.requestPictureInPicture()
-    }
+    // open() {
+    //   this.$store.commit('SHOW_VIDEO', true)
+    //   this.video.play()
+    // },
+    // close() {
+    //   this.$store.commit('SHOW_VIDEO', false)
+    //   this.video.pause()
+    // },
+    // minus() {
+    //   this.$store.commit('SHOW_VIDEO', true)
+    //   this.minusShow = true
+    //   this.video.requestPictureInPicture()
+    // }
   },
   created() {
     this.$store.dispatch('getStatistics')
@@ -119,25 +119,25 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll)
       this.setStatistics()
-      let that = this
-      this.video.addEventListener('enterpictureinpicture', function() {
-        // 已进入画中画模式
-        that.$store.commit('SHOW_VIDEO', false)
-      })
-      // 退出画中画模式时候执行
-      this.video.addEventListener('leavepictureinpicture', function() {
-        // 已退出画中画模式
-        that.$store.commit('SHOW_VIDEO', true)
-      })
-      window.addEventListener(
-        'resize',
-        function() {
-          if (this.innerWidth <= 918) {
-            document.querySelector('.video-content').style.width = '100%'
-          }
-        },
-        false
-      )
+      // let that = this
+      // this.video.addEventListener('enterpictureinpicture', function() {
+      //   // 已进入画中画模式
+      //   that.$store.commit('SHOW_VIDEO', false)
+      // })
+      // // 退出画中画模式时候执行
+      // this.video.addEventListener('leavepictureinpicture', function() {
+      //   // 已退出画中画模式
+      //   that.$store.commit('SHOW_VIDEO', true)
+      // })
+      // window.addEventListener(
+      //   'resize',
+      //   function() {
+      //     if (this.innerWidth <= 918) {
+      //       document.querySelector('.video-content').style.width = '100%'
+      //     }
+      //   },
+      //   false
+      // )
     })
   },
   destroyed() {
