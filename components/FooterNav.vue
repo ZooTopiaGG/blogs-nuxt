@@ -118,11 +118,22 @@ export default {
       },
       age: Coms.ages('2017-11-27'),
       friendsLink: [
+        
+        {
+          url: 'https://www.liaoxuefeng.com/',
+          title: '廖雪峰的官方网站',
+          id: 1
+        },
+        {
+          url: 'http://www.ruanyifeng.com/blog/',
+          title: '阮一峰的网络日志',
+          id: 2
+        },
         {
           url: 'http://www.55lover.com/',
           title: '邓鹏的博客',
           id: 0
-        }
+        },
       ]
     }
   },
