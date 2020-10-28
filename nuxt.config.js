@@ -16,7 +16,7 @@ module.exports = {
       {
         name: "keywords",
         content:
-          "博客，技术，文章，JavaScript，css，html5，vue，react，es6，node，python，mysql，nginx"
+          "博客,技术,文章,JavaScript,css,html5,vue,react,es6,node,python,mysql,nginx"
       },
       {
         hid: "description",

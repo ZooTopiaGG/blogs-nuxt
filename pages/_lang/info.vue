@@ -8,7 +8,7 @@
       </div>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" :label-width="$t('message.LabelWidth')" class="demo-ruleForm bgbox box">
         <el-form-item :label="$t('message.StationHead')" prop="imageUrl" v-loading.body="loadingAvatarUpload" required>
-          <el-upload class="avatars-uploader" action="http://api.55lover.com/api/upload" :show-file-list="false" :disabled="true" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <el-upload class="avatars-uploader" action="https://api.55lover.com/api/upload" :show-file-list="false" :disabled="true" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
             <img v-if="ruleForm.imageUrl" v-lazy="ruleForm.imageUrl" class="avatars">
             <i v-else class="el-icon-plus avatars-uploader-icon"></i>
           </el-upload>

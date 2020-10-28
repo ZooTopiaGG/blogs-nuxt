@@ -293,7 +293,7 @@ export default {
   width: 100%;
   height: 160px;
   font-size: 24px;
-  background: url(http://api.55lover.com/static/web/uploads/9fdd4722137ce.jpg)
+  background: url(https://api.55lover.com/static/web/uploads/9fdd4722137ce.jpg)
     no-repeat;
   background-size: auto;
   color: #fff;

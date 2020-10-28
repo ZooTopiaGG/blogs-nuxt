@@ -3,6 +3,7 @@
     <div class="menus flex flex-pack-around">
       <div class="logo flex">
         <nuxt-link :to="{ path: '/home' }">
+          <img :src="require('~/assets/images/icon.png')" height="64px" alt="" srcset="">
           <svg width="130" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
               <filter id="blend2">
@@ -19,7 +20,7 @@
               </pattern>
             </defs>
             <text font-family="Microsoft Yahei" font-weight="900" fill="url(#pattern2)">
-              <tspan x="29" y="33" font-size="17">yyn博客</tspan>
+              <tspan x="0" y="33" font-size="17">FeRookie's博客</tspan>
               <tspan x="0" y="51" font-size="14">www.55lover.com</tspan>
             </text>
           </svg>
@@ -189,11 +190,13 @@ export default {
 }
 .navs.isHome {
   /*background: #18aacf;*/
-  background: #fff;
   box-shadow: 0 0 5px #18aacf;
   -webkit-box-shadow: 0 0 5px #18aacf;
   -moz-box-shadow: 0 0 5px #18aacf;
   padding-top: 0;
+  background: hsla(0,0%,100%,.7);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 .menus {
   padding-left: 30px;

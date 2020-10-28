@@ -67,7 +67,7 @@ export default {
       pagesize: Number(this.$route.query.size) || 10,
       // 页值
       page: Number(this.$route.query.page) || 1,
-      logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
+      // logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
     }
   },
   components: {

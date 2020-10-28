@@ -12,6 +12,6 @@ module.exports = {
   },
   pro: {
     MODE: "production",
-    ENV_API: "http://api.55lover.com/api/" // 正式服务器地址
+    ENV_API: "https://api.55lover.com/api/" // 正式服务器地址
   }
 };

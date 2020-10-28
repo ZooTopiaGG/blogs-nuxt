@@ -90,7 +90,7 @@ export default {
       pagesize: 10,
       // 页值
       page: 1,
-      logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
+      // logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"'
     }
   },
   components: {

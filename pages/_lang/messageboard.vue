@@ -119,7 +119,7 @@ export default {
       totalcount: 200,
       pagesize: 15,
       page: 1,
-      logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"',
+      // logo: 'this.src="http://file.55lover.com/uploads/aff0d0293f71.jpg"',
       ruleForm: {
         message: ''
       },
