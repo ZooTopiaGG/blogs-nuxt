@@ -1,6 +1,6 @@
 {
   "name": "blogs-nuxt",
-  "version": "2.0.8",
+  "version": "3.0.0",
   "description": "Nuxt.js project",
   "author": "dengpeng <zootopiagg@gmail.com>",
   "private": true,
@@ -43,7 +43,7 @@
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
     "standard-version": "^9.0.0",
-    "standard2version": "^1.0.3"
+    "standard2version": "^1.0.4"
   },
   "license": "ISC",
   "repository": {
