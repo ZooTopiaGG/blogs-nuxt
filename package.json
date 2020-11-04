@@ -1,6 +1,6 @@
 {
   "name": "blogs-nuxt",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Nuxt.js project",
   "author": "dengpeng <zootopiagg@gmail.com>",
   "private": true,
@@ -18,15 +18,18 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "pm2": "pm2 start pm2.config.json"
+    "pm2": "pm2 start pm2.config.json",
+    "release": "node ./node_modules/standard2version/lib/release.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
+    "braft-extensions": "^0.1.0",
     "element-ui": "2.7.1",
     "highlight.js": "^9.15.8",
     "js-cookie": "^2.2.0",
     "marked": "^0.6.2",
     "nuxt": "^2.5.1",
+    "prismjs": "^1.22.0",
     "vue-i18n": "^7.6.0",
     "vue-lazyload": "^1.2.6",
     "vue-scroll": "^2.1.7"
@@ -38,6 +41,17 @@
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
-  }
+    "eslint-plugin-vue": "^4.0.0",
+    "standard-version": "^9.0.0",
+    "standard2version": "^1.0.3"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZooTopiaGG/blogs-nuxt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZooTopiaGG/blogs-nuxt.git/issues"
+  },
+  "homepage": "https://github.com/ZooTopiaGG/blogs-nuxt.git#readme"
 }
