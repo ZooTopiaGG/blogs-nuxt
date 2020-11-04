@@ -8,7 +8,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: "邓鹏博客",
+    title: "FeRookie博客",
     meta: [
       {
         charset: "utf-8"
@@ -22,7 +22,7 @@ module.exports = {
         hid: "description",
         name: "description",
         content:
-          "“邓鹏博客”是一个基于博主兴趣而开发的网站，网站包括法律文章，兴趣文章，技术交流，前端技术等许多内容。"
+          "“FeRookie博客”是一个基于博主兴趣而开发的网站，网站包括法律文章，兴趣文章，技术交流，前端技术等许多内容。"
       },
       {
         name: "viewport",

@@ -19,12 +19,15 @@
               {{ item.desc }}
             </div>
             <div class="author-info flex flex-align-center flex-pack-justify">
-              <!-- <span class="author"><nuxt-link :to="{ name : 'home' }">邓鹏</nuxt-link></span> /  -->
+              <!-- <span class="author"><nuxt-link :to="{ name : 'home' }">FeRookie</nuxt-link></span> /  -->
               <span class="column-name" v-if="item.columntype==0">
-                <nuxt-link :to="{ name : 'articles' }">文章类</nuxt-link>
+                <nuxt-link :to="{ name : 'articles' }">{{ $t('message.Article') }}</nuxt-link>
               </span>
-              <span class="column-name" v-else>
-                <nuxt-link :to="{ name : 'program' }">技术类</nuxt-link>
+              <span class="column-name" v-else-if="item.columntype == 1">
+                <nuxt-link :to="{ name : 'program' }">{{ $t('message.Technology') }}</nuxt-link>
+              </span>
+              <span class="column-name" v-else-if="item.columntype == 2">
+                <nuxt-link :to="{ name : 'questions' }">{{ $t('message.Questions') }}</nuxt-link>
               </span>
               <!-- <span class="article-type">{{ item.type }}</span> /  -->
               <div class="flex flex-align-center">

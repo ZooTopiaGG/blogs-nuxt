@@ -10,7 +10,7 @@
       <div class="desc-info">
         <div class="author">
           <span>作者：</span>
-          <nuxt-link :to="{ name: 'home' }">邓鹏</nuxt-link>
+          <nuxt-link :to="{ name: 'home' }">FeRookie</nuxt-link>
           <span class="type">类型：</span>
           <span>{{ $store.state.articleDetail.type === 0 ? '原创' : '转载' }}</span>
         </div>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <article class="content" id='doc-content' v-html="content">
+    <article class="content highlight" id='doc-content' v-html="content">
     </article>
   </div>
 </template>
@@ -30,6 +30,8 @@ import marked from 'marked'
 import hljs from 'highlight.js'
 import javascript from 'highlight.js/lib/languages/javascript'
 import 'highlight.js/styles/monokai-sublime.css'
+import 'braft-extensions/dist/code-highlighter.css';
+import { asyncHighlight, replaceBr } from '@/assets/js/fn'
 marked.setOptions({
   renderer: new marked.Renderer(),
   highlight: function(code) {
@@ -47,7 +49,7 @@ export default {
   name: 'adetails',
   head() {
     return {
-      title: `${this.$store.state.articleDetail.title}-邓鹏的博客`
+      title: `${this.$store.state.articleDetail.title}-FeRookie的博客`
     }
   },
   async fetch({ store, params }) {
@@ -55,7 +57,7 @@ export default {
   },
   computed: {
     content() {
-      return marked(this.$store.state.articleDetail.content)
+      return marked(replaceBr(this.$store.state.articleDetail.content))
     },
   },
   data() {
@@ -69,6 +71,7 @@ export default {
   },
   mounted() {
     this.currentUrl = typeof window != undefined ? window.location.href : ''
+    asyncHighlight();
   }
 }
 </script>
@@ -112,5 +115,8 @@ export default {
 .content {
   margin-top: 40px;
   padding: 0 40px;
+}
+#doc-content ul, #doc-content ol, #doc-content li {
+  list-style: inside;
 }
 </style>

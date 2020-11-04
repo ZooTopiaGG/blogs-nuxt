@@ -74,7 +74,7 @@ export default {
   },
   head() {
     return {
-      title: '文章专栏-邓鹏的博客'
+      title: '文章专栏-FeRookie的博客'
     }
   },
   data() {

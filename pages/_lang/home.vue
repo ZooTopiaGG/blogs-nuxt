@@ -49,7 +49,7 @@ export default {
   },
   head() {
     return {
-      title: '首页_Home-邓鹏的博客'
+      title: '首页_Home-FeRookie的博客'
     }
   },
 

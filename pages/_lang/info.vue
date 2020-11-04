@@ -52,7 +52,7 @@ import Cookies from 'js-cookie'
 export default {
   head() {
     return {
-      title: '站长信息_关于我-邓鹏的博客'
+      title: '站长信息_关于我-FeRookie的博客'
     }
   },
   async asyncData({ app }) {

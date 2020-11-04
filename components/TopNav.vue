@@ -31,7 +31,7 @@
           <li :class="{ active: $route.name === 'home'}">
             <nuxt-link :to="{ path: '/home' }">{{ $t('message.Home') }}</nuxt-link>
           </li>
-          <li :class="{ active: $route.name === 'program' || $route.path.indexOf('articles/p') > -1 || $route.name === 'articles' || $route.path.indexOf('articles/a') > -1 || $route.name==='studies'}">
+          <li :class="{ active: $route.name === 'program' || $route.path.indexOf('articles/p') > -1 || $route.name === 'articles' || $route.path.indexOf('articles/a') > -1 || $route.name === 'questions' || $route.path.indexOf('articles/q') > -1 || $route.name==='studies'}">
             <el-dropdown trigger="click" @command="handleCommand2">
               <span class="el-dropdown-link">
                 {{ $t('message.Classification') }}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -43,6 +43,9 @@
                 </el-dropdown-item>
                 <el-dropdown-item command="articles" :class="{ active: $route.path === '/articles' || $route.path.indexOf('articles/a') > -1}">
                   <span>{{ $t('message.Article') }}</span>
+                </el-dropdown-item>
+                <el-dropdown-item command="questions" :class="{ active: $route.path === '/questions' || $route.path.indexOf('articles/q') > -1}">
+                  <span>{{ $t('message.Questions') }}</span>
                 </el-dropdown-item>
                 <el-dropdown-item command="studies" :class="{ active: $route.path === '/study'}">
                   <span>{{ $t('message.Studies') }}</span>
@@ -153,6 +156,9 @@ export default {
           break
         case 'articles':
           this.$router.push({ path: '/articles' })
+          break
+        case 'questions':
+          this.$router.push({ path: '/questions' })
           break
         case 'studies':
           this.$router.push({ path: '/study' })

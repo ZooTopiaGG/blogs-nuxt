@@ -14,7 +14,7 @@
           <div class="con">
             <div class="con-first">
               <div class="content">
-                <nuxt-link :to="{ name: 'home' }" style="color:#409EFF">邓鹏。</nuxt-link> &nbsp;&nbsp;{{ item.content }}
+                <nuxt-link :to="{ name: 'home' }" style="color:#409EFF">FeRookie。</nuxt-link> &nbsp;&nbsp;{{ item.content }}
               </div>
               <div class="time"><span>{{ $t('message.PostTime') }}：</span><span>{{ item.createAt | time }}</span></div>
             </div>
@@ -64,7 +64,7 @@ export default {
   name: 'dynamic',
   head() {
     return {
-      title: '他又在说什么_动态专栏-邓鹏的博客'
+      title: '他又在说什么_动态专栏-FeRookie的博客'
     }
   },
   filters: {
@@ -85,7 +85,7 @@ export default {
       userid: '',
       username: '',
       touserid: 'd17692be-eca7-41ef-87df-aef4313e2b02', // m如果没有设置，则默认管理员
-      tousername: '邓鹏' // 如果没有设置，则默认管理员
+      tousername: 'FeRookie' // 如果没有设置，则默认管理员
     }
   },
   components: {
@@ -141,7 +141,7 @@ export default {
         userid: id, // 登录用户
         username: name, // 登录用户
         touserid: this.touserid, // 默认管理员 'd17692be-eca7-41ef-87df-aef4313e2b02',
-        tousername: this.tousername, // 默认管理员 '邓鹏',
+        tousername: this.tousername, // 默认管理员 'FeRookie',
         isreply: this.isreply,
         comment: comment
       }

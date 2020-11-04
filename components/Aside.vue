@@ -45,7 +45,7 @@
       <div class="flex flex-v flex-align-center website-info">
         <img class="avatar website-avatar" src="http://scenery.55lover.com/image/scenery/23115938.7a36240.jpg" alt="avatar">
         <div class="fb-title">
-          邓鹏
+          FeRookie
         </div>
         <div class="desc">
           {{ $t('message.Intro') }}
@@ -101,6 +101,7 @@
           <span class="news-text">{{item.operation}}了</span>
           <nuxt-link v-if="item.types == '文章'" :to="{ path: `/adetails/a/${item.latestid}` }" class="types" style="background-color: rgb(0, 168, 250)">{{item.types}}</nuxt-link>
           <nuxt-link v-else-if="item.types == '技术'" :to="{ path: `/adetails/p/${item.latestid}` }" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</nuxt-link>
+          <nuxt-link v-else-if="item.types == '刷题'" :to="{ path: `/adetails/p/${item.latestid}` }" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</nuxt-link>
           <nuxt-link v-else-if="item.types == '动态'" :to="{ path: '/dynamic' }" class="types" style="background-color: rgb(60, 179, 113)">{{item.types}}</nuxt-link>
           <a v-else-if="item.types == '音乐'" class="types" style="background-color: rgb(123, 104, 238)">{{item.types}}</a>
           <a v-else-if="item.types == '相册'" class="types" style="background-color: rgb(218, 112, 214)">{{item.types}}</a>

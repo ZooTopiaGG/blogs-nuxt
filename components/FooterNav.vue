@@ -131,7 +131,7 @@ export default {
         },
         {
           url: 'http://www.55lover.com/',
-          title: '邓鹏的博客',
+          title: 'FeRookie的博客',
           id: 0
         },
       ]

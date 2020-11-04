@@ -47,7 +47,7 @@ export default {
   name: 'signin',
   head() {
     return {
-      title: '注册-邓鹏的博客'
+      title: '注册-FeRookie的博客'
     }
   },
   data() {
