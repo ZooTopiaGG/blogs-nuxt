@@ -2,28 +2,43 @@
   <div class="signin">
     <div class="box bgbox s-form">
       <div class="logo">
-        <img src="../../assets/images/logo2.png">
+        <img src="../../assets/images/logo2.png" />
       </div>
-      <el-form class="in-form signin-form " :label-position="labelPosition" :label-width="$t('message.LabelWidth')" :model="formLabelAlign">
-        <el-form-item>
-        </el-form-item>
+      <el-form
+        class="in-form signin-form "
+        :label-position="labelPosition"
+        :label-width="$t('message.LabelWidth')"
+        :model="formLabelAlign"
+      >
+        <el-form-item> </el-form-item>
         <el-form-item :label="$t('message.NameAccount')">
           <el-input v-model="formLabelAlign.name"></el-input>
         </el-form-item>
         <el-form-item :label="$t('message.Password')">
-          <el-input type='password' v-model="formLabelAlign.password"></el-input>
+          <el-input
+            type="password"
+            v-model="formLabelAlign.password"
+          ></el-input>
         </el-form-item>
         <el-form-item>
           <div class="flex flex-pack-justify">
-            <p>{{$t('message.NoAccount')}}<nuxt-link :to="{ path: '/signup' }">{{$t('message.GoRegister')}}</nuxt-link>
+            <p>
+              {{ $t("message.NoAccount")
+              }}<nuxt-link :to="{ path: '/signup' }">{{
+                $t("message.GoRegister")
+              }}</nuxt-link>
             </p>
             <p>
-              <nuxt-link :to="{ path: '/home' }">{{$t('message.BackHome')}}</nuxt-link>
+              <nuxt-link :to="{ path: '/home' }">{{
+                $t("message.BackHome")
+              }}</nuxt-link>
             </p>
           </div>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm()">{{$t('message.LogInImmediately')}}</el-button>
+          <el-button type="primary" @click="submitForm()">{{
+            $t("message.LogInImmediately")
+          }}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -31,84 +46,82 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 export default {
-  name: 'signin',
+  name: "signin",
   head() {
     return {
-      title: '登录-FeRookie的博客'
-    }
+      title: "登录-FeRookie的博客"
+    };
   },
   data() {
     return {
-      labelPosition: 'top',
+      labelPosition: "top",
       formLabelAlign: {
-        name: '',
-        password: ''
+        name: "",
+        password: ""
       },
       fromSignUp: false
-    }
+    };
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
       // 通过 `vm` 访问组件实例
       // console.log(from)
       // console.log(vm.fromSignUp)
-      if (from.path === '/signup' || from.path === '/signin') {
-        vm.fromSignUp = true
+      if (from.path === "/signup" || from.path === "/signin") {
+        vm.fromSignUp = true;
       }
-    })
+    });
   },
   methods: {
     async submitForm() {
-      var self = this
+      var self = this;
       // AJAX提交JSON:
       var para = {
         name: self.formLabelAlign.name,
         password: self.formLabelAlign.password
-      }
-      let res = await self.$axios.$post(api.sign.signin, para)
+      };
+      let res = await self.$axios.$post(api.sign.signin, para);
       if (res.isSuc) {
-        let r = JSON.stringify(res.result)
+        let r = JSON.stringify(res.result);
         // window.localStorage.setItem('_55lover_reader', r)
-        Cookies.set('_55lover_avatar', res.result.avatar, {
-          expires: 7,
-          path: ''
-        })
-        Cookies.set('_55lover_email', res.result.email, {
-          expires: 7,
-          path: ''
-        })
-        Cookies.set('_55lover_id', res.result.id, { expires: 7, path: '' })
-        Cookies.set('_55lover_name', res.result.name, { expires: 7, path: '' })
-        self.$store.commit('NO_LOGIN', {
+        Cookies.set("_55lover_avatar", res.result.avatar, {
+          expires: 7
+        });
+        Cookies.set("_55lover_email", res.result.email, {
+          expires: 7
+        });
+        Cookies.set("_55lover_id", res.result.id, { expires: 7 });
+        Cookies.set("_55lover_name", res.result.name, { expires: 7 });
+        self.$store.commit("NO_LOGIN", {
           avatar: res.result.avatar,
           email: res.result.email,
           id: res.result.id,
           name: res.result.name
-        })
+        });
         if (self.fromSignUp) {
-          self.$router.push({ path: '/' })
+          self.$router.push({ path: "/" });
         } else {
-          self.$router.go(-1)
+          self.$router.go(-1);
         }
         self.$message({
           message: res.message,
-          type: 'success'
-        })
+          type: "success"
+        });
       }
     }
   },
   mounted() {
     let wHeight = $(window).height() - 120,
-      bHeight = $('.box').height() + 60
+      bHeight = $(".box").height() + 60;
     if (wHeight < bHeight) {
-      $('.signin').height(bHeight)
+      $(".signin").height(bHeight);
     } else {
-      $('.signin').height(wHeight)
+      $(".signin").height(wHeight);
     }
   }
-}
+};
 </script>
 <style type="text/css">
 .signin-form .el-form-item {

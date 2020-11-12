@@ -250,7 +250,7 @@ export default {
     signout() {
       window.localStorage.clear()
       this.show = false
-      this.$store.dispatch('NO_LOGIN', '')
+      this.$store.dispatch('NO_LOGIN', false)
     },
     toinfo() {
       this.show = false

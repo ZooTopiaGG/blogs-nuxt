@@ -31,7 +31,7 @@
               </span>
               <!-- <span class="article-type">{{ item.type }}</span> /  -->
               <div class="flex flex-align-center">
-                <span class="create-time flex flex-align-center"><span class="el-icon-time el-icon-00AACD"> </span>{{ item.createAt }}</span>
+                <span class="create-time flex flex-align-center"><span class="el-icon-time el-icon-00AACD"> </span>{{ item.updateAt }}</span>
                 <span class="flex flex-align-center"><span class="el-icon-view el-icon-00AACD"></span><span class="review-count">{{ item.viewcount }}</span></span>
               </div>
             </div>

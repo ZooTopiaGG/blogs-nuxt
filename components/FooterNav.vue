@@ -1,5 +1,12 @@
 <template>
-  <footer :class="[{footers: true}, {music: $store.state.GET_PLAY_STATUS}, { footerScreen: $route.path === '/democase' }]" v-show="$store.state.SHOW_FOOTER">
+  <footer
+    :class="[
+      { footers: true },
+      { music: $store.state.GET_PLAY_STATUS },
+      { footerScreen: $route.path === '/democase' }
+    ]"
+    v-show="$store.state.SHOW_FOOTER"
+  >
     <div class="footer-top">
       <div class="flex footer-info flex-pack-justify">
         <!-- 底部一 友情链接 -->
@@ -9,9 +16,15 @@
             <span class="title-text">友情链接</span>
             <span class="title-label">Friends links</span>
           </div>
-          <div class="link-addr" v-for="(item, index) in friendsLink" :key="index">
+          <div
+            class="link-addr"
+            v-for="(item, index) in friendsLink"
+            :key="index"
+          >
             <a :href="item.url" class="flex flex-align-center" target="_blank">
-              <span class="link-label" :class='`bgcolor${index + 1}`'>{{ index + 1 }}</span>
+              <span class="link-label" :class="`bgcolor${index + 1}`">{{
+                index + 1
+              }}</span>
               <span class="link-title">{{ item.title }}</span>
             </a>
           </div>
@@ -23,7 +36,13 @@
             <span class="title-text">申请友链</span>
             <span class="title-label">Apply links</span>
           </div>
-          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" :label-width="$t('message.LabelWidth')" class="demo-ruleForm">
+          <el-form
+            :model="ruleForm"
+            :rules="rules"
+            ref="ruleForm"
+            :label-width="$t('message.LabelWidth')"
+            class="demo-ruleForm"
+          >
             <el-form-item :label="$t('message.WebsiteName')" prop="name">
               <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
@@ -34,7 +53,9 @@
               <el-input v-model="ruleForm.website"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm')">{{$t('message.Apply')}}</el-button>
+              <el-button type="primary" @click="submitForm('ruleForm')">{{
+                $t("message.Apply")
+              }}</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -48,30 +69,48 @@
           <div class="flex flex-pack-justify">
             <div class="datas1 flex flex-v flex-pack-center">
               <div class="flex flex-align-center datas-label">
-                <span class="el-icon-picture dp-icon-fff"></span> <span class="datas-title">{{$t('message.Npictures')}}：</span><span>103</span>
+                <span class="el-icon-picture dp-icon-fff"></span>
+                <span class="datas-title">{{ $t("message.Npictures") }}：</span
+                ><span>103</span>
               </div>
               <div class="flex flex-align-center datas-label">
-                <span class="iconfont dp-icon-iconfontdongtaidianji dp-icon-fff"></span><span class="datas-title">{{$t('message.NDynamic')}}：</span><span>{{$store.state.statistics.dynamic_num}}</span>
+                <span
+                  class="iconfont dp-icon-iconfontdongtaidianji dp-icon-fff"
+                ></span
+                ><span class="datas-title">{{ $t("message.NDynamic") }}：</span
+                ><span>{{ $store.state.statistics.dynamic_num }}</span>
               </div>
               <div class="flex flex-align-center datas-label">
-                <span class="iconfont dp-icon-wenzhang dp-icon-fff"></span><span class="datas-title">{{$t('message.NArticle')}}：</span><span>{{$store.state.statistics.article_num}}</span>
+                <span class="iconfont dp-icon-wenzhang dp-icon-fff"></span
+                ><span class="datas-title">{{ $t("message.NArticle") }}：</span
+                ><span>{{ $store.state.statistics.article_num }}</span>
               </div>
               <div class="flex flex-align-center datas-label">
-                <span class="iconfont dp-icon-comments dp-icon-fff"></span><span class="datas-title">{{$t('message.NComments')}}：</span><span>{{$store.state.statistics.comment_num}}</span>
+                <span class="iconfont dp-icon-comments dp-icon-fff"></span
+                ><span class="datas-title">{{ $t("message.NComments") }}：</span
+                ><span>{{ $store.state.statistics.comment_num }}</span>
               </div>
             </div>
             <div class="datas1 flex flex-v flex-pack-center">
               <div class="flex flex-align-center datas-label">
-                <span class="iconfont dp-icon-music dp-icon-fff"></span><span class="datas-title">{{$t('message.NSongs')}}：</span><span>{{$store.state.statistics.audio_num}}</span>
+                <span class="iconfont dp-icon-music dp-icon-fff"></span
+                ><span class="datas-title">{{ $t("message.NSongs") }}：</span
+                ><span>{{ $store.state.statistics.audio_num }}</span>
               </div>
               <div class="flex flex-align-center datas-label">
-                <span class="iconfont dp-icon-message dp-icon-fff"></span><span class="datas-title">{{$t('message.NMessages')}}：</span><span>{{$store.state.statistics.message_num}}</span>
+                <span class="iconfont dp-icon-message dp-icon-fff"></span
+                ><span class="datas-title">{{ $t("message.NMessages") }}：</span
+                ><span>{{ $store.state.statistics.message_num }}</span>
               </div>
               <div class="flex flex-align-center datas-label">
-                <span class="el-icon-view dp-icon-fff"></span><span class="datas-title">{{$t('message.NViews')}}：</span><span>{{$store.state.statistics.visitor_num}}</span>
+                <span class="el-icon-view dp-icon-fff"></span
+                ><span class="datas-title">{{ $t("message.NViews") }}：</span
+                ><span>{{ $store.state.statistics.visitor_num }}</span>
               </div>
               <div class="flex flex-align-center datas-label">
-                <span class="iconfont dp-icon-users dp-icon-fff"></span><span class="datas-title">{{$t('message.Users')}}：</span><span>{{$store.state.statistics.user_num}}</span>
+                <span class="iconfont dp-icon-users dp-icon-fff"></span
+                ><span class="datas-title">{{ $t("message.Users") }}：</span
+                ><span>{{ $store.state.statistics.user_num }}</span>
               </div>
             </div>
           </div>
@@ -84,12 +123,20 @@
     </div> -->
     <div class="second-box footer-design flex flex-v flex-align-center">
       <div>
-        <span>{{$t('message.CopyRight')}}</span>
+        <span>{{ $t("message.CopyRight") }}</span>
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >蜀ICP备17041201号-1</a
+        >
       </div>
       <div class="f-box">
-        <p>{{$t('message.FootTitle1')}}</p>
-        <p>{{$t('message.age[0]')}} <b>{{ age }}</b> {{$t('message.age[1]')}}</p>
-        <p>{{$t('message.FootTitle2')}}</p>
+        <p>{{ $t("message.FootTitle1") }}</p>
+        <p>
+          {{ $t("message.age[0]") }} <b>{{ age }}</b> {{ $t("message.age[1]") }}
+        </p>
+        <!-- <p>{{ $t("message.FootTitle2") }}</p> -->
       </div>
     </div>
   </footer>
@@ -97,60 +144,59 @@
 
 <script>
 export default {
-  name: 'footers',
+  name: "footers",
   data() {
     return {
-      activeIndex: '1',
+      activeIndex: "1",
       ruleForm: {
-        name: '',
-        website: '',
-        email: ''
+        name: "",
+        website: "",
+        email: ""
       },
       rules: {
         name: [
-          { required: true, message: '请输入网站名称', trigger: 'blur' },
-          { min: 1, max: 25, message: '长度在 1 到 25 个字符', trigger: 'blur' }
+          { required: true, message: "请输入网站名称", trigger: "blur" },
+          { min: 1, max: 25, message: "长度在 1 到 25 个字符", trigger: "blur" }
         ],
-        email: [{ required: true, message: '请输入您的邮箱', trigger: 'blur' }],
+        email: [{ required: true, message: "请输入您的邮箱", trigger: "blur" }],
         website: [
-          { required: true, message: '请输入网站地址', trigger: 'blur' }
+          { required: true, message: "请输入网站地址", trigger: "blur" }
         ]
       },
-      age: Coms.ages('2017-11-27'),
+      age: Coms.ages("2017-11-27"),
       friendsLink: [
-        
         {
-          url: 'https://www.liaoxuefeng.com/',
-          title: '廖雪峰的官方网站',
+          url: "https://www.liaoxuefeng.com/",
+          title: "廖雪峰的官方网站",
           id: 1
         },
         {
-          url: 'http://www.ruanyifeng.com/blog/',
-          title: '阮一峰的网络日志',
+          url: "http://www.ruanyifeng.com/blog/",
+          title: "阮一峰的网络日志",
           id: 2
         },
         {
-          url: 'http://www.55lover.com/',
-          title: 'FeRookie的博客',
+          url: "http://www.55lover.com/",
+          title: "FeRookie的博客",
           id: 0
-        },
+        }
       ]
-    }
+    };
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     // 提交表单
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.applyFriends()
+          this.applyFriends();
         } else {
-          console.log('error submit!!')
-          return false
+          console.log("error submit!!");
+          return false;
         }
-      })
+      });
     },
     // 申请友链
     applyFriends() {
@@ -158,15 +204,15 @@ export default {
         webname: this.ruleForm.name,
         website: this.ruleForm.website,
         email: this.ruleForm.email
-      }
-      this.$store.dispatch('applyFriends', para)
+      };
+      this.$store.dispatch("applyFriends", para);
     }
   },
   mounted() {
     // console.log(this.GET_STAT)
-    sr.reveal(document.querySelectorAll('.second-box'))
+    sr.reveal(document.querySelectorAll(".second-box"));
   }
-}
+};
 </script>
 <style type="text/css">
 .apply-friends .el-input__inner {
