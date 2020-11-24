@@ -1,12 +1,13 @@
 const env = require("./env");
+/*
+ ** 部署文件
+ */
 module.exports = {
   mode: "universal",
   env: {
     baseUrl: env[process.env.MODE].ENV_API
   },
-  /*
-   ** Headers of the page
-   */
+
   head: {
     title: "FeRookie博客",
     meta: [
