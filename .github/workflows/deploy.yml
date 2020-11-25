@@ -58,8 +58,8 @@ jobs:
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }} # 服务器ip
           DEPLOY_KEY: ${{ secrets.BLOGS_PC_DEPLOY_KEY }} # 服务器ip
           host: ${{ secrets.HOST }} # 服务器ip
-          username: ${{ secrets.USERNAME }} # 服务器用户名
-          password: ${{ secrets.PASSWORD }} # 服务器密码
+          username: ${{ secrets.SERVER_ROOT_NAME }} # 服务器用户名
+          password: ${{ secrets.SERVER_PASSWORD }} # 服务器密码
           # port: ${{ secrets.PORT }} # 服务器端口
           # 下面的 script 就是在服务器上运行的脚本
           # 1、首先先进入到一个你指定的文件夹下
