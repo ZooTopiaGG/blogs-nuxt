@@ -1,0 +1,77 @@
+name: BlogsNuxt
+
+on:
+  push:
+    branches:
+      - master # 只在master上push触发部署
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+      - CHANGELOG.md
+      - LICENSE
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # 使用ubuntu系统镜像运行自动化脚本
+
+    steps: # 自动化步骤
+      # 第一步：下载源码（CI/CD拉取代码到自己的本地）
+      - name: Checkout
+        uses: actions/checkout@master
+      # 打包构建
+      - name: Build
+        uses: actions/setup-node@master
+      - run: sudo npm install yarn -g
+      - run: yarn config set registry https://registry.npm.taobao.org
+      - run: yarn config set disturl https://npm.taobao.org/dist
+      - run: yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+      - run: yarn install
+      - run: npm run build
+      - run: tar -zcvf release.tgz .nuxt static assets plugins env.js nuxt.config.js package.json yarn.lock pm2.config.json
+      # 压缩打包后的代码到release.tgz
+      # 发布 Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }} # github token
+        with:
+          tag_name: v_${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # 上传构建结果到 Release
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.tgz
+          asset_name: release.tgz
+          asset_content_type: application/x-tgz
+      # 第三步部署到服务器
+      # 部署到服务器
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          # key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }} # 服务器ip
+          # DEPLOY_KEY: ${{ secrets.BLOGS_PC_DEPLOY_KEY }} # 服务器ip
+          host: ${{ secrets.HOST }} # 服务器ip
+          username: ${{ secrets.SERVER_ROOT_NAME }} # 服务器用户名
+          password: ${{ secrets.SERVER_PASSWORD }} # 服务器密码
+          port: "80" # 服务器端口
+          # 下面的 script 就是在服务器上运行的脚本
+          # 1、首先先进入到一个你指定的文件夹下
+          # cd /xxx/xxx
+          # 2、下载github指定仓库里面最新的release包到当前文件夹
+          # wget https://github.com/:username/:repos/releases/latest/download/release.tgz -O release.tgz
+          # 3、解压
+          # 4、安装依赖
+          # 5、启动服务
+          script: |
+            cd /home/admin/blogs-nuxt
+            wget https://github.com/ZooTopiaGG/blogs-nuxt/releases/latest/download/release.tgz -O release.tgz
+            tar zxvf release.tgz
+            npm install --production
+            pm2 reload pm2.config.json
