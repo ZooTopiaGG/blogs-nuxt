@@ -28,8 +28,9 @@ jobs:
         uses: AEnterprise/rsync-deploy@master
         env:
           DEPLOY_KEY: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
-          # ARGS: -avz --delete --include='cards/' --include='css/' --include='js/' --include='images/'
-          #   --include='iconfont/' --include="robots.txt" --include='dist/' --exclude='/*'
+          ARGS:
+            -avz --delete --include='assets/' --include='plugins/' --include='store/' --include='middileware/' --include='components/' --include='layouts/' --include='locales/'
+            --include='pages/' --include="robots.txt" --include='.nuxt/' --exclude='/*'
           FOLDER: ./
           SERVER_PORT: "22"
           SERVER_IP: ${{ secrets.SSH_HOST }}
