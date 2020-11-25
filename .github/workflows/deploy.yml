@@ -26,7 +26,7 @@ jobs:
       - run: yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
       - run: yarn install
       - run: npm run build
-      - run: tar -zcvf release.tgz .nuxt static utils config.js nuxt.config.js package.json package-lock.json pm2.config.json
+      - run: tar -zcvf release.tgz .nuxt static assets plugins env.js nuxt.config.js package.json yarn.lock pm2.config.json
       # 压缩打包后的代码到release.tgz
       # 发布 Release
       - name: Create Release
