@@ -25,17 +25,48 @@ jobs:
           npm run build 
           tar -zcvf release.tgz .nuxt static nuxt.config.js package.json package-lock.json pm2.config.json
       # 压缩打包后的代码到release.tgz
+      # 发布 Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }} # github token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # 上传构建结果到 Release
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.tgz
+          asset_name: release.tgz
+          asset_content_type: application/x-tgz
       # 第三步部署到服务器
-      - name: Deploy # 第三步，重启服务
+      # 部署到服务器
+      - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          port: "22"
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_ROOT_NAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
-          # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
-          # cd /home/admin/blogs-nuxt
+          host: ${{ secrets.HOST }} # 服务器ip
+          username: ${{ secrets.USERNAME }} # 服务器用户名
+          password: ${{ secrets.PASSWORD }} # 服务器密码
+          # port: ${{ secrets.PORT }} # 服务器端口
+          # 下面的 script 就是在服务器上运行的脚本
+          # 1、首先先进入到一个你指定的文件夹下
+          # cd /xxx/xxx
+          # 2、下载github指定仓库里面最新的release包到当前文件夹
+          # wget https://github.com/:username/:repos/releases/latest/download/release.tgz -O release.tgz
+          # 3、解压
+          # 4、安装依赖
+          # 5、启动服务
           script: |
             cd /home/admin/blogs-nuxt
-            mkdir demo
+            wget https://github.com/ZooTopiaGG/blogs-nuxt/releases/latest/download/release.tgz -O release.tgz
+            tar zxvf release.tgz
+            npm install --production
+            pm2 reload pm2.config.json
