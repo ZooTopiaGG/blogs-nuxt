@@ -11,7 +11,7 @@ jobs:
       - name: executing remote ssh commands using password
         uses: ./
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           # # port: ${{ secrets.PORT }}
@@ -20,7 +20,7 @@ jobs:
       - name: executing remote ssh commands using ssh key
         uses: ./
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
           # # port: ${{ secrets.PORT }}
@@ -29,7 +29,7 @@ jobs:
       - name: multiple command
         uses: ./
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
           # port: ${{ secrets.PORT }}
@@ -39,7 +39,7 @@ jobs:
       # - name: stop script if command error
       #   uses: ./
       #   with:
-      #     host: ${{ secrets.HOST }}
+      #     host: ${{ secrets.SERVER_HOST }}
       #     username: ${{ secrets.SERVER_ROOT_NAME }}
       #     key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
       #     # port: ${{ secrets.PORT }}
@@ -53,7 +53,7 @@ jobs:
         env:
           FOO: "BAR"
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
           # port: ${{ secrets.PORT }}
@@ -68,7 +68,7 @@ jobs:
           BAR: "FOO"
           SHA: ${{ github.sha }}
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }}
           # port: ${{ secrets.PORT }}
@@ -80,7 +80,7 @@ jobs:
       - name: ssh key passphrase
         uses: ./
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           key: ${{ secrets.SSH2 }}
           # port: ${{ secrets.PORT }}
@@ -91,7 +91,7 @@ jobs:
       - name: use insecure cipher
         uses: ./
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           password: ${{ secrets.PASSWORD }}
           # port: ${{ secrets.PORT }}
@@ -104,7 +104,7 @@ jobs:
       - name: Multiline SSH commands interpreted as single lines
         uses: ./
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_ROOT_NAME }}
           password: ${{ secrets.PASSWORD }}
           # port: ${{ secrets.PORT }}
@@ -118,7 +118,7 @@ jobs:
       - name: Deployment to multiple hosts with different ports
         uses: ./
         with:
-          host: "${{ secrets.HOST }}:${{ secrets.PORT }}"
+          host: "${{ secrets.SERVER_HOST }}:${{ secrets.PORT }}"
           username: ${{ secrets.SERVER_ROOT_NAME }}
           password: ${{ secrets.PASSWORD }}
           port: 1024
