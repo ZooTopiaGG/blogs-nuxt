@@ -56,7 +56,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }} # 服务器ip
-          host: ${{ secrets.HOST }} # 服务器ip
+          host: ${{ secrets.SERVER_HOST }} # 服务器ip
           username: ${{ secrets.SERVER_ROOT_NAME }} # 服务器用户名
           # password: ${{ secrets.SERVER_PASSWORD }} # 服务器密码
           port: "3333" # 服务器端口
