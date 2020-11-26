@@ -20,7 +20,7 @@
     "cron_restart": "",
     "env": {
       "NODE_ENV": "production",
-      "REMOTE_ADDR": "http://www.55lover.com/"
+      "REMOTE_ADDR": "https://www.55lover.com/"
     },
     "env_dev": {
       "NODE_ENV": "development",

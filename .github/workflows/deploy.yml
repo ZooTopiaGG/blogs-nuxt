@@ -18,38 +18,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       # 打包构建
-      # - name: Build
-      #   uses: actions/setup-node@master
-      # - run: sudo npm install yarn -g
-      # - run: yarn config set registry https://registry.npm.taobao.org
-      # - run: yarn config set disturl https://npm.taobao.org/dist
-      # - run: yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
-      # - run: yarn install
-      # - run: npm run build
-      # - run: tar -zcvf release.tgz .nuxt static assets plugins env.js nuxt.config.js package.json yarn.lock pm2.config.json
-      # # 压缩打包后的代码到release.tgz
-      # # 发布 Release
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@master
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.TOKEN }} # github token
-      #   with:
-      #     tag_name: v_${{ github.ref }}
-      #     release_name: Release ${{ github.ref }}
-      #     draft: false
-      #     prerelease: false
-      # # 上传构建结果到 Release
-      # - name: Upload Release Asset
-      #   id: upload-release-asset
-      #   uses: actions/upload-release-asset@master
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: ./release.tgz
-      #     asset_name: release.tgz
-      #     asset_content_type: application/x-tgz
+      - name: Build
+        uses: actions/setup-node@master
+      - run: sudo npm install yarn -g
+      - run: yarn config set registry https://registry.npm.taobao.org
+      - run: yarn config set disturl https://npm.taobao.org/dist
+      - run: yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+      - run: yarn install
+      - run: npm run build
+      - run: tar -zcvf release.tgz .nuxt static assets plugins env.js nuxt.config.js package.json yarn.lock pm2.config.json
+      # 压缩打包后的代码到release.tgz
+      # 发布 Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }} # github token
+        with:
+          tag_name: v_${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # 上传构建结果到 Release
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release.tgz
+          asset_name: release.tgz
+          asset_content_type: application/x-tgz
       # 第三步部署到服务器
       # 部署到服务器
       - name: Deploy
@@ -70,10 +70,9 @@ jobs:
           # 4、安装依赖
           # 5、启动服务
           script: |
-            whoami
-          # script: |
-          #   cd /home/admin/blogs-nuxt
-          #   wget https://github.com/ZooTopiaGG/blogs-nuxt/releases/latest/download/release.tgz -O release.tgz
-          #   tar zxvf release.tgz
-          #   npm install --production
-          #   pm2 reload pm2.config.json
+            cd /home/admin/blogs-nuxt
+            wget https://github.com/ZooTopiaGG/blogs-nuxt/releases/latest/download/release.tgz -O release.tgz
+            tar zxvf release.tgz
+            npm install --production
+            pm2 restart 1
+            pm2 log
