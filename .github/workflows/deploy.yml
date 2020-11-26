@@ -71,7 +71,6 @@ jobs:
           # 5、启动服务
           script: |
             whoami
-            cd root
           # script: |
           #   cd /home/admin/blogs-nuxt
           #   wget https://github.com/ZooTopiaGG/blogs-nuxt/releases/latest/download/release.tgz -O release.tgz
