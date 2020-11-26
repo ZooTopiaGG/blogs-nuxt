@@ -54,7 +54,7 @@ jobs:
       # 部署到服务器
       - name: Deploy
         uses: appleboy/ssh-action@master
-        with:
+        env:
           key: ${{ secrets.BLOGS_PC_DEPLOY_KEY }} # 服务器ip
           host: ${{ secrets.HOST }} # 服务器ip
           username: ${{ secrets.SERVER_ROOT_NAME }} # 服务器用户名
