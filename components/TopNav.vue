@@ -1,25 +1,57 @@
 <template>
-  <div v-show='$store.state.SHOW_NAV' :class="[{navs: true}, { isHome: $store.state.GET_IS_HOME }]">
+  <div
+    v-show="$store.state.SHOW_NAV"
+    :class="[{ navs: true }, { isHome: $store.state.GET_IS_HOME }]"
+  >
     <div class="menus flex flex-pack-around">
       <div class="logo flex">
         <nuxt-link :to="{ path: '/home' }">
-          <img :src="require('~/assets/images/icon.png')" height="64px" alt="" srcset="">
-          <svg width="130" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <img
+            :src="require('~/assets/images/icon.png')"
+            height="64px"
+            alt=""
+            srcset=""
+          />
+          <svg
+            width="130"
+            height="70"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
             <defs>
               <filter id="blend2">
                 <!-- IE浏览器不支持overly混合模式，可使用multiply替代 -->
-                <feBlend mode="overlay" in="SourceGraphic" in2="patternSource" />
+                <feBlend
+                  mode="overlay"
+                  in="SourceGraphic"
+                  in2="patternSource"
+                />
               </filter>
               <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="33%" stop-color="red" />
                 <stop offset="55%" stop-color="yellow" />
                 <stop offset="77%" stop-color="green" />
               </linearGradient>
-              <pattern id="pattern2" width="130" height="70" patternUnits="userSpaceOnUse">
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient2)" filter="url(#pattern2)"></rect>
+              <pattern
+                id="pattern2"
+                width="130"
+                height="70"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  fill="url(#gradient2)"
+                ></rect>
               </pattern>
             </defs>
-            <text font-family="Microsoft Yahei" font-weight="900" fill="url(#pattern2)">
+            <text
+              font-family="Microsoft Yahei"
+              font-weight="900"
+              fill="url(#pattern2)"
+            >
               <tspan x="0" y="33" font-size="17">FeRookie's博客</tspan>
               <tspan x="0" y="51" font-size="14">www.55lover.com</tspan>
             </text>
@@ -28,66 +60,138 @@
       </div>
       <div class="flex flex-1 flex-pack-end">
         <ul class="menu flex">
-          <li :class="{ active: $route.name === 'home'}">
-            <nuxt-link :to="{ path: '/home' }">{{ $t('message.Home') }}</nuxt-link>
+          <li :class="{ active: $route.name === 'home' }">
+            <nuxt-link :to="{ path: '/home' }">{{
+              $t("message.Home")
+            }}</nuxt-link>
           </li>
-          <li :class="{ active: $route.name === 'program' || $route.path.indexOf('articles/p') > -1 || $route.name === 'articles' || $route.path.indexOf('articles/a') > -1 || $route.name === 'questions' || $route.path.indexOf('articles/q') > -1 || $route.name==='studies'}">
+          <li
+            :class="{
+              active:
+                $route.name === 'program' ||
+                $route.path.indexOf('articles/p') > -1 ||
+                $route.name === 'articles' ||
+                $route.path.indexOf('articles/a') > -1 ||
+                $route.name === 'questions' ||
+                $route.path.indexOf('articles/q') > -1 ||
+                $route.name === 'studies'
+            }"
+          >
             <el-dropdown trigger="click" @command="handleCommand2">
               <span class="el-dropdown-link">
-                {{ $t('message.Classification') }}<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ $t("message.Classification")
+                }}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="program" :class="{ active: $route.path === '/program' || $route.path.indexOf('articles/p') > -1}">
-                  <span>{{ $t('message.Technology') }}</span>
-
+                <el-dropdown-item
+                  command="program"
+                  :class="{
+                    active:
+                      $route.path === '/program' ||
+                      $route.path.indexOf('articles/p') > -1
+                  }"
+                >
+                  <span>{{ $t("message.Technology") }}</span>
                 </el-dropdown-item>
-                <el-dropdown-item command="articles" :class="{ active: $route.path === '/articles' || $route.path.indexOf('articles/a') > -1}">
-                  <span>{{ $t('message.Article') }}</span>
+                <el-dropdown-item
+                  command="articles"
+                  :class="{
+                    active:
+                      $route.path === '/articles' ||
+                      $route.path.indexOf('articles/a') > -1
+                  }"
+                >
+                  <span>{{ $t("message.Article") }}</span>
                 </el-dropdown-item>
-                <el-dropdown-item command="questions" :class="{ active: $route.path === '/questions' || $route.path.indexOf('articles/q') > -1}">
-                  <span>{{ $t('message.Questions') }}</span>
+                <el-dropdown-item
+                  command="questions"
+                  :class="{
+                    active:
+                      $route.path === '/questions' ||
+                      $route.path.indexOf('articles/q') > -1
+                  }"
+                >
+                  <span>{{ $t("message.Questions") }}</span>
                 </el-dropdown-item>
-                <el-dropdown-item command="studies" :class="{ active: $route.path === '/study'}">
-                  <span>{{ $t('message.Studies') }}</span>
+                <el-dropdown-item
+                  command="studies"
+                  :class="{ active: $route.path === '/study' }"
+                >
+                  <span>{{ $t("message.Studies") }}</span>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </li>
-          <li :class="{ active: $route.path === '/demo'}" class="demo">
+          <li :class="{ active: $route.path === '/demo' }" class="demo">
             <nuxt-link :to="{ path: '/demo' }">
-              <svg width="52" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <svg
+                width="52"
+                height="17"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
                 <defs>
                   <filter id="blend">
                     <!-- IE浏览器不支持overly混合模式，可使用multiply替代 -->
-                    <feBlend mode="overlay" in="SourceGraphic" in2="patternSource" />
+                    <feBlend
+                      mode="overlay"
+                      in="SourceGraphic"
+                      in2="patternSource"
+                    />
                   </filter>
                   <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="55%" stop-color="red" />
                     <stop offset="77%" stop-color="green" />
                   </linearGradient>
-                  <pattern id="pattern" width="40" height="17" patternUnits="userSpaceOnUse">
-                    <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" filter="url(#blend)"></rect>
+                  <pattern
+                    id="pattern"
+                    width="40"
+                    height="17"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <rect
+                      x="0"
+                      y="0"
+                      width="100%"
+                      height="100%"
+                      fill="url(#gradient)"
+                      filter="url(#blend)"
+                    ></rect>
                   </pattern>
                 </defs>
-                <text x="0" y="17" font-family="Microsoft Yahei" font-size="17" font-weight="900" fill="url(#pattern)">
+                <text
+                  x="0"
+                  y="17"
+                  font-family="Microsoft Yahei"
+                  font-size="17"
+                  font-weight="900"
+                  fill="url(#pattern)"
+                >
                   Demo
                 </text>
               </svg>
             </nuxt-link>
           </li>
-          <li :class="{ active: $route.path === '/dynamic'}">
-            <nuxt-link :to="{ path: '/dynamic' }">{{ $t('message.Dynamic') }}</nuxt-link>
+          <li :class="{ active: $route.path === '/dynamic' }">
+            <nuxt-link :to="{ path: '/dynamic' }">{{
+              $t("message.Dynamic")
+            }}</nuxt-link>
           </li>
-          <li :class="{ active: $route.path === '/messageboard'}">
-            <nuxt-link :to="{ path: '/messageboard' }">{{ $t('message.MessageBoard') }}</nuxt-link>
+          <li :class="{ active: $route.path === '/messageboard' }">
+            <nuxt-link :to="{ path: '/messageboard' }">{{
+              $t("message.MessageBoard")
+            }}</nuxt-link>
           </li>
-          <li :class="{ active: $route.path === '/info'}">
-            <nuxt-link :to="{ path: '/info' }">{{ $t('message.AboutMe') }}</nuxt-link>
+          <li :class="{ active: $route.path === '/info' }">
+            <nuxt-link :to="{ path: '/info' }">{{
+              $t("message.AboutMe")
+            }}</nuxt-link>
           </li>
           <li>
             <el-dropdown trigger="click" @command="handleCommand1">
               <span class="el-dropdown-link">
-                {{ $store.state.locale === 'en' ? 'English' : '中文' }}<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ $store.state.locale === "en" ? "English" : "中文"
+                }}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="cn">中文</el-dropdown-item>
@@ -96,20 +200,53 @@
             </el-dropdown>
           </li>
         </ul>
-        <div class="sign" v-if="!$store.state.GET_LOGIN_STATUS || ($store.state.GET_LOGIN_STATUS && $store.state.GET_LOGIN_STATUS.id == 'null')">
-          <nuxt-link id="noClicks" :to="{ path: '/signin' }">{{ $t('message.SignIn') }}</nuxt-link>
+        <div
+          class="sign"
+          v-if="
+            !$store.state.GET_LOGIN_STATUS ||
+              ($store.state.GET_LOGIN_STATUS &&
+                $store.state.GET_LOGIN_STATUS.id == 'null')
+          "
+        >
+          <nuxt-link id="noClicks" :to="{ path: '/signin' }">{{
+            $t("message.SignIn")
+          }}</nuxt-link>
           /
-          <nuxt-link id="noClicks" :to="{ path: '/signup' }">{{ $t('message.SignUp') }}</nuxt-link>
+          <nuxt-link id="noClicks" :to="{ path: '/signup' }">{{
+            $t("message.SignUp")
+          }}</nuxt-link>
         </div>
-        <el-dropdown v-else trigger="click" class="signing flex flex-align-center" @command="handleCommand">
+        <el-dropdown
+          v-else
+          trigger="click"
+          class="signing flex flex-align-center"
+          @command="handleCommand"
+        >
           <span class="el-dropdown-link flex flex-align-center">
-            <img id="noClicks" v-if="$store.state.GET_LOGIN_STATUS.avatar" v-lazy="$store.state.GET_LOGIN_STATUS.avatar" style="width: 48px;height: 48px;border-radius: 100%;">
-            <img id="noClicks" v-else src="../assets/images/signin.png">
+            <img
+              id="noClicks"
+              v-if="$store.state.GET_LOGIN_STATUS.avatar"
+              v-lazy="$store.state.GET_LOGIN_STATUS.avatar"
+              style="width: 48px;height: 48px;border-radius: 100%;"
+            />
+            <img id="noClicks" v-else src="../assets/images/signin.png" />
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="el-icon-setting" command="info" id="noClicks"> {{ $t('message.WebMasterInfomation') }}</el-dropdown-item>
-            <el-dropdown-item class="el-icon-sort" command="signout" id="noClicks"> {{ $t('message.SignOut') }}</el-dropdown-item>
+            <el-dropdown-item
+              class="el-icon-setting"
+              command="info"
+              id="noClicks"
+            >
+              {{ $t("message.WebMasterInfomation") }}</el-dropdown-item
+            >
+            <el-dropdown-item
+              class="el-icon-sort"
+              command="signout"
+              id="noClicks"
+            >
+              {{ $t("message.SignOut") }}</el-dropdown-item
+            >
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -119,14 +256,14 @@
 
 <script>
 export default {
-  name: 'navs',
+  name: "navs",
   data() {
     return {
-      activeIndex: '1',
+      activeIndex: "1",
       show: false,
       show1: false,
       res: {}
-    }
+    };
   },
   computed: {},
   // created() {
@@ -135,46 +272,46 @@ export default {
   // },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     handleCommand1(command) {
-      this.$store.commit('SET_LANG', command)
-      this.$i18n.locale = command
+      this.$store.commit("SET_LANG", command);
+      this.$i18n.locale = command;
     },
     handleCommand(command) {
-      if (command === 'info') {
-        this.$router.push({ path: '/info' })
+      if (command === "info") {
+        this.$router.push({ path: "/info" });
       } else {
-        window.localStorage.clear()
-        this.$store.dispatch('sign_out')
+        window.localStorage.clear();
+        this.$store.dispatch("sign_out");
       }
     },
     handleCommand2(command) {
       switch (command) {
-        case 'program':
-          this.$router.push({ path: '/program' })
-          break
-        case 'articles':
-          this.$router.push({ path: '/articles' })
-          break
-        case 'questions':
-          this.$router.push({ path: '/questions' })
-          break
-        case 'studies':
-          this.$router.push({ path: '/study' })
-          break
+        case "program":
+          this.$router.push({ path: "/program" });
+          break;
+        case "articles":
+          this.$router.push({ path: "/articles" });
+          break;
+        case "questions":
+          this.$router.push({ path: "/questions" });
+          break;
+        case "studies":
+          this.$router.push({ path: "/study" });
+          break;
         default:
-          this.$router.push({ path: '/program' })
+          this.$router.push({ path: "/program" });
       }
     }
   },
   mounted() {
     console.log(
-      '$store.state.GET_LOGIN_STATUS:',
+      "$store.state.GET_LOGIN_STATUS:",
       this.$store.state.GET_LOGIN_STATUS
-    )
+    );
   }
-}
+};
 </script>
 <style>
 .menu .el-dropdown {
@@ -200,7 +337,7 @@ export default {
   -webkit-box-shadow: 0 0 5px #18aacf;
   -moz-box-shadow: 0 0 5px #18aacf;
   padding-top: 0;
-  background: hsla(0,0%,100%,.7);
+  background: hsla(0, 0%, 100%, 0.7);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
